@@ -1,0 +1,19 @@
+
+
+
+---
+telegram:
+#shopdailyapi  #shopdailyserver
+ ftp/web:  shopdailydev.accordhkcloudapi.com
+
+username : shopdailydev
+
+password:  Dev123123Dev
+
+db: shopdailydevdb
+
+dbadmin:  http://shopdailydev.accordhkcloudapi.com/dbadmin2016/
+
+---
+google excel:
+https://docs.google.com/spreadsheets/d/1-SSfjJ3F21MTIibgmfbVNjGYvSn_h-1_oyB1GL7JsbA/edit#gid=0
