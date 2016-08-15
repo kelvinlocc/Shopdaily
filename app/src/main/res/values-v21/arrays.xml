@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="photo_list">
+
+        <item>@drawable/category_01</item>
+        <item>@drawable/category_02</item>
+        <item>@drawable/category_03</item>
+    </integer-array>
+    <integer-array name="user_icon_list">
+        <item>@drawable/react_1</item>
+        <item>@drawable/react_2</item>
+        <item>@drawable/react_3</item>
+    </integer-array>
+    <string-array name="user_name_list">
+        <item>Chan Tai Man</item>
+        <item>Chan Man Man</item>
+        <item>Chan Tai Tai</item>
+    </string-array>
+
+    <string-array name="user_comment_list">
+        <item>Nice product</item>
+        <item>Good product</item>
+        <item>Great product</item>
+    </string-array>
+
+    <integer-array name="user_timeline_list">
+        <item>29</item>
+        <item>30</item>
+        <item>40</item>
+    </integer-array>
+
+    <string-array name="query_suggestions">
+        <item>A very very long suggestion that would span multiple lines.</item>
+        <item>Camera</item>
+        <item>Yeah</item>
+        <item>SCALA</item>
+        <item>Ruby</item>
+        <item>JavaScript</item>
+        <item>C#</item>
+        <item>Python</item>
+        <item>C</item>
+        <item>C++</item>
+        <item>PHP</item>
+        <item>Go</item>
+        <item>Perl</item>
+        <item>Bash</item>
+        <item>Lua</item>
+        <item>R</item>
+        <item>TCL</item>
+        <item>Haskell</item>
+        <item>Objective C</item>
+        <item>Swift</item>
+        <item>Kotlin</item>
+        <item>jQuery</item>
+        <item>Development</item>
+        <item>Web</item>
+        <item>Ajax</item>
+        <item>Test</item>
+        <item>Testing</item>
+        <item>CookBook</item>
+        <item>Beagle</item>
+        <item>VMware</item>
+        <item>Less.js</item>
+        <item>IDE</item>
+        <item>Arduino</item>
+        <item>Xamarin</item>
+        <item>UI</item>
+        <item>Microsoft</item>
+        <item>Application</item>
+        <item>Development</item>
+        <item>JUnit</item>
+        <item>SQL</item>
+        <item>Beagle</item>
+    </string-array>
+</resources>

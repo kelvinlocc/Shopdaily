@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="false"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/rl_title_wrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp" />
+
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_hardware_keyboard_arrow_down"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_wrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/rl_title_wrapper"
+        android:background="#f2f2f2"
+        android:visibility="visible">
+
+        <ListView
+            android:id="@+id/filter_item_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"></ListView>
+
+
+    </FrameLayout>
+</RelativeLayout>

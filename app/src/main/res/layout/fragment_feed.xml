@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3ddbd6d7"
+    android:padding="2dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="right"
+        android:background="@color/colorPrimary"
+        android:id="@+id/filterBar">
+
+        <ImageButton
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:id="@+id/imageButton7"
+            android:src="@drawable/icon_filter"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:nestedScrollingEnabled="false" />
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/filter"
+            android:textOn="@string/filter"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton"
+            android:background="@null"
+            android:checked="false" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/feed_listView">
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@android:id/list"
+            android:divider="@null"
+            android:dividerHeight="0sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="48dp"
+        android:id="@+id/popup_window">
+
+        <ListView
+            android:id="@+id/listView_filter_item_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@null"
+
+            android:dividerHeight="0dp"/>
+
+    </FrameLayout>
+
+</RelativeLayout>

@@ -1,0 +1,65 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ViewStub
+        android:id="@+id/layout_stub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_weight="0.75"
+        android:inflatedId="@+id/message_layout" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent">
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:name="fragments.YourInitialFragment"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="100dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!-- Must be last for right layering display -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <SearchView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/mySearchView"
+            android:background="@color/white"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="end">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Search"
+                android:id="@+id/btn_reset"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

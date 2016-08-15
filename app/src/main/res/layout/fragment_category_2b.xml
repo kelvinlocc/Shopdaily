@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fragment_bg">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <SearchView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:hint="Search for User"
+                        android:id="@+id/searchView"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:background="@color/colorPrimary"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_vertical" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/search"
+                        android:id="@+id/textView86"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:id="@+id/imageView2"
+                android:layout_below="@+id/searchView"
+                android:src="@drawable/category_slider"
+                android:layout_centerVertical="true"
+                android:layout_alignTop="@+id/gridView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <GridView
+                android:id="@+id/gridView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="3"
+                android:verticalSpacing="2dp"
+                android:horizontalSpacing="2dp"
+                android:layout_below="@+id/searchView"
+                android:layout_marginBottom="50dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

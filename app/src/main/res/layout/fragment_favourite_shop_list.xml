@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="30dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/user_icon"
+            android:layout_gravity="center"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/react_1"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/shop_name"
+            android:text="TextView" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="right"
+            android:layout_gravity="center"
+            >
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgB_favour"
+                android:src="@drawable/icon_favour"
+                android:background="@null"
+                android:scaleType="fitCenter" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

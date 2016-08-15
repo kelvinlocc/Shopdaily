@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="30dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/user_icon"
+            android:layout_gravity="center"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/category_01" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp">
+
+            <TextView
+                android:id="@+id/shop_name"
+                android:layout_gravity="left|center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="@color/shop_name"
+                android:text="TextView" />
+
+            <TextView
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/store_info"
+                android:id="@+id/store_info"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="right"
+            android:layout_gravity="center"
+            >
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton5"
+                android:src="@drawable/icon_favour"
+                android:background="@null"
+                android:scaleType="fitCenter" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

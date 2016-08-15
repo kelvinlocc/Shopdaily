@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:id="@+id/LinearLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-50dp">
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="right"
+                    android:background="@color/colorPrimary" >
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="280dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center">
+
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:id="@+id/btn_setting"
+                            android:src="@drawable/settings"
+                            android:background="@null"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:layout_marginLeft="10dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/none"
+                            android:layout_gravity="center"
+                            android:src="@drawable/money" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="100"
+                            android:textColor="@color/yellow"
+                            android:id="@+id/money"
+                            android:layout_gravity="center" />
+
+                        <ImageButton
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:id="@+id/btn_switch"
+                            android:src="@drawable/menu_feed"
+                            android:background="@null"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:nestedScrollingEnabled="false"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null">
+
+
+                <FrameLayout
+                    android:name="fragments.YourInitialFragment"
+                    android:id="@+id/fragment_container_SO"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView10"
+                    android:src="@drawable/icon_post"
+                    android:padding="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/post_feed"
+                    android:textSize="15dp"
+                    android:id="@+id/btn_post_feed"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView11"
+                    android:src="@drawable/icon_special"
+                    android:layout_marginLeft="20dp"
+                    android:padding="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/special"
+                    android:textSize="15dp"
+                    android:id="@+id/btn_special"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btn_gridview"
+                        android:src="@drawable/icon_9view"
+                        android:background="@null"
+                        android:scaleType="fitCenter"
+                        android:padding="5dp" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btn_listview"
+                        android:src="@drawable/icon_lineview"
+                        android:background="@null"
+                        android:scaleType="fitCenter"
+                        android:padding="5dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:background="@color/thin_grey_line_to_cut"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:id="@+id/customView" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="420dp"
+                android:layout_marginTop="-80dp">
+                <FrameLayout android:name="fragments.YourInitialFragment"
+                    android:id="@+id/fragment_container"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="70dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
+
+
+
+
+

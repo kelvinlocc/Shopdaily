@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    >
+    <ScrollView android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="right"
+                android:background="@color/colorPrimary" >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="280dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
+
+                    <ImageButton
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:id="@+id/btn_back"
+                        android:src="@drawable/icon_back"
+                        android:background="@null"
+                        android:layout_gravity="center"
+                        android:scaleType="fitCenter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/shop_status_report"
+                        android:textColor="@color/white"
+                        android:id="@+id/txt_go_back"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:background="#f2f2f2">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="5dp">
+
+                    <ImageButton
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/btn_previous"
+                        android:src="@drawable/icon_back"
+                        android:background="@null"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="50dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Yeah Shop Limited"
+                        android:id="@+id/textView95"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="April - May 2016"
+                        android:id="@+id/textView97"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="right"
+                    android:layout_marginLeft="-50dp">
+
+                    <ImageButton
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/btn_next"
+                        android:src="@drawable/icon_back_flip_horizontal"
+                        android:background="@null"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:name="fragments.YourInitialFragment"
+                android:id="@+id/fragment_container"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

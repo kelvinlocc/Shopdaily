@@ -1,0 +1,45 @@
+7-19 (Tuesday):
+ok: register, login
+ok: get nick name from localhost
+
+7-18 (Monday):
+use typed array to store drawable array in res file;
+user getResourceID to get the res from this array
+
+
+
+
+7-16 (Saturday):<resources>
+
+                    <integer-array name="random_imgs">
+                        <item>@drawable/car_01</item>
+                        <item>@drawable/balloon_random_02</item>
+                        <item>@drawable/dog_03</item>
+                    </integer-array>
+
+                </resources>
+
+07-15 (Friday ): change FeedDataModel to Parcelable
+
+07-12 (Tue)/*
+fragment_profile: special->shop_status-> show age or gender Pie chart
+ java.lang.OutOfMemoryError: Failed to allocate a 12441612 byte allocation with 5930448 free bytes and 5MB until OOM
+ // may caused by bitmapFactory
+You need to recycle Bitmap object .
+
+    Bitmap bm = BitmapFactory.decodeFile(strPath);
+    imageView.setImageBitmap(bm);
+After above lines of code in your get view just add the code written below ///now recycle your bitmap this will free up your memory on every iteration
+
+    if(bm!=null)
+   {
+     bm.recycle();
+     bm=null;
+    }
+//improved efficiency, save more memory
+        android:largeHeap="true"
+
+
+view the whole fragment in
+07-11 (Mon)//
+

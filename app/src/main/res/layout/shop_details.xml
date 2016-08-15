@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="right"
+            android:background="@color/colorPrimary" >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="280dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+
+                <ImageButton
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/btn_back"
+                    android:src="@drawable/icon_back"
+                    android:background="@null"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/shop_detail"
+                    android:textColor="@color/white"
+                    android:id="@+id/txt_go_back"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center">
+
+                <ImageButton
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:id="@+id/btn_share_sd"
+                    android:src="@drawable/icon_share_2"
+                    android:background="@null"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/share"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    android:id="@+id/textView24"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:id="@+id/imageView2"
+                android:layout_below="@+id/searchView"
+                android:src="@drawable/category_slider"
+                android:layout_centerVertical="true"
+                android:layout_alignTop="@+id/gridView" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="49dp"
+                android:id="@+id/imageView3"
+                android:src="@drawable/store"
+                android:layout_marginLeft="20dp"
+                android:cropToPadding="false"
+                android:layout_weight="0.0001" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Yeah Camera Shop"
+                        android:id="@+id/textView5" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Causeway Bay - 850ft "
+                        android:id="@+id/textView9" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/followers"
+                        android:id="@+id/textView66" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="12k"
+                        android:id="@+id/no_followers"
+                        android:layout_marginLeft="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:clickable="false">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton3"
+                    android:src="@drawable/icon_favour"
+                    android:background="@null"
+                    android:baselineAlignBottom="false"
+                    android:layout_marginLeft="25dp"
+                    android:scaleType="fitCenter"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/yeah_camera_shop_details"
+
+                android:textColor="@color/store_info_color"
+                android:id="@+id/textView10"
+                android:lineSpacingExtra="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.001dp"
+            android:background="@color/thin_grey_line_to_cut"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tel"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:id="@+id/textView18" />
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="+852 2323 3232"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:id="@+id/textView19" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="end">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageButton4"
+                    android:src="@drawable/icon_call"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:padding="5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/address"
+                android:textSize="13dp"
+                android:textColor="@color/black"
+                android:id="@+id/textView20" />
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Shop 1A-1B, G/F, Leishun Court, Leighton Road, Causeway Bay"
+                android:textSize="13dp"
+                android:textColor="@color/black"
+                android:id="@+id/textView21" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="end" >
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_shop_location"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_locate"
+                    android:background="@null"
+                    android:padding="5dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/open_close"
+                android:textSize="13dp"
+                android:textColor="@color/black"
+                android:id="@+id/textView22" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Monday - Friday     9:00 - 18:00\nSaturday - Sunday 10:00 -20:00"
+                android:textSize="13dp"
+                android:textColor="@color/black"
+                android:id="@+id/textView23" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="right" >
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dp"
+            android:background="@color/thin_grey_line_to_cut"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <GridView
+                android:id="@+id/gridView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="3"
+                android:verticalSpacing="2dp"
+                android:horizontalSpacing="2dp"
+                android:layout_below="@+id/searchView" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

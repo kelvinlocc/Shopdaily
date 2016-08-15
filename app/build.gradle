@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.1'
+
+    defaultConfig {
+        applicationId "shopdaily.dev.accordhk.com.shopdaily"
+        minSdkVersion 19
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'com.google.android.gms:play-services:9.0.2'
+    compile 'com.miguelcatalan:materialsearchview:1.4.0'
+    compile 'com.android.support:support-v4:23.0.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.0.9' // chart
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'me.relex:circleindicator:1.2.1@aar' //
+    compile files('libs/android-query-full.0.26.8.jar')
+
+
+
+
+}
