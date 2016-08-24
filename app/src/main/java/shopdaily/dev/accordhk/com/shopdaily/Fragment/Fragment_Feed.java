@@ -5,10 +5,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ListFragment;
@@ -17,11 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 //import com.androidquery.callback.AjaxStatus;
@@ -33,6 +34,7 @@ import shopdaily.dev.accordhk.com.shopdaily.Adapter.Fragment_Feed_Adapter;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.FeedDataModel;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.filter_DataModel;
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreferenceApplication;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.expanable_listview.ExpandableAdapter;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.expanable_listview.Item;
 
@@ -72,18 +74,18 @@ public class Fragment_Feed extends ListFragment {
 
     public String user_name_list[];
     public String user_comment_list[];
-    public Integer user_timeline_list[] = {10,20,30};
+    public Integer user_timeline_list[] = {10, 20, 30};
     public String hash_tag_list[];
     public int original_price;
     public int discount_price;
     public int discount;
-
-
+    private MyPreferenceApplication myPreferenceApplication;
+    public CheckBox checkBox;
     //fake data:
     //wan chai: 22.276039, 114.182555
     double shop_coordination[][] = {{22.276039, 114.182555}, {29.760287, -95.399637}, {29.757890, -95.399966}, {29.760337, -95.394815}};
 
-    Location userCurrentLocation = new Location("new");
+    Location userCurrentLocation;
     public static final String MY_PREFS_NAME = "MyPrefsFile";
 
     ArrayList<filter_DataModel> filter_dataModel_arrayList;
@@ -103,18 +105,25 @@ public class Fragment_Feed extends ListFragment {
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
 
 
-        SharedPreferences prefs = getActivity().getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
-
-        //get this user current location from splash activity,
-        userCurrentLocation.setLatitude(Double.parseDouble(prefs.getString("user_location_x", "0.0")));
-        userCurrentLocation.setLongitude(Double.parseDouble(prefs.getString("user_location_y", "0.0")));
-        Log.i(TAG, "latitude: " + userCurrentLocation.getLatitude());
+        //get current user lcoation
+        myPreferenceApplication = new MyPreferenceApplication();
+        userCurrentLocation = myPreferenceApplication.getUserLocation(getContext());
 
 
         final LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        if (!isNetworkEnabled) {
-            showSettingsAlert("Network");
+        boolean isLocationServiceEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (isLocationServiceEnabled) {
+            Log.i(TAG, "onCreateView: locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER); is true");
+        } else {
+            if (!myPreferenceApplication.getGPSOption(getContext())) {
+                showSettingsAlert("Network");
+            }
+        }
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm.getActiveNetworkInfo() == null) {
+            Log.d(TAG, "device offline");
+        } else {
+            Log.d(TAG, "device online");
         }
 
 
@@ -143,8 +152,8 @@ public class Fragment_Feed extends ListFragment {
 
         //filter data:
         filter_item = getActivity().getResources().getStringArray(R.array.filter_item);
-        for (int i =0;  i<filter_item.length;i++){
-            Log.i(TAG,"@filter_item: "+filter_item[i]);
+        for (int i = 0; i < filter_item.length; i++) {
+            Log.i(TAG, "@filter_item: " + filter_item[i]);
         }
         filter_item_price = getActivity().getResources().getStringArray(R.array.filter_item_price);
         filter_item_location = getActivity().getResources().getStringArray(R.array.filter_item_location);
@@ -222,7 +231,7 @@ public class Fragment_Feed extends ListFragment {
             item.description = "Description for Title  " + i;
             item.isExpanded = false;
             item.setFilter_item(filter_item);
-            Log.i(TAG,"@filter_item: "+filter_item[i]);
+            Log.i(TAG, "@filter_item: " + filter_item[i]);
             item.setFilter_item_list(setFilter_itemByName(filter_item[i]));
 
             items.add(item);
@@ -260,10 +269,6 @@ public class Fragment_Feed extends ListFragment {
 
         feedDataModelArrayList = new ArrayList<>();
         getURL();
-        if (userCurrentLocation == null) {
-            showSettingsAlert("network error");
-        }
-        Log.i(TAG, " myUserCurrentLocation @onStart " + userCurrentLocation.getLatitude() + "," + userCurrentLocation.getLongitude());
 
         feed_list_adapter = new Fragment_Feed_Adapter(this, feedDataModelArrayList, ENTRY_LIMIT, userCurrentLocation);
         ///
@@ -325,36 +330,33 @@ public class Fragment_Feed extends ListFragment {
         }
     }
 
-    /*
-    public int photo_list [];
-    public int user_icon_list[];
-    public String user_name_list[];
-    public String user_comment_list[];
-    public int user_timeline_list [];
-
-    public String hash_tag_list [];
-    public  int original_price;
-    public int discount_price;
-    public int discount;
-    public String product_category;
-
-    */
-
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+
     public void showSettingsAlert(String provider) {
+
+        Log.i(TAG, "showSettingsAlert: ");
+        LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+        View view = layoutInflater.inflate(R.layout.checkbox, null);
+        checkBox = (CheckBox) view.findViewById(R.id.skip);
+
+
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(
                 getActivity());
 
         alertDialog.setTitle(provider + " SETTINGS");
-
+        alertDialog.setView(view);
         alertDialog
                 .setMessage(provider + " is not enabled! Want to go to settings menu?");
 
         alertDialog.setPositiveButton("Settings",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        if (checkBox.isChecked()) {
+                            Toast.makeText(getActivity(), "don't ask again!", Toast.LENGTH_SHORT).show();
+                            myPreferenceApplication.setGPSOption(getContext(), true);
+                        }
                         Intent intent = new Intent(
                                 Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                         getActivity().startActivity(intent);
@@ -364,6 +366,10 @@ public class Fragment_Feed extends ListFragment {
         alertDialog.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        if (checkBox.isChecked()) {
+                            Toast.makeText(getActivity(), "don't ask again!", Toast.LENGTH_SHORT).show();
+                            myPreferenceApplication.setGPSOption(getContext(), true);
+                        }
                         dialog.cancel();
                     }
                 });
@@ -406,7 +412,6 @@ public class Fragment_Feed extends ListFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 
 

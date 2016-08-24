@@ -212,6 +212,7 @@
     <orderEntry type="library" exported="" name="play-services-9.0.2" level="project" />
     <orderEntry type="library" exported="" name="play-services-iid-9.0.2" level="project" />
     <orderEntry type="library" exported="" name="play-services-analytics-9.0.2" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.7" level="project" />
     <orderEntry type="library" exported="" name="design-23.3.0" level="project" />
     <orderEntry type="library" exported="" name="mediarouter-v7-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />

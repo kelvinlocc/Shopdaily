@@ -5,7 +5,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:name="android.support.multidex.MultiDexApplication"
@@ -111,10 +112,6 @@
 
         <activity
             android:name=".Activity.Shop_details_feed"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity
-            android:name=".Activity.Shop_details_feed_2"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <meta-data

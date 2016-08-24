@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import shopdaily.dev.accordhk.com.shopdaily.Adapter.ViewPagerAdapter;
 import shopdaily.dev.accordhk.com.shopdaily.Fragment.Fragment_Category_i;
@@ -45,18 +46,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
         fragmentManager = getSupportFragmentManager();
-
         if (Build.VERSION.SDK_INT < 16) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
         setContentView(R.layout.activity_main);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        setTitle("Shop Daily");
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -66,28 +62,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
         if (tabLayout!=null) {
             tabLayout.setupWithViewPager(viewPager);
-
             setupTabIcons();
         }
-
-//        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                tab.getIcon().setColorFilter(Color.parseColor("#00a99e"), PorterDuff.Mode.SRC_IN);
-//
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//                tab.getIcon().setColorFilter(Color.parseColor("#999999"), PorterDuff.Mode.SRC_IN);
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-//        Log.i("check_","onCreateView"+getIntent().getExtras().get("x"));
 
     }
 
@@ -97,13 +73,6 @@ public class MainActivity extends AppCompatActivity {
             int resourceId = tabIcons[i];
             tabLayout.getTabAt(i).setIcon(resourceId);
         }
-        /*
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-        tabLayout.getTabAt(3).setIcon(tabIcons[3]);
-        tabLayout.getTabAt(4).setIcon(tabIcons[4]);  //done
-*/
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -115,9 +84,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new Fragment_Location(), strings[2]);
         adapter.addFragment(new Fragment_Favourite(), strings[3]);
         adapter.addFragment(new Fragment_Profile(), strings[4]);
-
-
-
         viewPager.setAdapter(adapter);
 
     }
@@ -130,17 +96,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }
