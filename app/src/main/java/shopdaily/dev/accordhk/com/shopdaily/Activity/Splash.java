@@ -5,19 +5,16 @@ package shopdaily.dev.accordhk.com.shopdaily.Activity;
  */
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
-import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Window;
+import android.widget.Toast;
 
 import shopdaily.dev.accordhk.com.shopdaily.R;
-import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreferenceApplication;
-import shopdaily.dev.accordhk.com.shopdaily.Uility.SingleShotLocationProvider;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 public class Splash extends Activity {
     private static boolean splashLoaded = false;
@@ -30,16 +27,19 @@ public class Splash extends Activity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+
+
         /// for debug::
         userCurrentLocation.setLatitude(22.2848476);        /// for debug::
         userCurrentLocation.setLongitude(114.2144456);        /// for debug::
 
-        MyPreferenceApplication myPreferenceApplication = new MyPreferenceApplication();
-        myPreferenceApplication.setUserLocation(this,userCurrentLocation);
+        MyPreApp myPreApp = new MyPreApp();
+        myPreApp.setUserLocation(userCurrentLocation);
+        Log.d(TAG, "onCreate: lat,long "+myPreApp.getUserLocation().getLatitude()+","+myPreApp.getUserLocation().getLongitude());
 
         if (!splashLoaded) {
             setContentView(R.layout.splashscreen_main);
-            int secondsDelayed = 5;
+            int secondsDelayed = 2;
             new Handler().postDelayed(new Runnable() {
                 public void run() {
                     Intent NextActivity = new Intent(Splash.this, LoginPage.class);

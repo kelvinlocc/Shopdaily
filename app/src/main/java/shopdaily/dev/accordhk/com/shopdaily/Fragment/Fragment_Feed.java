@@ -34,7 +34,7 @@ import shopdaily.dev.accordhk.com.shopdaily.Adapter.Fragment_Feed_Adapter;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.FeedDataModel;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.filter_DataModel;
 import shopdaily.dev.accordhk.com.shopdaily.R;
-import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreferenceApplication;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.expanable_listview.ExpandableAdapter;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.expanable_listview.Item;
 
@@ -79,7 +79,7 @@ public class Fragment_Feed extends ListFragment {
     public int original_price;
     public int discount_price;
     public int discount;
-    private MyPreferenceApplication myPreferenceApplication;
+    private MyPreApp myPreApp;
     public CheckBox checkBox;
     //fake data:
     //wan chai: 22.276039, 114.182555
@@ -106,8 +106,8 @@ public class Fragment_Feed extends ListFragment {
 
 
         //get current user lcoation
-        myPreferenceApplication = new MyPreferenceApplication();
-        userCurrentLocation = myPreferenceApplication.getUserLocation(getContext());
+        myPreApp = new MyPreApp();
+        userCurrentLocation = myPreApp.getUserLocation();
 
 
         final LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -115,8 +115,8 @@ public class Fragment_Feed extends ListFragment {
         if (isLocationServiceEnabled) {
             Log.i(TAG, "onCreateView: locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER); is true");
         } else {
-            if (!myPreferenceApplication.getGPSOption(getContext())) {
-                showSettingsAlert("Network");
+            if (!myPreApp.getGPSOption()) {
+                showSettingsAlert("GPS");
             }
         }
         ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -355,7 +355,7 @@ public class Fragment_Feed extends ListFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         if (checkBox.isChecked()) {
                             Toast.makeText(getActivity(), "don't ask again!", Toast.LENGTH_SHORT).show();
-                            myPreferenceApplication.setGPSOption(getContext(), true);
+                            myPreApp.setGPSOption(true);
                         }
                         Intent intent = new Intent(
                                 Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -368,7 +368,7 @@ public class Fragment_Feed extends ListFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         if (checkBox.isChecked()) {
                             Toast.makeText(getActivity(), "don't ask again!", Toast.LENGTH_SHORT).show();
-                            myPreferenceApplication.setGPSOption(getContext(), true);
+                            myPreApp.setGPSOption(true);
                         }
                         dialog.cancel();
                     }

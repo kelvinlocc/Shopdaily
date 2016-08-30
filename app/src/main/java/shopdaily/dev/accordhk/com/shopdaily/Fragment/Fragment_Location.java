@@ -4,18 +4,17 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,17 +27,15 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import shopdaily.dev.accordhk.com.shopdaily.Activity.Shop_details;
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 
 public class Fragment_Location extends Fragment implements GoogleApiClient.ConnectionCallbacks,
@@ -61,7 +58,7 @@ public class Fragment_Location extends Fragment implements GoogleApiClient.Conne
 
     double little_vegas_coordinate_X = 29.760337;
     double little_vegas_coordinate_Y = -95.394815;
-    double shop_coordination [][] = {{1,2},{3,4},{5,6},{7,8},{9,10}};
+    double shop_coordination[][] = {{1, 2}, {3, 4}, {5, 6}, {7, 8}, {9, 10}};
 
     GoogleMap map;
     LatLng latlng;
@@ -78,26 +75,31 @@ public class Fragment_Location extends Fragment implements GoogleApiClient.Conne
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     double location[];
+    MyPreApp myPreApp;
+    CheckBox checkBox;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "onCreated ");
 
-//        location = getActivity().getResources().get(R.array.shop_list);
+        myPreApp = new MyPreApp();
 
-        LocationManager lm = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-        boolean gps_enabled = false;
-        boolean network_enabled = false;
 
-        try {
-            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        } catch(Exception ex) {
-            showSettingsAlert("GPS");
+        final LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        boolean isLocationServiceEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (isLocationServiceEnabled) {
+            Log.i(TAG, "onCreateView: locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER); is true");
+        } else {
+            if (!myPreApp.getGPSOption()) {
+                showSettingsAlert("GPS");
+            }
         }
-
-        try {
-            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        } catch(Exception ex) {showSettingsAlert("network");}
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm.getActiveNetworkInfo() == null) {
+            Log.d(TAG, "device offline");
+        } else {
+            Log.d(TAG, "device online");
+        }
 
 
         if (mGoogleApiClient == null) {
@@ -173,9 +175,9 @@ public class Fragment_Location extends Fragment implements GoogleApiClient.Conne
 
 
     @Override
-    public void onLocationChanged(Location l2) {
+    public void onLocationChanged(Location location) {
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
-                new LatLng(l2.getLatitude(), l2.getLongitude()), 15);
+                new LatLng(location.getLatitude(), location.getLongitude()), 15);
         map.animateCamera(cameraUpdate);
     }
 
@@ -211,7 +213,9 @@ public class Fragment_Location extends Fragment implements GoogleApiClient.Conne
 //            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
         } else {
             Log.i(TAG, "mLastLocation is null");
-            showSettingsAlert("GPS");
+            if (!myPreApp.getGPSOption()) {
+                showSettingsAlert("GPS");
+            }
 
         }
     }
@@ -221,45 +225,6 @@ public class Fragment_Location extends Fragment implements GoogleApiClient.Conne
     public void onConnectionSuspended(int i) {
 
     }
-
-//    private void setUpMap() {
-//
-//        Log.i(TAG, "setUpMap");
-//
-//        BitmapDrawable bitmapdraw = (BitmapDrawable) getResources().getDrawable(R.drawable.location_1);
-//        Bitmap b = bitmapdraw.getBitmap();
-//        Bitmap location_1 = Bitmap.createScaledBitmap(b, b.getWidth() / 2, b.getHeight() / 2, false);
-//
-//        BitmapDrawable bitmapdraw_2 = (BitmapDrawable) getResources().getDrawable(R.drawable.location_2);
-//        Bitmap b_2 = bitmapdraw_2.getBitmap();
-//        Bitmap location_2 = Bitmap.createScaledBitmap(b_2, b_2.getWidth() / 2, b_2.getHeight() / 2, false);
-//
-//        myMarker = myGoogleMap.addMarker(new MarkerOptions()
-//                .position(new LatLng(yeach_camera_shop_coordinate_X, yeach_camera_shop_coordinate_Y))
-//                .title("Yeach Camera Shop").icon(BitmapDescriptorFactory.fromBitmap(location_1)));
-//
-//        myGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//            @Override
-//            public void onInfoWindowClick(Marker myMarker) {
-//                Intent intent = new Intent(getActivity(), Shop_details.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        myGoogleMap.addMarker(new MarkerOptions()
-//                .position(new LatLng(burgeroom_coordinate_X, burgeroom_coordinate_Y))
-//                .title("Burgeroom").icon(BitmapDescriptorFactory.fromBitmap(location_2)));
-//
-//        myGoogleMap.addMarker(new MarkerOptions()
-//                .position(new LatLng(via_tokyo_coordinate_X, via_tokyo_coordinate_Y))
-//                .title("Via Tokyo").icon(BitmapDescriptorFactory.fromBitmap(location_1)));
-//
-//        myGoogleMap.addMarker(new MarkerOptions()
-//                .position(new LatLng(little_vegas_coordinate_X, little_vegas_coordinate_Y))
-//                .title("Little Vegas").icon(BitmapDescriptorFactory.fromBitmap(location_2)));
-//
-//    }
-
 
     private void moveMap(LatLng place) {
         // 建立地圖攝影機的位置物件
@@ -274,17 +239,28 @@ public class Fragment_Location extends Fragment implements GoogleApiClient.Conne
     }
 
     public void showSettingsAlert(String provider) {
+
+        Log.i(TAG, "showSettingsAlert: ");
+        LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+        View view = layoutInflater.inflate(R.layout.checkbox, null);
+        checkBox = (CheckBox) view.findViewById(R.id.skip);
+
+
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(
                 getActivity());
 
         alertDialog.setTitle(provider + " SETTINGS");
-
+        alertDialog.setView(view);
         alertDialog
                 .setMessage(provider + " is not enabled! Want to go to settings menu?");
 
         alertDialog.setPositiveButton("Settings",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        if (checkBox.isChecked()) {
+                            Toast.makeText(getActivity(), "don't ask again!", Toast.LENGTH_SHORT).show();
+                            myPreApp.setGPSOption(true);
+                        }
                         Intent intent = new Intent(
                                 Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                         getActivity().startActivity(intent);
@@ -294,6 +270,10 @@ public class Fragment_Location extends Fragment implements GoogleApiClient.Conne
         alertDialog.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        if (checkBox.isChecked()) {
+                            Toast.makeText(getActivity(), "don't ask again!", Toast.LENGTH_SHORT).show();
+                            myPreApp.setGPSOption(true);
+                        }
                         dialog.cancel();
                     }
                 });
@@ -301,17 +281,5 @@ public class Fragment_Location extends Fragment implements GoogleApiClient.Conne
         alertDialog.show();
     }
 
-    /**** The mapfragment's id must be removed from the FragmentManager
-     **** or else if the same it is passed on the next time then
-     **** app will crash ****/
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        if (myGoogleMap != null) {
-//            MainActivity.fragmentManager.beginTransaction()
-//                    .remove(MainActivity.fragmentManager.findFragmentById(R.id.map)).commit();
-//            myGoogleMap = null;
-//        }
-//    }
 
 }
