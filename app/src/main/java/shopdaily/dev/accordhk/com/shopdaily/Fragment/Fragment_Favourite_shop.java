@@ -36,7 +36,7 @@ public class Fragment_Favourite_shop extends ListFragment {
             R.drawable.react_3,
             R.drawable.react_1};
     public static String[] shop_name_list = {
-            "Yeah Camera Shop",
+            "Yeah Camera Shop_Response",
             "Burgeroom",
             "Via TOkyo",
             "Little Vegas"};

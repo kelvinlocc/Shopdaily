@@ -39,7 +39,7 @@ public class Fragment_Favourite_feed extends ListFragment {
     };
     public static String [] prgmNameList={
             "Today",
-            "Yeah Camera Shop",
+            "Yeah Camera Shop_Response",
             "Yesterday",
 
             "My Dream Chair",

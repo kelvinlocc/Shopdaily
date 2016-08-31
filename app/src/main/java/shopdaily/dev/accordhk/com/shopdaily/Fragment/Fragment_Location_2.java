@@ -107,7 +107,7 @@ public class Fragment_Location_2 extends Fragment {
 
         myMarker = mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(yeach_camera_shop_coordinate_X, yeach_camera_shop_coordinate_Y))
-                .title("Yeach Camera Shop").icon(BitmapDescriptorFactory.fromBitmap(resized_bitmap_location_01)));
+                .title("Yeach Camera Shop_Response").icon(BitmapDescriptorFactory.fromBitmap(resized_bitmap_location_01)));
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override

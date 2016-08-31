@@ -14,9 +14,13 @@ import android.widget.TextView;
 import com.androidquery.callback.AjaxStatus;
 
 import org.json.JSONException;
+import org.w3c.dom.Text;
 
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.Activity.profile_shop_owner_edit;
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.RESTService;
 
 
@@ -24,8 +28,11 @@ import shopdaily.dev.accordhk.com.shopdaily.Uility.RESTService;
  * Created by iFocus on 27-10-2015.
  */
 public class Fragment_Profile_shop_owner extends Fragment {
-    private RESTService service;
+
     private static String TAG = "Fragment_Profile_shop_owner ";
+    TextView nick_name, birthday;
+    MyPreApp myPreApp;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,23 +44,14 @@ public class Fragment_Profile_shop_owner extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_profile_shop_owner, container, false);
-        service = new RESTService(getActivity());
-        String email = "check@gmail.com";
+        myPreApp = new MyPreApp();
+        Login_Response_Data login_response_data = myPreApp.getLoginData().data;
 
+        nick_name = (TextView) view.findViewById(R.id.member_nick_name);
+        nick_name.setText(login_response_data.member_nick_name);
 
-
-        final TextView nick_name = (TextView) view.findViewById(R.id.nick_name);
-
-
-
-        service.get_nick_name(email, new RESTService.onAjaxFinishedListener() {
-            @Override
-            public void onFinished(String url, String json, AjaxStatus status)  {
-            Log.i(TAG,"json: "+json);
-                nick_name.setText(json);
-            }
-        });
-
+        birthday = (TextView) view.findViewById(R.id.member_birthday);
+        birthday.setText(login_response_data.member_birthday);
 
 
         Button btn_setting = (Button) view.findViewById(R.id.btn_edit);

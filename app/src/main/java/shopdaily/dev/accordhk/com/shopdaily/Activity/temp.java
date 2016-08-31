@@ -38,7 +38,7 @@ public class temp extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
 
-//        setTitle("Shop Daily");
+//        setTitle("Shop_Response Daily");
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);

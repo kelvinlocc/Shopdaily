@@ -81,7 +81,7 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Causeway Bay - 850ft "
-                            android:id="@+id/shop_location"
+                            android:id="@+id/shop_district"
                             android:textSize="10dp"
                             android:layout_gravity="center" />
 
@@ -234,10 +234,10 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Shop 1A-1B, G/F, Leishun Court, Leighton Road, Causeway Bay"
+                android:text="shop_address"
                 android:textSize="13dp"
                 android:textColor="@color/black"
-                android:id="@+id/textView21" />
+                android:id="@+id/shop_address" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -278,7 +278,7 @@
                 android:text="Monday - Friday     9:00 - 18:00\nSaturday - Sunday 10:00 -20:00"
                 android:textSize="13dp"
                 android:textColor="@color/black"
-                android:id="@+id/textView23" />
+                android:id="@+id/shop_operation_hour" />
 
             <LinearLayout
                 android:orientation="horizontal"

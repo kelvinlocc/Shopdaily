@@ -11,7 +11,9 @@ public class Login_Response {
     public int status;
 
     @SerializedName("data")
-    public Login_Data data;
+    public Login_Response_Data data;
+
+
 
 
 }
