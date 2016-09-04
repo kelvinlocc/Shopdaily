@@ -90,7 +90,7 @@
                 android:gravity="right">
 
                 <Button
-                    android:id="@+id/btn_edit"
+                    android:id="@+id/upload_profile"
                     android:layout_width="60dp"
                     android:textAllCaps="false"
                     android:layout_height="30dp"

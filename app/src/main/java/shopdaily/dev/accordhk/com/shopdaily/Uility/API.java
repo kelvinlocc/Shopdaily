@@ -36,7 +36,7 @@ public class API {
     }
 
     public String getServerIP() {
-        return serverIP;
+        return baseURL;
     }
 
     public String getBaseURL() {
@@ -88,6 +88,29 @@ public class API {
             }
         }).start();
     }
+
+        public void member_profile_image_upload (final String member_session, final String upload_file,final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "member_profile_image_upload";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", 654321);
+                params.put("lang_id", 1);
+                params.put("member_session", member_session);
+                params.put("upload_file",upload_file);
+                ajaxPOSTCall(url, params, listener);
+
+            }
+        }).start();
+    }
+
+
 
     public void shop_registration(final String member_session, final String shop_name_en, final String shop_name_tc, final String shop_name_sc, final String shop_contact_person, final String shop_br_number, final String shop_address_en, final String shop_address_tc, final String shop_address_sc, final String shop_location_x, final String shop_location_y, final String shop_operation_hour_en, final String shop_operation_hour_tc, final String shop_operation_hour_sc, final String shop_district, final String shop_category_list, final String shop_hash_list, final onAjaxFinishedListener listener) {
         new Thread(new Runnable() {
@@ -145,6 +168,27 @@ public class API {
 
             }
         }).start();
+    }
+
+    public void changePassword (final String member_session, final String member_new_password,final onAjaxFinishedListener listener){
+        new Thread((new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+                String url = baseURL + "member_change_password";
+                Map<String,Object> params = new HashMap<String, Object>();
+                params.put("api_key", 654321);
+                params.put("lang_id", 1);
+                params.put("member_session",member_session);
+                params.put("member_new_password",member_new_password);
+                ajaxPOSTCall(url,params,listener);
+
+            }
+        })).start();
     }
 
     // haven't finish

@@ -39,7 +39,7 @@ public class MyPreApp {
         editor.apply();
     }
 
-    public Login_Response getLoginData (){
+    public Login_Response getLoginResponse(){
         Gson gson = new Gson();
         String jsonObject = MyApplication.getSharedPreferences().getString(Login_data_key,null);
         return  gson.fromJson(jsonObject,Login_Response.class);

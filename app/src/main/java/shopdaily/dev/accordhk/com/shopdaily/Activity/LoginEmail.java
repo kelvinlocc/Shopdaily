@@ -87,7 +87,7 @@ public class LoginEmail extends Activity {
 
                             //save data from api
                             myPreApp.setLoginData(login_response);
-//                            Log.i(TAG, "onFinished:... "+myPreApp.getLoginData().data.shop.shop_id);
+//                            Log.i(TAG, "onFinished:... "+myPreApp.getLoginResponse().data.shop.shop_id);
 
                             if (login_response.status == 1) {
                                 Toast.makeText(LoginEmail.this, "Login Successfully! ", Toast.LENGTH_LONG).show();
@@ -96,7 +96,8 @@ public class LoginEmail extends Activity {
                                 startActivity(NextActivity);
                                 finish();
                             } else {
-                                Toast.makeText(LoginEmail.this, json, Toast.LENGTH_LONG).show();
+//                                Log.i(TAG, "onFinished: "+"");
+                                Toast.makeText(LoginEmail.this, "your email or password is not correct", Toast.LENGTH_LONG).show();
                             }
                         }
 
