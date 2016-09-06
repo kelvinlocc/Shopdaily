@@ -8,6 +8,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
 
 
 /**
@@ -21,7 +22,7 @@ public class MyPreApp {
     private static String TestKey = "test key";
 
     private static String Login_data_key = "login data key";
-
+    private static String Shop_Response_data_key = "shop response data key";
 
 
     public void baseSharedPreference (String key, String value){
@@ -31,7 +32,22 @@ public class MyPreApp {
         Log.i(TAG, "setTestResult: string= "+value);
     }
 
-    public void setLoginData (Login_Response login_response){
+    public void setShopResponse (Shop_Response shopResponse){
+        SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
+        Gson gson =new Gson();
+        String jsonObject = gson.toJson(shopResponse);
+        editor.putString(Shop_Response_data_key,jsonObject);
+        editor.apply();
+    }
+
+    public Shop_Response getShopResponse (){
+        Gson gson = new Gson();
+        String jsonObject = MyApplication.getSharedPreferences().getString(Shop_Response_data_key,null);
+        return gson.fromJson(jsonObject,Shop_Response.class);
+    }
+
+
+    public void setLoginResponse(Login_Response login_response){
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
         Gson gson = new Gson();
         String jsonObject = gson.toJson(login_response);

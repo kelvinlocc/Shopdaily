@@ -42,8 +42,10 @@ public class Login_Response_Data {
     public String push_token_string;
     @SerializedName("mobile_type")
     public String mobile_type;
-    @SerializedName("shop")
-    public Shop_Response shop;
+
+//    @SerializedName("shop")
+//    public Shop_Response shop;
+
     @SerializedName("package_coin_amount")
     public String package_coin_amount;
 }

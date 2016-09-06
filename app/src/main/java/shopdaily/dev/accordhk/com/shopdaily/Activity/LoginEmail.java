@@ -85,8 +85,17 @@ public class LoginEmail extends Activity {
                             Gson gson = new Gson();
                             Login_Response login_response = gson.fromJson(json,Login_Response.class);
 
+                            JSONObject jsonObject = new JSONObject(json);
+                            jsonObject = jsonObject.getJSONObject("data");
+                            jsonObject = jsonObject.getJSONObject("shop");
+                            if (jsonObject!=null){
+                                Shop_Response shop_response = gson.fromJson(jsonObject.toString() ,Shop_Response.class);
+                                Log.i(TAG, "onFinished: shop_br_number "+shop_response.shop_br_number);
+                                myPreApp.setShopResponse(shop_response);
+                            }
+
                             //save data from api
-                            myPreApp.setLoginData(login_response);
+                            myPreApp.setLoginResponse(login_response);
 //                            Log.i(TAG, "onFinished:... "+myPreApp.getLoginResponse().data.shop.shop_id);
 
                             if (login_response.status == 1) {

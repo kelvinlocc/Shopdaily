@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -29,8 +31,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.callback.AjaxStatus;
+import com.github.mikephil.charting.utils.Utils;
 
 import org.json.JSONException;
+import org.w3c.dom.Text;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -38,8 +42,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -66,6 +73,9 @@ public class profile_shop_owner_edit extends AppCompatActivity {
     MyPreApp myPreApp;
     String upLoadServerUri;
     Login_Response_Data login_response_data;
+    ImageView imageView;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -78,6 +88,31 @@ public class profile_shop_owner_edit extends AppCompatActivity {
         setContentView(R.layout.fragment_profile_shop_owner_edit);
         upLoadServerUri ="http://shopdailydev.accordhkcloudapi.com/api/member_profile_image_upload";
         login_response_data = myPreApp.getLoginResponse().data;
+
+
+        imageView = (ImageView) findViewById(R.id.icon);
+        Log.i(TAG, "onCreate: image url "+login_response_data.member_profile_image);
+        showImageTwo();
+//        imgView.setImageDrawable(LoadImageFromWebOperations(login_response_data.member_profile_image));
+
+        TextView nick_name = (TextView) findViewById(R.id.txt_nickName);
+        nick_name.setText(login_response_data.member_nick_name);
+
+        TextView birthday = (TextView) findViewById(R.id.birthday);
+        birthday.setText(login_response_data.member_birthday);
+
+        TextView email = (TextView) findViewById(R.id.email);
+        email.setText(login_response_data.member_email);
+
+        TextView gender = (TextView) findViewById(R.id.gender);
+        if (login_response_data.member_gender =="1"){
+            gender.setText("Male");
+        }
+        else {
+            gender.setText("Female");
+        }
+
+
 
         Button upload_profile_pic = (Button) findViewById(R.id.upload_profile);
         upload_profile_pic.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +188,68 @@ public class profile_shop_owner_edit extends AppCompatActivity {
 
 
     }
+
+    public void showImageTwo() {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(login_response_data.member_profile_image);
+            imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream)url.getContent()));
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+
+
+
+
+    private Bitmap downloadBitmap(String url) {
+        HttpURLConnection urlConnection = null;
+        try {
+            URL uri = new URL(url);
+            urlConnection = (HttpURLConnection) uri.openConnection();
+
+            int statusCode = urlConnection.getResponseCode();
+//            if (statusCode != HttpStatus.SC_OK) {
+//                return null;
+//            }
+
+            InputStream inputStream = urlConnection.getInputStream();
+            if (inputStream != null) {
+
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                return bitmap;
+            }
+        } catch (Exception e) {
+            Log.d("URLCONNECTIONERROR", e.toString());
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+            Log.w("ImageDownloader", "Error downloading image from " + url);
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+
+            }
+        }
+        return null;
+    }
+
+
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is, "src name");
+            Log.i(TAG, "LoadImageFromWebOperations: successful");
+            return d;
+        } catch (Exception e) {
+            Log.i(TAG, "exception!");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 
 
     String uploadFilePath;
@@ -230,8 +327,6 @@ public class profile_shop_owner_edit extends AppCompatActivity {
     int serverResponseCode = 0;
 
     public int uploadFile(String sourceFileUri) {
-
-        String fileName = sourceFileUri;
 
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
@@ -432,81 +527,7 @@ public class profile_shop_owner_edit extends AppCompatActivity {
     }
 
 
-    //////////////////////////////////failed
-    // When Upload button is clicked
-    public void uploadImage() {
-        Log.i(TAG, "uploadImage: ");
-        // When Image is selected from Gallery
-        if (imgPath != null && !imgPath.isEmpty()) {
-            Toast.makeText(profile_shop_owner_edit.this, "Converting Image to Binary Data...", Toast.LENGTH_SHORT).show();
-            // Convert image to String using Base64
 
-            // When Image is not selected from Gallery
-        } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    "You must select image from gallery before you try to upload",
-                    Toast.LENGTH_LONG).show();
-        }
-    }
-
-    // encode image to string failed
-//    // AsyncTask - To convert Image to String
-//    public void encodeImagetoString() {
-//        new AsyncTask<Void, Void, String>() {
-//
-//
-//            protected void onPreExecute() {
-//
-//            };
-//
-//            @Override
-//            protected String doInBackground(Void... params) {
-//                Log.i(TAG, "doInBackground: ");
-//                BitmapFactory.Options options = null;
-//                options = new BitmapFactory.Options();
-//                options.inSampleSize = 3;
-//                bitmap = BitmapFactory.decodeFile(imgPath,
-//                        options);
-//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                // Must compress the Image to reduce image size to make upload easy
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 50, stream);
-//                byte[] byte_arr = stream.toByteArray();
-//                // Encode Image to String
-//                encodedString = Base64.encodeToString(byte_arr, 0);
-//                Log.i(TAG, "doInBackground: encodedString "+encodedString);
-//                return "";
-//            }
-//
-//            @Override
-//            protected void onPostExecute(String msg) {
-//                Log.i(TAG, "onPostExecute: ");
-//                Toast.makeText(profile_shop_owner_edit.this, "calling upload", Toast.LENGTH_SHORT).show();
-//                // Put converted Image string into Async Http Post param
-////                params.put("image", encodedString);
-//                // Trigger Image upload
-//                triggerImageUpload();
-//            }
-//        }.execute(null, null, null);
-//    }
-//
-//    public void triggerImageUpload() {
-//        Log.i(TAG, "triggerImageUpload: ");
-//        makeAjaxCall();
-//    }
-//    // Make Http call to upload Image to Php server
-//    public void makeAjaxCall() {
-//        Log.i(TAG, "makeAjaxCall: ");
-//        Log.i(TAG, "Invoking Php");
-//        Login_Response_Data login_response_data = myPreApp.getLoginResponse().data;
-//        myApi.member_profile_image_upload(login_response_data.member_session,encodedString, new API.onAjaxFinishedListener() {
-//            @Override
-//            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
-//                Log.i(TAG, "onFinished: json: "+json);
-//            }
-//        });
-//
-//    }
 
 
     @Override

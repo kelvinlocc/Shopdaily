@@ -35,7 +35,7 @@ public class Fragment_Profile_shop extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile_shop,container,false);
         myPreapp = new MyPreApp();
-        Shop_Response shop_data = myPreapp.getLoginResponse().data.shop;
+        Shop_Response shop_data = myPreapp.getShopResponse();
 
         shop_name = (TextView) view.findViewById(R.id.shop_name);
         shop_name.setText(shop_data.shop_name_en);
