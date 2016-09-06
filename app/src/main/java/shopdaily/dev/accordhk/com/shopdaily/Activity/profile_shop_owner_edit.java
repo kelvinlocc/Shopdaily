@@ -8,17 +8,13 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,25 +26,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.androidquery.callback.AjaxStatus;
-import com.github.mikephil.charting.utils.Utils;
-
-import org.json.JSONException;
-import org.w3c.dom.Text;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
@@ -74,7 +53,7 @@ public class profile_shop_owner_edit extends AppCompatActivity {
     String upLoadServerUri;
     Login_Response_Data login_response_data;
     ImageView imageView;
-
+    String uploadFilePath;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,58 +181,6 @@ public class profile_shop_owner_edit extends AppCompatActivity {
 
 
 
-
-    private Bitmap downloadBitmap(String url) {
-        HttpURLConnection urlConnection = null;
-        try {
-            URL uri = new URL(url);
-            urlConnection = (HttpURLConnection) uri.openConnection();
-
-            int statusCode = urlConnection.getResponseCode();
-//            if (statusCode != HttpStatus.SC_OK) {
-//                return null;
-//            }
-
-            InputStream inputStream = urlConnection.getInputStream();
-            if (inputStream != null) {
-
-                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                return bitmap;
-            }
-        } catch (Exception e) {
-            Log.d("URLCONNECTIONERROR", e.toString());
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            Log.w("ImageDownloader", "Error downloading image from " + url);
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-
-            }
-        }
-        return null;
-    }
-
-
-    public static Drawable LoadImageFromWebOperations(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "src name");
-            Log.i(TAG, "LoadImageFromWebOperations: successful");
-            return d;
-        } catch (Exception e) {
-            Log.i(TAG, "exception!");
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-
-
-
-    String uploadFilePath;
-
     @Override
     public void onActivityResult(final int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -305,216 +232,19 @@ public class profile_shop_owner_edit extends AppCompatActivity {
             fileName = fileNameSegments[fileNameSegments.length - 1];
             // Put file name in Async Http Post Param which will used in Php web app
             Log.i(TAG, "onActivityResult: fileName " + fileName);
-
-
-//            try {
-//            myApi.
-//
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
             if (uploadFilePath != "") {
-                uploadFile(uploadFilePath);
+                int result = myPreApp.uploadImage("654321","1",login_response_data.member_session,uploadFilePath);
+                if(result==1){
+                    Toast.makeText(profile_shop_owner_edit.this, "file is uploaded", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(profile_shop_owner_edit.this, "file upload failed", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
         }
     }
-
-    String uploadFileName = "uploadFileName";
-    String username = "username";
-    String currentTime = "currentTime";
-    int serverResponseCode = 0;
-
-    public int uploadFile(String sourceFileUri) {
-
-        HttpURLConnection conn = null;
-        DataOutputStream dos = null;
-        String lineEnd = "\r\n";
-        String twoHyphens = "--";
-        String boundary = "*****";
-        int bytesRead, bytesAvailable, bufferSize;
-        byte[] buffer;
-        int maxBufferSize = 1 * 1024 * 1024;
-        File sourceFile = new File(sourceFileUri);
-
-        if (!sourceFile.isFile()) {
-
-//            dialog.dismiss();
-
-            Log.e("uploadFile", "Source File not exist :"
-                    + uploadFilePath + "" + uploadFileName);
-
-            this.runOnUiThread(new Runnable() {
-                public void run() {
-                    Log.i(TAG, "run: \"Source File not exist :\"\n" +
-                            " + uploadFilePath + \"\" + uploadFileName");
-                }
-            });
-
-            return 0;
-
-        } else {
-            try {
-                if (android.os.Build.VERSION.SDK_INT > 9)
-                {
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
-                }
-                // open a URL connection to the Servlet
-                FileInputStream fileInputStream = new FileInputStream(sourceFile);
-                URL url = new URL(upLoadServerUri);
-
-                // Open a HTTP  connection to  the URL
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setDoInput(true); // Allow Inputs
-                conn.setDoOutput(true); // Allow Outputs
-                conn.setUseCaches(false); // Don't use a Cached Copy
-                conn.setRequestMethod("POST");
-                conn.setRequestProperty("Connection", "Keep-Alive");
-                //conn.setRequestProperty("Accept-Charset", "UFT-8");
-                conn.setRequestProperty("ENCTYPE", "multipart/form-data");
-                conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-//                conn.setRequestProperty("uploaded_file", username + "_" + uploadFileName);
-                
-                conn.setRequestProperty("api_key", "654321");
-                conn.setRequestProperty("lang_id", "1");
-                conn.setRequestProperty("member_session", login_response_data.member_session);
-
-
-                dos = new DataOutputStream(conn.getOutputStream());
-                Log.i(TAG, "uploadFile: update");
-                //for other params:
-                dos.writeBytes(twoHyphens + boundary + lineEnd);
-                dos.writeBytes("Content-Disposition: form-data; name=api_key" + lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
-                dos.writeBytes(lineEnd);
-                dos.writeBytes("654321"); // mobile_no is String variable
-                dos.writeBytes(lineEnd);
-                
-
-                
-                
-                dos.writeBytes(twoHyphens + boundary + lineEnd);
-                dos.writeBytes("Content-Disposition: form-data; name=lang_id" + lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
-                dos.writeBytes(lineEnd);
-                dos.writeBytes("1"); // mobile_no is String variable
-                dos.writeBytes(lineEnd);
-
-                dos.writeBytes(twoHyphens + boundary + lineEnd);
-                dos.writeBytes("Content-Disposition: form-data; name=member_session"+lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
-                dos.writeBytes(lineEnd);
-                dos.writeBytes(login_response_data.member_session.toString().trim()); // mobile_no is String variable
-                dos.writeBytes(lineEnd);
-
-
-//                dos.writeBytes("#!/usr/local/bin/php --" + lineEnd);
-                dos.writeBytes(twoHyphens + boundary + lineEnd);
-                dos.writeBytes("Content-Disposition: form-data; name=upload_file; filename=" + username + "_" + currentTime + "_" + uploadFileName + lineEnd);
-                dos.writeBytes(lineEnd);
-
-                // create a buffer of  maximum size
-                bytesAvailable = fileInputStream.available();
-
-                bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                buffer = new byte[bufferSize];
-
-                // read file and write it into form...
-                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
-                while (bytesRead > 0) {
-
-                    dos.write(buffer, 0, bufferSize);
-                    bytesAvailable = fileInputStream.available();
-                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
-                }
-
-                // send multipart form data necesssary after file data...
-                dos.writeBytes(lineEnd);
-                dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
-
-                // Responses from the server (code and message)
-                serverResponseCode = conn.getResponseCode();
-                Log.i(TAG, "uploadFile: ");
-                String serverResponseMessage = conn.getResponseMessage();
-
-
-                Log.i("uploadFile", "HTTP Response is : "
-                        + serverResponseMessage + ": " + serverResponseCode);
-
-                //getting json result:
-                Log.i(TAG, "uploadFile: ");
-                Log.i(TAG, "uploadFile: session "+login_response_data.member_session);
-
-                StringBuilder result = new StringBuilder();
-
-                InputStream in = new BufferedInputStream(conn.getInputStream());
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-                Log.i(TAG, "uploadFile: result "+result);
-
-
-                if (serverResponseCode == 200) {
-
-                    this.runOnUiThread(new Runnable() {
-                        public void run() {
-
-                            //String msg = "File Upload Completed.\n\n See uploaded file here : \n\n"
-                            //      + " http://www.androidexample.com/media/uploads/"
-                            //    + uploadFileName;
-                            //    + uploadFileName;
-
-                            Log.i(TAG, "run: File Upload Complete!");
-                            Toast.makeText(profile_shop_owner_edit.this, "File Upload Complete", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                }
-                //close the streams //
-                fileInputStream.close();
-                dos.flush();
-                dos.close();
-
-            } catch (MalformedURLException ex) {
-
-//                dialog.dismiss();
-                ex.printStackTrace();
-
-                this.runOnUiThread(new Runnable() {
-                    public void run() {
-                        Log.i(TAG, "run: MalformedURLException Exception : check script url.");
-                        Toast.makeText(profile_shop_owner_edit.this, "MalformedURLException Exception : check script url.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
-            } catch (Exception e) {
-
-//                dialog.dismiss();
-                e.printStackTrace();
-
-                this.runOnUiThread(new Runnable() {
-                    public void run() {
-                        Log.i(TAG, "Got Exception : see logcat ");
-                        Toast.makeText(profile_shop_owner_edit.this, "Got Exception : see logcat ", Toast.LENGTH_SHORT).show();
-                        //
-
-                    }
-                });
-                //Log.e("Upload file to server Exception", "Exception : "      + e.getMessage(), e);
-            }
-//            dialog.dismiss();
-            return serverResponseCode;
-        } // End else block
-    }
-
 
     public String getRealPathFromURI(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
