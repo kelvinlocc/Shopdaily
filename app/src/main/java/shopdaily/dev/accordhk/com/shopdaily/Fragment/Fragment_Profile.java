@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.Activity.Post_feed_Activity;
 import shopdaily.dev.accordhk.com.shopdaily.Activity.setting_Activity;
 import shopdaily.dev.accordhk.com.shopdaily.Activity.Special_Activity;
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 
 /**
@@ -24,7 +26,7 @@ import shopdaily.dev.accordhk.com.shopdaily.R;
 public class Fragment_Profile extends Fragment {
     String tag = "qa_fragment";
     boolean gate = true;
-
+    MyPreApp myPreApp;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +42,15 @@ public class Fragment_Profile extends Fragment {
 
         FragmentTransaction transaction_SO = getChildFragmentManager().beginTransaction();
         transaction_SO.replace(R.id.fragment_container_SO, new Fragment_Profile_shop_owner()).commit();
+        myPreApp = new MyPreApp();
+        Login_Response_Data login_response_data = myPreApp.getLoginResponse().data;
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        TextView package_coin_amount = (TextView) view.findViewById(R.id.package_coin_amount);
+
+
+        package_coin_amount.setText(login_response_data.package_coin_amount);
 
         final ImageButton btn_switch = (ImageButton) view.findViewById(R.id.btn_switch);
 

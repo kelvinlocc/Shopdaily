@@ -86,7 +86,7 @@ public class Fragment_Favourite_shop_adapter extends BaseAdapter implements AbsL
 
 //            Log.i("check_", result[position] + " added!");
         holder.Shop_Name = (TextView) view.findViewById(R.id.shop_name);
-        holder.shop_icon = (ImageView) view.findViewById(R.id.user_icon);
+        holder.shop_icon = (ImageView) view.findViewById(R.id.member_profile_image);
         holder.Favour = (ImageView) view.findViewById(R.id.imgB_favour);
         holder.Favour.setColorFilter(0xff999999, PorterDuff.Mode.MULTIPLY);
 

@@ -22,14 +22,22 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.callback.AjaxStatus;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Objects;
 
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.R;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.API;
@@ -52,7 +60,7 @@ public class profile_shop_owner_edit extends AppCompatActivity {
     MyPreApp myPreApp;
     String upLoadServerUri;
     Login_Response_Data login_response_data;
-    ImageView imageView;
+    ImageView member_icon;
     String uploadFilePath;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,32 +73,32 @@ public class profile_shop_owner_edit extends AppCompatActivity {
         myApi = new API(this);
         myPreApp = new MyPreApp();
         setContentView(R.layout.fragment_profile_shop_owner_edit);
-        upLoadServerUri ="http://shopdailydev.accordhkcloudapi.com/api/member_profile_image_upload";
+        upLoadServerUri = "http://shopdailydev.accordhkcloudapi.com/api/member_profile_image_upload";
         login_response_data = myPreApp.getLoginResponse().data;
 
 
-        imageView = (ImageView) findViewById(R.id.icon);
-        Log.i(TAG, "onCreate: image url "+login_response_data.member_profile_image);
-        showImageTwo();
-//        imgView.setImageDrawable(LoadImageFromWebOperations(login_response_data.member_profile_image));
+        member_icon = (ImageView) findViewById(R.id.icon);
+        Log.i(TAG, "onCreate: image url " + login_response_data.member_profile_image);
+        if (myPreApp.getBitmapFromURL(login_response_data.member_profile_image) != null) {
+            member_icon.setImageBitmap(myPreApp.getBitmapFromURL(login_response_data.member_profile_image));
+        }
 
-        TextView nick_name = (TextView) findViewById(R.id.txt_nickName);
+
+        EditText nick_name = (EditText) findViewById(R.id.txt_nickName);
         nick_name.setText(login_response_data.member_nick_name);
 
-        TextView birthday = (TextView) findViewById(R.id.birthday);
+        EditText birthday = (EditText) findViewById(R.id.birthday);
         birthday.setText(login_response_data.member_birthday);
 
-        TextView email = (TextView) findViewById(R.id.email);
+        EditText email = (EditText) findViewById(R.id.email);
         email.setText(login_response_data.member_email);
 
-        TextView gender = (TextView) findViewById(R.id.gender);
-        if (login_response_data.member_gender =="1"){
+        EditText gender = (EditText) findViewById(R.id.gender);
+        if (login_response_data.member_gender == "1") {
             gender.setText("Male");
-        }
-        else {
+        } else {
             gender.setText("Female");
         }
-
 
 
         Button upload_profile_pic = (Button) findViewById(R.id.upload_profile);
@@ -168,19 +176,6 @@ public class profile_shop_owner_edit extends AppCompatActivity {
 
     }
 
-    public void showImageTwo() {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        try {
-            URL url = new URL(login_response_data.member_profile_image);
-            imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream)url.getContent()));
-        } catch (IOException e) {
-            Log.e(TAG, e.getMessage());
-        }
-    }
-
-
-
     @Override
     public void onActivityResult(final int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -223,27 +218,50 @@ public class profile_shop_owner_edit extends AppCompatActivity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             imgPath = cursor.getString(columnIndex);
             cursor.close();
-            ImageView imgView = (ImageView) findViewById(R.id.icon);
-            // Set the Image in ImageView
-            imgView.setImageBitmap(BitmapFactory
-                    .decodeFile(imgPath));
+
             // Get the Image's file name
             String fileNameSegments[] = imgPath.split("/");
             fileName = fileNameSegments[fileNameSegments.length - 1];
             // Put file name in Async Http Post Param which will used in Php web app
             Log.i(TAG, "onActivityResult: fileName " + fileName);
-            if (uploadFilePath != "") {
-                int result = myPreApp.uploadImage("654321","1",login_response_data.member_session,uploadFilePath);
-                if(result==1){
+            if (!Objects.equals(uploadFilePath, "")) {
+                int result = myPreApp.uploadImage("654321", "1", login_response_data.member_session, uploadFilePath);
+                if (result == 1) {
                     Toast.makeText(profile_shop_owner_edit.this, "file is uploaded", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                    ImageView imgView = (ImageView) findViewById(R.id.icon);
+                    // Set the Image in ImageView
+                    imgView.setImageBitmap(BitmapFactory
+                            .decodeFile(imgPath));
+                    Log.i(TAG, "onFinished: session before"+login_response_data.member_session);
+                    updateLoginResponse();
+
+
+                } else {
                     Toast.makeText(profile_shop_owner_edit.this, "file upload failed", Toast.LENGTH_SHORT).show();
                 }
 
             }
 
         }
+    }
+    public void updateLoginResponse() {
+        Log.i(TAG, "updateLoginResponse: ");
+        myApi.login(login_response_data.member_email,login_response_data.member_password, new API.onAjaxFinishedListener() {
+            @Override
+            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                JSONObject jsonObject = new JSONObject(json);
+                jsonObject = jsonObject.getJSONObject("data");
+                Login_Response loginResponse = myPreApp.getLoginResponse();
+                loginResponse.data.member_session = jsonObject.getString("member_session");
+                loginResponse.data.member_profile_image = jsonObject.getString("member_profile_image");
+                login_response_data = loginResponse.data;
+                myPreApp.setLoginResponse(loginResponse);
+                Log.i(TAG, "onFinished: session after"+loginResponse.data.member_session);
+                Log.d(TAG, "onFinished: member image: "+loginResponse.data.member_profile_image);
+
+            }
+        });
+
     }
 
     public String getRealPathFromURI(Uri uri) {
@@ -255,9 +273,6 @@ public class profile_shop_owner_edit extends AppCompatActivity {
         cursor.moveToFirst();
         return cursor.getString(column_index);
     }
-
-
-
 
 
     @Override

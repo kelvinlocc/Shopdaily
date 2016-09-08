@@ -64,7 +64,7 @@
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="100"
                             android:textColor="@color/yellow"
-                            android:id="@+id/money"
+                            android:id="@+id/package_coin_amount"
                             android:layout_gravity="center" />
 
                         <ImageButton

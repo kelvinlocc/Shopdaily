@@ -17,7 +17,7 @@
         android:layout_marginRight="10dp">
 
         <ImageView
-            android:id="@+id/user_icon"
+            android:id="@+id/member_profile_image"
             android:layout_gravity="center"
             android:layout_width="48dp"
             android:layout_height="48dp"

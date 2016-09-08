@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.FeedDataModel;
 import shopdaily.dev.accordhk.com.shopdaily.R;
@@ -106,7 +105,7 @@ public class commentListView_adapter extends BaseAdapter implements AbsListView.
         TextView comment_timeline = (TextView) view.findViewById(R.id.timePast);
         comment_timeline.setText(Integer.toString(timeList.get(position))+ " min");
 //
-        ImageView userIcon = (ImageView) view.findViewById(R.id.user_icon);
+        ImageView userIcon = (ImageView) view.findViewById(R.id.member_profile_image);
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),userIconList.get(position));
         bitmap = getCroppedBitmap(bitmap);
 //

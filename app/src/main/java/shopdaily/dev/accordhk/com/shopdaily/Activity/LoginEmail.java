@@ -66,7 +66,7 @@ public class LoginEmail extends Activity {
         input_password.setTransformationMethod(new AsteriskPassword());
 
         Button loginButton = (Button) findViewById(R.id.btn_login_email);
-        input_email.setText("user@gmail.com");
+        input_email.setText("user4@gmail.com");
         input_password.setText("123123");
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,14 +85,7 @@ public class LoginEmail extends Activity {
                             Gson gson = new Gson();
                             Login_Response login_response = gson.fromJson(json,Login_Response.class);
 
-                            JSONObject jsonObject = new JSONObject(json);
-                            jsonObject = jsonObject.getJSONObject("data");
-                            jsonObject = jsonObject.getJSONObject("shop");
-                            if (jsonObject!=null){
-                                Shop_Response shop_response = gson.fromJson(jsonObject.toString() ,Shop_Response.class);
-                                Log.i(TAG, "onFinished: shop_br_number "+shop_response.shop_br_number);
-                                myPreApp.setShopResponse(shop_response);
-                            }
+
 
                             //save data from api
                             myPreApp.setLoginResponse(login_response);
@@ -107,6 +100,14 @@ public class LoginEmail extends Activity {
                             } else {
 //                                Log.i(TAG, "onFinished: "+"");
                                 Toast.makeText(LoginEmail.this, "your email or password is not correct", Toast.LENGTH_LONG).show();
+                            }
+                            JSONObject jsonObject = new JSONObject(json);
+                            jsonObject = jsonObject.getJSONObject("data");
+                            jsonObject = jsonObject.getJSONObject("shop");
+                            if (jsonObject!=null){
+                                Shop_Response shop_response = gson.fromJson(jsonObject.toString() ,Shop_Response.class);
+                                Log.i(TAG, "onFinished: shop_br_number "+shop_response.shop_br_number);
+                                myPreApp.setShopResponse(shop_response);
                             }
                         }
 

@@ -86,7 +86,7 @@ public class Fragment_Favourite_feed_adapter extends BaseAdapter implements AbsL
         {
             rowView = inflater.inflate(R.layout.fragment_favourite_feed_list, null);
             holder.tv = (TextView) rowView.findViewById(R.id.shop_name);
-            holder.img = (ImageView) rowView.findViewById(R.id.user_icon);
+            holder.img = (ImageView) rowView.findViewById(R.id.member_profile_image);
             holder.tv.setText(result[position]);
             holder.img.setImageResource(imageId[position]);
             rowView.setOnClickListener(new View.OnClickListener() {

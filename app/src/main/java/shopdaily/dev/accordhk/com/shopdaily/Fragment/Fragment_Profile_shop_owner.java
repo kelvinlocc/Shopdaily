@@ -3,10 +3,12 @@ package shopdaily.dev.accordhk.com.shopdaily.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
@@ -23,6 +25,8 @@ public class Fragment_Profile_shop_owner extends Fragment {
     private static String TAG = "Fragment_Profile_shop_owner ";
     TextView nick_name, birthday;
     MyPreApp myPreApp;
+    ImageView member_profile_image;
+    Login_Response_Data login_response_data;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,21 @@ public class Fragment_Profile_shop_owner extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile_shop_owner, container, false);
         myPreApp = new MyPreApp();
-        Login_Response_Data login_response_data = myPreApp.getLoginResponse().data;
+        login_response_data = myPreApp.getLoginResponse().data;
+
+        ImageView member_gender = (ImageView) view.findViewById(R.id.member_gender);
+        if (login_response_data.member_gender == "1"){
+            member_gender.setImageDrawable(getResources().getDrawable(R.drawable.male));
+        }
+        else if (login_response_data.member_gender=="2"){
+            member_gender.setImageDrawable(getResources().getDrawable(R.drawable.female));
+        }
+
+        member_profile_image = (ImageView) view.findViewById(R.id.member_profile_image);
+        if (myPreApp.getBitmapFromURL(login_response_data.member_profile_image) != null){
+            member_profile_image.setImageBitmap(myPreApp.getBitmapFromURL(login_response_data.member_profile_image));
+        }
+        
 
         nick_name = (TextView) view.findViewById(R.id.member_nick_name);
         nick_name.setText(login_response_data.member_nick_name);
@@ -65,6 +83,29 @@ public class Fragment_Profile_shop_owner extends Fragment {
 
 
         return view;
+
+
+    }
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        login_response_data = myPreApp.getLoginResponse().data;
+        updateView();
+        
+        //Refresh your stuff here
+    }
+    
+    public void updateView (){
+        Log.i(TAG, "updateView: ");
+        Log.i(TAG, "updateView: login_response_data.member_profile_image "+login_response_data.member_profile_image);
+        if (myPreApp.getBitmapFromURL(login_response_data.member_profile_image) != null){
+            Log.d(TAG, "onFinished: member image: "+login_response_data.member_profile_image);
+
+            member_profile_image.setImageBitmap(myPreApp.getBitmapFromURL(login_response_data.member_profile_image));
+        }
+        nick_name.setText(login_response_data.member_nick_name);
+        birthday.setText(login_response_data.member_birthday);
 
 
     }

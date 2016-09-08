@@ -2,6 +2,8 @@ package shopdaily.dev.accordhk.com.shopdaily.Uility;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.StrictMode;
 import android.util.Log;
@@ -276,7 +278,29 @@ public class MyPreApp {
             }
 //            dialog.dismiss();
         } // End else block
+
+
         return 0;
     }
+
+
+
+    public Bitmap getBitmapFromURL(String URL_Path){
+        Log.i(TAG, "getBitmapFromURL: ");
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        Bitmap bitmap=null;
+        try{
+            URL url = new URL(URL_Path);
+            bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            return bitmap;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return bitmap;
+
+
+    }
+
 
 }
