@@ -15,10 +15,15 @@ import android.widget.Toast;
 import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.QA_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
 import shopdaily.dev.accordhk.com.shopdaily.R;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.API;
@@ -81,6 +86,8 @@ public class LoginEmail extends Activity {
                     api.login(email, password, new API.onAjaxFinishedListener() {
                         @Override
                         public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                            fetchingDataFromServer();
+
                             Log.i("check_", "onFinished api.login json: " + json);
                             Gson gson = new Gson();
                             Login_Response login_response = gson.fromJson(json,Login_Response.class);
@@ -116,6 +123,40 @@ public class LoginEmail extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+        });
+    }
+
+    QA_Response response;
+    ArrayList<QA_Response> myQAList;
+    public void fetchingDataFromServer (){
+        Log.i(TAG, "fetchingDataFromServer: ");
+        String api_key = "654321";
+        String lang_id = "1";
+        String page_no= "1";
+        String page_size = "10";
+        myQAList = new ArrayList<>();
+        api.getQA_list(api_key,lang_id,page_no,page_size, new API.onAjaxFinishedListener() {
+            @Override
+            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                Log.i(TAG, "onFinished: json: "+json );
+                JSONObject jsonObject = new JSONObject(json);
+                JSONArray jsonArray = jsonObject.getJSONArray("data");
+                for (int i = 0; i<jsonArray.length() ; i++) {
+                    JSONObject temp = jsonArray.getJSONObject(i);
+                    response = new QA_Response();
+                    Gson gson = new Gson();
+                    response = gson.fromJson(temp.toString(),QA_Response.class);
+
+                    myQAList.add(response);
+                    Log.i(TAG, "onFinished: "+temp.getString("qa_id"));
+                    Log.i(TAG, "onFinished: "+temp.getString("question_detail"));
+                }
+                myPreApp.setQA_list(myQAList);
+//                Log.i(TAG, "onFinished: end loop");
+//                ArrayList<QA_Response> temp = myPreApp.getQA_list();
+//                Log.i(TAG, "onFinished: temp.get(0).qa_id; "+temp.get(0).qa_id);
+//                Log.i(TAG, "onFinished: temp.get(0).question_detail"+temp.get(0).question_detail);
             }
         });
     }

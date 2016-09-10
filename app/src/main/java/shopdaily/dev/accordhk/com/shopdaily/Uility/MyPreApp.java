@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -18,12 +19,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.QA_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
 
 
@@ -39,7 +43,9 @@ public class MyPreApp {
 
     private static String Login_data_key = "login data key";
     private static String Shop_Response_data_key = "shop response data key";
-
+    private static String QA_list_key = "QA list key";
+    Type listOfObjects = new TypeToken<ArrayList<QA_Response>>() {
+    }.getType();
 
     public void baseSharedPreference (String key, String value){
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
@@ -47,6 +53,21 @@ public class MyPreApp {
         editor.apply();
         Log.i(TAG, "setTestResult: string= "+value);
     }
+    public void setQA_list (ArrayList<QA_Response> arrayList){
+        SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
+        Gson gson= new Gson();
+        String jsonObject= gson.toJson(arrayList);
+        editor.putString(QA_list_key,jsonObject);
+        editor.apply();
+
+    }
+
+    public ArrayList<QA_Response> getQA_list (){
+        Gson gson = new Gson();
+        String jsonObject = MyApplication.getSharedPreferences().getString(QA_list_key,null);
+        return gson.fromJson(jsonObject,listOfObjects);
+    }
+
 
     public void setShopResponse (Shop_Response shopResponse){
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();

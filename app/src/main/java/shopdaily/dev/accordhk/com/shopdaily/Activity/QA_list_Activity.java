@@ -13,8 +13,13 @@ import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.QA_Response;
 import shopdaily.dev.accordhk.com.shopdaily.Adapter.QA_List_adapter;
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.API;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 /**
  * Created by KelvinLo on 6/8/2016.
@@ -23,6 +28,8 @@ import shopdaily.dev.accordhk.com.shopdaily.R;
 
 public class QA_list_Activity extends AppCompatActivity {
     ProgressDialog dialog = null;
+    MyPreApp myPreApp;
+    ArrayList<QA_Response> qa_list;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,8 @@ public class QA_list_Activity extends AppCompatActivity {
 
 
         setContentView(R.layout.qa_list);
+        myPreApp = new MyPreApp();
+        qa_list =  myPreApp.getQA_list();
 
 
 
@@ -59,7 +68,7 @@ public class QA_list_Activity extends AppCompatActivity {
         });
         String[] q = {"1","2","3","2","3","2","3"};
         String[] a = {"1","2","3","2","3","2","3"};
-        QA_List_adapter adapter = new QA_List_adapter(this,q,a);
+        QA_List_adapter adapter = new QA_List_adapter(this,qa_list);
         ListView QA_listView = (ListView) findViewById(R.id.QA_listView);
         QA_listView.setAdapter(adapter);
 

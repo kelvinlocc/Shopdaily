@@ -10,33 +10,35 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.QA_Response;
 import shopdaily.dev.accordhk.com.shopdaily.R;
 
 /**
  * Created by KelvinLo on 6/22/2016.
  */
 public class QA_List_adapter extends BaseAdapter implements AbsListView.OnScrollListener {
-    String[] Question;
-    String[] Answer;
-    Context context;
-    int[] imageId;
-    static String TAG = "QA_List_adapter ";
 
-    int Counter = 0;
+    Context context;
+    static String TAG = "QA_List_adapter ";
+    ArrayList<QA_Response> qa_list;
+
     private static LayoutInflater inflater = null;
 
-    public QA_List_adapter(Context context2, String[] Q, String[] A) {//
+    public QA_List_adapter(Context context2, ArrayList<QA_Response> list) {//
         // TODO Auto-generated constructor stub
-        Question = Q;
-        Answer = A;
+
+
         context = context2;//
+        qa_list = list;
         inflater = (LayoutInflater) context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return Question.length;
+        return qa_list.size();
     }
 
     @Override
@@ -66,20 +68,16 @@ public class QA_List_adapter extends BaseAdapter implements AbsListView.OnScroll
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        Counter++;
 
-
-        Log.i("check_", " at position: " + position);
-        Log.i(TAG, "getView: Question.length: "+Question.length);
+        Log.i(TAG, "getView: ");
         Holder holder = new Holder();
         View rowView;
 
         rowView = inflater.inflate(R.layout.qa_row, null);
         holder.question = (TextView) rowView.findViewById(R.id.question);
-        holder.question.setText("my question @"+position);
-        holder.answer = (TextView)rowView.findViewById(R.id.answer);
-
-
+        holder.question.setText(qa_list.get(position).question_detail);
+        holder.answer = (TextView) rowView.findViewById(R.id.answer);
+        holder.answer.setText(qa_list.get(position).answer_detail);
 
 //        rowView.setOnClickListener(new View.OnClickListener() {
 //            @Override

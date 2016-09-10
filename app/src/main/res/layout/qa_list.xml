@@ -75,13 +75,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/QA_listView" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text2"
-                android:id="@+id/textView6" />
-
 
         </LinearLayout>
     </ScrollView>
