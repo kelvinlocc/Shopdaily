@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 import shopdaily.dev.accordhk.com.shopdaily.R;
 
@@ -44,8 +45,6 @@ public class setting_Activity extends AppCompatActivity {
 
 
         setContentView(R.layout.setting);
-
-
 
 
         final TextView btn_go_back = (TextView) findViewById(R.id.txt_go_back);
@@ -73,7 +72,7 @@ public class setting_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
 
-                    contact_us_action.setBackgroundResource(R.color.yellow);
+//                    contact_us_action.setBackgroundResource(R.color.yellow);
                     Intent toNextActivity = new Intent(setting_Activity.this, Contact_Us_Activity.class);
                     startActivity(toNextActivity);
                     finish();
@@ -85,6 +84,22 @@ public class setting_Activity extends AppCompatActivity {
 
             }
 
+        });
+
+        final TextView Q_and_A = (TextView) findViewById(R.id.Q_and_A);
+        Q_and_A.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent toNextActivity = new Intent(setting_Activity.this, QA_list_Activity.class);
+                    startActivity(toNextActivity);
+                    finish();
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
         });
 
 
@@ -108,7 +123,7 @@ public class setting_Activity extends AppCompatActivity {
 
         });
 
-        Spinner spinner_language= (Spinner) findViewById(R.id.spinner_language);
+        Spinner spinner_language = (Spinner) findViewById(R.id.spinner_language);
 
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -148,10 +163,7 @@ public class setting_Activity extends AppCompatActivity {
         });
 
 
-
-
-
-        Spinner Spinner_pushOrNot= (Spinner) findViewById(R.id.spinner_pushOrNot);
+        Spinner Spinner_pushOrNot = (Spinner) findViewById(R.id.spinner_pushOrNot);
 
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter_2 = ArrayAdapter.createFromResource(this,
@@ -160,7 +172,6 @@ public class setting_Activity extends AppCompatActivity {
         adapter_2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
         Spinner_pushOrNot.setAdapter(adapter_2);
-
 
 
     }
@@ -174,7 +185,7 @@ public class setting_Activity extends AppCompatActivity {
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
         Intent refresh = new Intent(this, Splash.class);
-        Log.i(TAG,"refresh to splash.class: "+Splash.class);
+        Log.i(TAG, "refresh to splash.class: " + Splash.class);
         startActivity(refresh);
     }
 

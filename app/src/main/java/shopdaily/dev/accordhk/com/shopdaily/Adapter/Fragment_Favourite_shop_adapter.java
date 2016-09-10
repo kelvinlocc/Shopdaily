@@ -84,7 +84,7 @@ public class Fragment_Favourite_shop_adapter extends BaseAdapter implements AbsL
 
         view = inflater.inflate(R.layout.fragment_favourite_shop_list, null);
 
-//            Log.i("check_", result[position] + " added!");
+//            Log.i("check_", Question[position] + " added!");
         holder.Shop_Name = (TextView) view.findViewById(R.id.shop_name);
         holder.shop_icon = (ImageView) view.findViewById(R.id.member_profile_image);
         holder.Favour = (ImageView) view.findViewById(R.id.imgB_favour);
@@ -112,7 +112,7 @@ public class Fragment_Favourite_shop_adapter extends BaseAdapter implements AbsL
 
 //                holder.Favour.setColorFilter(0xff00a99e, PorterDuff.Mode.MULTIPLY);
 //
-//                Toast.makeText(context, "You Clicked " + result[position], Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, "You Clicked " + Question[position], Toast.LENGTH_LONG).show();
 //            }
 //        });
 

@@ -78,7 +78,7 @@ public class Fragment_Favourite_feed_adapter extends BaseAdapter implements AbsL
         Holder holder = new Holder();
         View rowView;
         if (position == 0 || position== 2) {
-            rowView = inflater.inflate(R.layout.date, null);
+            rowView = inflater.inflate(R.layout.favourite_feed_listview, null);
             holder.date = (TextView) rowView.findViewById(R.id.txt_date);
             holder.date.setText(result[position]);
         }

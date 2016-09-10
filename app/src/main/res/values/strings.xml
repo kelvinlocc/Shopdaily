@@ -111,6 +111,8 @@
 
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDeP-x68V1SVzdwHKA4cFBJ5G7KByqrats</string>
     <string name="Do_not_show_again">Don\'t show again</string>
+    <string name="Q_and_A"><![CDATA[Q&A]]></string>
+    <string name="QA_list"><![CDATA[Q&A]]></string>
 
     <string-array name="tab_layout_menu">
         <item>feed</item>

@@ -66,7 +66,7 @@ public class LoginEmail extends Activity {
         input_password.setTransformationMethod(new AsteriskPassword());
 
         Button loginButton = (Button) findViewById(R.id.btn_login_email);
-        input_email.setText("user4@gmail.com");
+        input_email.setText("user5@gmail.com");
         input_password.setText("123123");
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,6 +14,7 @@ import org.json.JSONException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.Exchanger;
 
 /**
  * Created by KelvinLo on 7/19/2016.
@@ -191,6 +192,29 @@ public class API {
         })).start();
     }
 
+    public void getQA_list (final String api_key,final String lang_id,final String page_no,final String page_size, final onAjaxFinishedListener listener){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Thread.sleep(500);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+                String url  = baseURL+"qa_list";
+                Map<String,Object> params = new HashMap<String, Object>();
+                params.put("api_key",api_key);
+                params.put("lang_id",lang_id);
+                params.put("page_no",page_no);
+                params.put("page_size",page_size);
+                ajaxPOSTCall(url,params,listener);
+            }
+        }).start();
+    }
+
+
+
+
     // haven't finish
     public void getBookmark(final String member_session, final onAjaxFinishedListener listener) {
         new Thread(new Runnable() {
@@ -230,6 +254,9 @@ public class API {
             }
         }).start();
     }
+
+
+
 
 
     private void ajaxPOSTCall(String url, Map<String, Object> params, final onAjaxFinishedListener listener) {
