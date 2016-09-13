@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.callback.AjaxStatus;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +40,7 @@ import java.util.Objects;
 
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
 import shopdaily.dev.accordhk.com.shopdaily.R;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.API;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
@@ -62,6 +64,7 @@ public class profile_shop_owner_edit extends AppCompatActivity {
     Login_Response_Data login_response_data;
     ImageView member_icon;
     String uploadFilePath;
+    EditText nick_name, birthday, email, gender;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,21 +82,34 @@ public class profile_shop_owner_edit extends AppCompatActivity {
 
         member_icon = (ImageView) findViewById(R.id.icon);
         Log.i(TAG, "onCreate: image url " + login_response_data.member_profile_image);
-        if (myPreApp.getBitmapFromURL(login_response_data.member_profile_image) != null) {
+        if (!Objects.equals(login_response_data.member_profile_image, "")) {
             member_icon.setImageBitmap(myPreApp.getBitmapFromURL(login_response_data.member_profile_image));
         }
 
 
-        EditText nick_name = (EditText) findViewById(R.id.txt_nickName);
-        nick_name.setText(login_response_data.member_nick_name);
+        nick_name = (EditText) findViewById(R.id.txt_nickName);
+        if (login_response_data.member_nick_name == null) {
+            nick_name.setText("new nick name...");
+        } else {
+            nick_name.setText(login_response_data.member_nick_name);
+        }
 
-        EditText birthday = (EditText) findViewById(R.id.birthday);
-        birthday.setText(login_response_data.member_birthday);
+        birthday = (EditText) findViewById(R.id.birthday);
+        if (login_response_data.member_birthday == null) {
+            birthday.setText("????-??-??");
+        } else {
+            birthday.setText(login_response_data.member_birthday);
+        }
 
-        EditText email = (EditText) findViewById(R.id.email);
-        email.setText(login_response_data.member_email);
+        email = (EditText) findViewById(R.id.email);
+        if (login_response_data.member_email == null) {
+            email.setText("new email...");
+        } else {
+            email.setText(login_response_data.member_email);
+        }
 
-        EditText gender = (EditText) findViewById(R.id.gender);
+
+        gender = (EditText) findViewById(R.id.gender);
         if (login_response_data.member_gender == "1") {
             gender.setText("Male");
         } else {
@@ -123,15 +139,11 @@ public class profile_shop_owner_edit extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-
-
                     finish();
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
 
         });
@@ -160,20 +172,52 @@ public class profile_shop_owner_edit extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-
-
+                    Log.i(TAG, "onClick: save");
+                    login_response_data.member_nick_name = nick_name.getText().toString();
+                    login_response_data.member_birthday = birthday.getText().toString();
+                    Login_Response temp = myPreApp.getLoginResponse();
+                    temp.data = login_response_data;
+                    myPreApp.setLoginResponse(temp);
                     finish();
+//                    update_member_profile();
+                    myPreApp.update_member_profile(getBaseContext());
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
 
         });
+    }
+
+    public void update_member_profile() {
+        Log.i(TAG, "update_member_profile: ");
+        String api_key = "654321";
+        String lang_id = "1";
+        Log.i(TAG, "update_member_profile: login_response_data.member_nick_name  "+login_response_data.member_nick_name);
+        if (login_response_data.shop_id.isEmpty()) {
+            Toast.makeText(profile_shop_owner_edit.this, "warning!!!, the shop id is empty", Toast.LENGTH_SHORT).show();
+        }
+        myApi.update_member_profile(api_key, lang_id, login_response_data.member_session, login_response_data.member_email, login_response_data.member_password, "15", nick_name.getText().toString(), gender.getText().toString(), birthday.getText().toString(), login_response_data.push_flag, login_response_data.shop_id, login_response_data.push_key_gcm, login_response_data.push_token_string, login_response_data.mobile_type, new API.onAjaxFinishedListener() {
+            @Override
+            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                updateLoginResponse();
+                Log.i(TAG, "onFinished: json " + json);
+                JSONObject jsonObject = new JSONObject(json);
+                if (Integer.parseInt(jsonObject.getString("return_status"))==1){
+//                    Toast.makeText(profile_shop_owner_edit.this, ""+json, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(profile_shop_owner_edit.this, "member profile is updated!", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+                    Toast.makeText(profile_shop_owner_edit.this, ""+jsonObject.getString("display_message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(profile_shop_owner_edit.this, "fail to update the member profile", Toast.LENGTH_SHORT).show();
+                }
 
 
+
+            }
+        });
     }
 
     @Override
@@ -232,7 +276,7 @@ public class profile_shop_owner_edit extends AppCompatActivity {
                     // Set the Image in ImageView
                     imgView.setImageBitmap(BitmapFactory
                             .decodeFile(imgPath));
-                    Log.i(TAG, "onFinished: session before"+login_response_data.member_session);
+                    Log.i(TAG, "onFinished: session before" + login_response_data.member_session);
                     updateLoginResponse();
 
 
@@ -244,20 +288,32 @@ public class profile_shop_owner_edit extends AppCompatActivity {
 
         }
     }
+
     public void updateLoginResponse() {
         Log.i(TAG, "updateLoginResponse: ");
-        myApi.login(login_response_data.member_email,login_response_data.member_password, new API.onAjaxFinishedListener() {
+        myApi.login(login_response_data.member_email, login_response_data.member_password, new API.onAjaxFinishedListener() {
             @Override
             public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                Gson gson = new Gson();
+                Login_Response login_response = gson.fromJson(json, Login_Response.class);
+                //save data from api
+                myPreApp.setLoginResponse(login_response);
+
                 JSONObject jsonObject = new JSONObject(json);
                 jsonObject = jsonObject.getJSONObject("data");
-                Login_Response loginResponse = myPreApp.getLoginResponse();
-                loginResponse.data.member_session = jsonObject.getString("member_session");
-                loginResponse.data.member_profile_image = jsonObject.getString("member_profile_image");
-                login_response_data = loginResponse.data;
-                myPreApp.setLoginResponse(loginResponse);
-                Log.i(TAG, "onFinished: session after"+loginResponse.data.member_session);
-                Log.d(TAG, "onFinished: member image: "+loginResponse.data.member_profile_image);
+                jsonObject = jsonObject.getJSONObject("shop");
+                if (jsonObject != null) {
+                    Shop_Response shop_response = gson.fromJson(jsonObject.toString(), Shop_Response.class);
+                    Log.i(TAG, "onFinished: shop_br_number " + shop_response.shop_br_number);
+                    myPreApp.setShopResponse(shop_response);
+                }
+
+
+                login_response_data = myPreApp.getLoginResponse().data;
+
+//                Log.i(TAG, "onFinished: session after" + login_response_data.member_session);
+//                Log.d(TAG, "onFinished: member image: " + login_response_data.member_profile_image);
+//                Log.i(TAG, "onFinished: member_nick_name "+login_response_data.member_nick_name);
 
             }
         });

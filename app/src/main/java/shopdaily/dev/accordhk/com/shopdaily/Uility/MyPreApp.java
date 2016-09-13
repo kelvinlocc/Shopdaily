@@ -9,8 +9,12 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -120,15 +124,47 @@ public class MyPreApp {
     public boolean getGPSOption (){
         return MyApplication.getSharedPreferences().getBoolean(GPSOption,false);
     }
+    API myApi;
+    MyPreApp myPreApp;
+    public void update_member_profile(final Context context){
+        myApi = new API(context);
+        myPreApp = new MyPreApp();
+
+        Log.i(TAG, "update_member_profile: ");
+        String api_key = "654321";
+        String lang_id = "1";
+        Login_Response loginResponse = myPreApp.getLoginResponse();
+        Login_Response_Data login_response_data = loginResponse.data;
+
+        Log.i(TAG, "update_member_profile: login_response_data.member_nick_name  "+login_response_data.member_nick_name);
 
 
-    public void setTestResult (String string){
-        baseSharedPreference(TestKey,string);
-        Log.i(TAG, "setTestResult: string= "+string);
+        if (login_response_data.shop_id.isEmpty()) {
+            Toast.makeText(context, "warning!!!, the shop id is empty", Toast.LENGTH_SHORT).show();
+        }
+        myApi.update_member_profile(api_key, lang_id, login_response_data.member_session, login_response_data.member_email, login_response_data.member_password, "15", login_response_data.member_nick_name, login_response_data.member_gender, login_response_data.member_birthday, login_response_data.push_flag, login_response_data.shop_id, login_response_data.push_key_gcm, login_response_data.push_token_string, login_response_data.mobile_type, new API.onAjaxFinishedListener() {
+            @Override
+            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                Log.i(TAG, "onFinished: json " + json);
+                JSONObject jsonObject = new JSONObject(json);
+                if (Integer.parseInt(jsonObject.getString("return_status"))==1){
+//                    Toast.makeText(profile_shop_owner_edit.this, ""+json, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "member profile is updated!", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+                    Toast.makeText(context, "fail to update the member profile", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+        });
+//        myApi.update_member_profile();
     }
-    public String getTestKey (){
-        return MyApplication.getSharedPreferences().getString(TestKey,"error");
-    }
+
+
+
 
     String uploadFileName = "uploadFileName";
     String username = "username";
@@ -147,14 +183,9 @@ public class MyPreApp {
         byte[] buffer;
         int maxBufferSize = 1 * 1024 * 1024;
         File sourceFile = new File(sourceFileUri);
-
         if (!sourceFile.isFile()) {
-
-
             Log.e("uploadImage", "Source File not exist :"
                     + sourceFileUri + "" + uploadFileName);
-
-
             Log.i(TAG, "run: \"Source File not exist :\"\n" +
                     " + uploadFilePath + \"\" + uploadFileName");
         } else {
@@ -166,7 +197,6 @@ public class MyPreApp {
                 // open a URL connection to the Servlet
                 FileInputStream fileInputStream = new FileInputStream(sourceFile);
                 URL url = new URL(upLoadServerUri);
-
                 // Open a HTTP  connection to  the URL
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setDoInput(true); // Allow Inputs
@@ -178,12 +208,9 @@ public class MyPreApp {
                 conn.setRequestProperty("ENCTYPE", "multipart/form-data");
                 conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
 //                conn.setRequestProperty("uploaded_file", username + "_" + uploadFileName);
-
                 conn.setRequestProperty("api_key", api_key);
                 conn.setRequestProperty("lang_id", lang_id);
                 conn.setRequestProperty("member_session", member_session);
-
-
                 dos = new DataOutputStream(conn.getOutputStream());
                 Log.i(TAG, "uploadImage: update");
                 //for other params:
@@ -192,115 +219,78 @@ public class MyPreApp {
                 dos.writeBytes(lineEnd);
                 dos.writeBytes(api_key); // mobile_no is String variable
                 dos.writeBytes(lineEnd);
-
-
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
                 dos.writeBytes("Content-Disposition: form-data; name=lang_id" + lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
                 dos.writeBytes(lineEnd);
                 dos.writeBytes(lang_id); // mobile_no is String variable
                 dos.writeBytes(lineEnd);
-
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
                 dos.writeBytes("Content-Disposition: form-data; name=member_session" + lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
                 dos.writeBytes(lineEnd);
                 dos.writeBytes(member_session); // mobile_no is String variable
                 dos.writeBytes(lineEnd);
-
-
 //                dos.writeBytes("#!/usr/local/bin/php --" + lineEnd);
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
                 dos.writeBytes("Content-Disposition: form-data; name=upload_file; filename=" + username + "_" + currentTime + "_" + uploadFileName + lineEnd);
                 dos.writeBytes(lineEnd);
-
                 // create a buffer of  maximum size
                 bytesAvailable = fileInputStream.available();
-
                 bufferSize = Math.min(bytesAvailable, maxBufferSize);
                 buffer = new byte[bufferSize];
-
                 // read file and write it into form...
                 bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
                 while (bytesRead > 0) {
 
                     dos.write(buffer, 0, bufferSize);
                     bytesAvailable = fileInputStream.available();
                     bufferSize = Math.min(bytesAvailable, maxBufferSize);
                     bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
                 }
-
                 // send multipart form data necesssary after file data...
                 dos.writeBytes(lineEnd);
                 dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
-
                 // Responses from the server (code and message)
                 serverResponseCode = conn.getResponseCode();
                 Log.i(TAG, "uploadImage: ");
                 String serverResponseMessage = conn.getResponseMessage();
-
-
                 Log.i("uploadImage", "HTTP Response is : "
                         + serverResponseMessage + ": " + serverResponseCode);
-
                 //getting json result:
                 Log.i(TAG, "uploadImage: ");
-
-
                 StringBuilder result = new StringBuilder();
-
                 InputStream in = new BufferedInputStream(conn.getInputStream());
-
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
                 String line;
                 while ((line = reader.readLine()) != null) {
                     result.append(line);
                 }
                 Log.i(TAG, "uploadImage: result " + result);
-
-
                 if (serverResponseCode == 200) {
-
-
                     Log.i(TAG, "run: File Upload Complete!");
 //                    Toast.makeText(myPreApp.this, "File Upload Complete", Toast.LENGTH_SHORT).show();
                     return 1;
-
                 }
                 //close the streams //
                 fileInputStream.close();
                 dos.flush();
                 dos.close();
-
             } catch (MalformedURLException ex) {
-
 //                dialog.dismiss();
                 ex.printStackTrace();
                 Log.i(TAG, "run: MalformedURLException Exception : check script url.");
 //                Toast.makeText(MyApplication.this, "MalformedURLException Exception : check script url.", Toast.LENGTH_SHORT).show();
-
-
                 Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
                 return 0;
             } catch (Exception e) {
-
 //                dialog.dismiss();
                 e.printStackTrace();
-
-
                 Log.i(TAG, "Got Exception : see logcat ");
 //                Toast.makeText(MyApplication.this, "Got Exception : see logcat ", Toast.LENGTH_SHORT).show();
-                //
                 return 0;
-
                 //Log.e("Upload file to server Exception", "Exception : "      + e.getMessage(), e);
             }
 //            dialog.dismiss();
         } // End else block
-
-
         return 0;
     }
 

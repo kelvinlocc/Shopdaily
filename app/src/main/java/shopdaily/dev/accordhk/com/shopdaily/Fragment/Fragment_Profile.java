@@ -187,8 +187,7 @@ public class Fragment_Profile extends Fragment {
                                               @Override
                                               public void onClick(View v) {
                                                   try {
-                                                      setting_action.setBackgroundResource(R.color.yellow);
-
+//                                                      setting_action.setBackgroundResource(R.color.yellow);
                                                       Intent toNextActivity = new Intent(getActivity(), setting_Activity.class);
                                                       startActivity(toNextActivity);
                                                       getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);

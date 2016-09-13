@@ -8,8 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Objects;
 
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.Activity.profile_shop_owner_edit;
@@ -51,8 +54,13 @@ public class Fragment_Profile_shop_owner extends Fragment {
         }
 
         member_profile_image = (ImageView) view.findViewById(R.id.member_profile_image);
-        if (myPreApp.getBitmapFromURL(login_response_data.member_profile_image) != null){
+        
+        if (!Objects.equals(login_response_data.member_profile_image, "")){
+            Log.i(TAG, "onCreateView: member_profile_image "+login_response_data.member_profile_image);
             member_profile_image.setImageBitmap(myPreApp.getBitmapFromURL(login_response_data.member_profile_image));
+        }
+        else {
+            Log.i(TAG, "onCreateView: member_profile_image is null");
         }
         
 
@@ -99,13 +107,21 @@ public class Fragment_Profile_shop_owner extends Fragment {
     public void updateView (){
         Log.i(TAG, "updateView: ");
         Log.i(TAG, "updateView: login_response_data.member_profile_image "+login_response_data.member_profile_image);
-        if (myPreApp.getBitmapFromURL(login_response_data.member_profile_image) != null){
+        if (!Objects.equals(login_response_data.member_profile_image, "")){
             Log.d(TAG, "onFinished: member image: "+login_response_data.member_profile_image);
-
             member_profile_image.setImageBitmap(myPreApp.getBitmapFromURL(login_response_data.member_profile_image));
         }
-        nick_name.setText(login_response_data.member_nick_name);
-        birthday.setText(login_response_data.member_birthday);
+        if (login_response_data.member_nick_name==null) {
+            nick_name.setText("new nick name...");
+        } else {
+            nick_name.setText(login_response_data.member_nick_name);
+        }
+
+        if (login_response_data.member_birthday==null) {
+            birthday.setText("????-??-??");
+        } else {
+            birthday.setText(login_response_data.member_birthday);
+        }
 
 
     }

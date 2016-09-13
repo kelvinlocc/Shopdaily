@@ -1,4 +1,40 @@
 <resources>
+
+    <string-array name="user_name_list">
+        <item>Chan Tai Man</item>
+        <item>Chan Man Man</item>
+        <item>Chan Tai Tai</item>
+    </string-array>
+    <string-array name="user_comment_list">
+        <item>Nice product</item>
+        <item>Good product</item>
+        <item>Great product</item>
+    </string-array>
+    <string-array name="query_suggestions">
+        <item>A very very long suggestion that would span multiple lines.</item>
+        <item>Camera</item>
+        <item>Yeah</item>
+    </string-array>
+
+    <string-array name="hast_tag_list">
+        <item>#fujifilm </item>
+        <item>#Instax </item>
+        <item>#Discount </item>
+        <item>#Limited </item>
+        <item>#Limited </item>
+        <item>#Time </item>
+        <item>#Travel </item>
+    </string-array>
+    <string-array name="feed_category">
+        <item>"Electronic"</item>
+        <item>"Clothes"</item>
+        <item>"Device"</item>
+    </string-array>
+
+
+
+
+
     <string name="edit_password">更改密碼</string>
     <string name="current_password">現在密碼</string>
     <string name="new_password">新的密碼</string>
@@ -204,5 +240,8 @@
         <item>是</item>
         <item>否</item>
     </string-array>
+    <string name="Do_not_show_again">不要再顯示</string>
+    <string name="QA_list">問答</string>
+    <string name="Q_and_A">問答</string>
 
 </resources>

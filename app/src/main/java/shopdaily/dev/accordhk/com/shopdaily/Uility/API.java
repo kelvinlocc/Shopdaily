@@ -90,7 +90,7 @@ public class API {
         }).start();
     }
 
-        public void member_profile_image_upload (final String member_session, final String upload_file,final onAjaxFinishedListener listener) {
+    public void member_profile_image_upload(final String member_session, final String upload_file, final onAjaxFinishedListener listener) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -104,13 +104,12 @@ public class API {
                 params.put("api_key", 654321);
                 params.put("lang_id", 1);
                 params.put("member_session", member_session);
-                params.put("upload_file",upload_file);
+                params.put("upload_file", upload_file);
                 ajaxPOSTCall(url, params, listener);
 
             }
         }).start();
     }
-
 
 
     public void shop_registration(final String member_session, final String shop_name_en, final String shop_name_tc, final String shop_name_sc, final String shop_contact_person, final String shop_br_number, final String shop_address_en, final String shop_address_tc, final String shop_address_sc, final String shop_location_x, final String shop_location_y, final String shop_operation_hour_en, final String shop_operation_hour_tc, final String shop_operation_hour_sc, final String shop_district, final String shop_category_list, final String shop_hash_list, final onAjaxFinishedListener listener) {
@@ -171,48 +170,76 @@ public class API {
         }).start();
     }
 
-    public void changePassword (final String member_session, final String member_new_password,final onAjaxFinishedListener listener){
+    public void changePassword(final String member_session, final String member_new_password, final onAjaxFinishedListener listener) {
         new Thread((new Runnable() {
             @Override
             public void run() {
                 try {
                     Thread.sleep(500);
-                }catch (InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 String url = baseURL + "member_change_password";
-                Map<String,Object> params = new HashMap<String, Object>();
+                Map<String, Object> params = new HashMap<String, Object>();
                 params.put("api_key", 654321);
                 params.put("lang_id", 1);
-                params.put("member_session",member_session);
-                params.put("member_new_password",member_new_password);
-                ajaxPOSTCall(url,params,listener);
+                params.put("member_session", member_session);
+                params.put("member_new_password", member_new_password);
+                ajaxPOSTCall(url, params, listener);
 
             }
         })).start();
     }
 
-    public void getQA_list (final String api_key,final String lang_id,final String page_no,final String page_size, final onAjaxFinishedListener listener){
+    public void getQA_list(final String api_key, final String lang_id, final String page_no, final String page_size, final onAjaxFinishedListener listener) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try{
+                try {
                     Thread.sleep(500);
-                }catch (InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                String url  = baseURL+"qa_list";
-                Map<String,Object> params = new HashMap<String, Object>();
-                params.put("api_key",api_key);
-                params.put("lang_id",lang_id);
-                params.put("page_no",page_no);
-                params.put("page_size",page_size);
-                ajaxPOSTCall(url,params,listener);
+                String url = baseURL + "qa_list";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("page_no", page_no);
+                params.put("page_size", page_size);
+                ajaxPOSTCall(url, params, listener);
             }
         }).start();
     }
 
-
+    public void update_member_profile(final String api_key, final String lang_id, final String member_session, final String member_email, final String member_password, final String member_facebook_id, final String member_nick_name, final String member_gender, final String member_birthday, final String push_flag, final String shop_id, final String push_key_gcm, final String push_token_string, final String mobile_type, final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "member_profile";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("member_email", member_email);
+                params.put("member_password", member_password);
+                params.put("member_facebook_id", member_facebook_id);
+                params.put("member_nick_name", member_nick_name);
+                params.put("member_gender", member_gender);
+                params.put("member_birthday", member_birthday);
+                params.put("push_flag", push_flag);
+                params.put("shop_id", shop_id);
+                params.put("push_key_gcm", push_key_gcm);
+                params.put("push_token_string", push_token_string);
+                params.put("mobile_type", mobile_type);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }).start();
+    }
 
 
     // haven't finish
@@ -254,9 +281,6 @@ public class API {
             }
         }).start();
     }
-
-
-
 
 
     private void ajaxPOSTCall(String url, Map<String, Object> params, final onAjaxFinishedListener listener) {
