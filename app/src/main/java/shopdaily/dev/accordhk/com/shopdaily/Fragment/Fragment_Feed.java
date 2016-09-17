@@ -27,13 +27,25 @@ import android.widget.ToggleButton;
 
 //import com.androidquery.callback.AjaxStatus;
 
+import com.androidquery.callback.AjaxStatus;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_re;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
 import shopdaily.dev.accordhk.com.shopdaily.Adapter.Fragment_Feed_Adapter;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.FeedDataModel;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.filter_DataModel;
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.API;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.expanable_listview.ExpandableAdapter;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.expanable_listview.Item;
@@ -89,13 +101,11 @@ public class Fragment_Feed extends ListFragment {
     public static final String MY_PREFS_NAME = "MyPrefsFile";
 
     ArrayList<filter_DataModel> filter_dataModel_arrayList;
-
-
-//    static FirstPageFragmentListener firstPageListener;
+    API myApi;
+    Login_Response login_response;
 
 
     public void onListItemClick(ListView l, View v, int position, long id) {
-//        firstPageListener.onSwitchToNextFragment();
     }
 
     @Override
@@ -104,12 +114,14 @@ public class Fragment_Feed extends ListFragment {
 
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
 
-
+        myApi = new API(getActivity());
+        login_response = new Login_Response();
         //get current user lcoation
         myPreApp = new MyPreApp();
         userCurrentLocation = myPreApp.getUserLocation();
 
 
+        getShopList();
         final LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         boolean isLocationServiceEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (isLocationServiceEnabled) {
@@ -126,7 +138,6 @@ public class Fragment_Feed extends ListFragment {
             Log.d(TAG, "device online");
         }
 
-
         final FrameLayout PopUp_window = (FrameLayout) view.findViewById(R.id.popup_window);
         PopUp_window.setVisibility(View.INVISIBLE);
 
@@ -141,7 +152,6 @@ public class Fragment_Feed extends ListFragment {
                 params.setMargins(0, 0, 0, 50);
             }
         }
-
 
         // fetching data:
         shop_name_list = getActivity().getResources().getStringArray(R.array.shop_list);
@@ -163,8 +173,6 @@ public class Fragment_Feed extends ListFragment {
         user_name_list = getActivity().getResources().getStringArray(R.array.user_name_list);
         user_comment_list = getActivity().getResources().getStringArray(R.array.user_comment_list);
         hash_tag_list = getActivity().getResources().getStringArray(R.array.hast_tag_list);
-
-
         original_price = getActivity().getResources().getInteger(R.integer.original_price);
         discount_price = getActivity().getResources().getInteger(R.integer.discount_price);
         discount = getActivity().getResources().getInteger(R.integer.discount);
@@ -174,11 +182,7 @@ public class Fragment_Feed extends ListFragment {
         comment = 10;
         share = 5;
         //>
-
-
         // initialize pop up window
-
-
         ToggleButton toggleButton = (ToggleButton) view.findViewById(R.id.toggleButton);
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -214,11 +218,133 @@ public class Fragment_Feed extends ListFragment {
                 adapter.notifyDataSetChanged();
             }
         });
-
-        //  popUp filter
-
         return view;
+    }
 
+    ArrayList<String> feedImageArray;
+    ArrayList<shop_re> shop_list;
+    ArrayList<shop_feed> feed_list;
+    shop_re shop;
+    shop_feed shop_feed_temp;
+
+    private void getShopList() {
+        shop_list = new ArrayList<>();
+        feed_list = new ArrayList<>();
+        Log.i(TAG, "getShopList: ");
+        String api_key = "654321";
+        String lang_id = "1";
+        String page_no = "1";
+        String page_size = "10";
+        String null_string = "";
+        login_response = myPreApp.getLoginResponse();
+        Login_Response_Data data = login_response.data;
+        myApi.getShopList(api_key, lang_id, data.member_session, page_no, page_size, null_string, null_string, null_string, null_string, null_string, null_string, null_string, null_string, null_string, null_string, null_string, new API.onAjaxFinishedListener() {
+            @Override
+            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                Log.i(TAG, "onFinished: myApi.getShopList ");
+                Log.d(TAG, "onFinished: json " + json);
+                JSONObject jsonObject = new JSONObject(json);
+                JSONArray Array = jsonObject.getJSONArray("data");
+                for (int i = 0; i < Array.length(); i++) {
+                    JSONObject temp = Array.getJSONObject(i);
+                    shop = new shop_re();
+                    Gson gson = new Gson();
+                    shop = gson.fromJson(temp.toString(), shop_re.class);
+                    Log.i(TAG, "onFinished: " + shop.shop_id);
+
+                    //*** separate allocation:
+                    //feed:
+                    JSONObject feedObject = temp.getJSONObject("feed");
+                    shop_feed feed = new shop_feed();
+                    shop_feed_temp = new shop_feed();
+                    shop.feed =null;
+
+                    if (feedObject.length() > 1) {
+                        feed = gson.fromJson(feedObject.toString(), shop_feed.class);
+                        shop.feed = feed;
+                        shop_feed_temp = feed;
+//                        feed_list.add(shop_feed_temp);
+//                        Log.i(TAG, "onFinished: feedObject"+feedObject);
+//                        Log.i(TAG, "onFinished: check feed::"+feed.toString());
+                        Log.i(TAG, "onFinished: feed:" + feed.shop_feed_id);
+                        //image: (of feed)
+                        JSONArray imageObject = temp.getJSONArray("images");
+//                        Log.i(TAG, "onFinished: imageObject: "+imageObject);
+                        feedImageArray = new ArrayList<String>();
+                        if (!imageObject.toString().equals("")) {
+                            for (int j = 0; j < imageObject.length(); j++) {
+                                feedImageArray.add(imageObject.getString(j));
+                                Log.i(TAG, "onFinished: "+imageObject.getString(j));
+                                Log.i(TAG, "onFinished: feedImageArray.get(j).toString() @ j: "+j+"," + feedImageArray.get(j));
+                            }
+                            shop.imageArray = feedImageArray;
+                        } else {
+                            Log.i(TAG, "onFinished: image is null");
+                        }
+                        Log.i(TAG, "onFinished: adding: (feed.shop_feed_id) "+feed.shop_feed_id);
+                        shop_feed_temp.image_list =feedImageArray;
+                        feed_list.add(shop_feed_temp);
+                    } else {
+                        Log.i(TAG, "onFinished: feed is empty");
+                    }
+                    if (shop.feed !=null){
+                        Log.i(TAG, "onFinished: shop.imageArray.get(1) "+shop.imageArray.get(1));
+//                        Log.i(TAG, "checker::");
+//                        Log.i(TAG, "onFinished: "+shop.feed.shop_feed_id);
+                    }
+
+//                    OneShopTesting(shop_re);
+                    shop_list.add(shop);
+
+
+                }
+                myPreApp.setShop_list(shop_list);
+                myPreApp.setFeed_list(feed_list);
+//                feedListTesting();
+//                Log.i(TAG, "onFinished: feed list id at 0 " + feed_list.get(0).shop_feed_id);
+//                Log.i(TAG, "onFinished: go to test");
+//                test();
+                setAdapter();
+
+            }
+        });
+    }
+
+    public void feedListTesting()
+    {
+        if (myPreApp.getFeed_list() != null) {
+            feed_list = myPreApp.getFeed_list();
+            for (int i = 0; i < feed_list.size(); i++) {
+                Log.i(TAG, "getView: feed " + feed_list.get(i).shop_feed_id);
+                if (! feed_list.get(i).image_list.isEmpty()){
+                    Log.i(TAG, "getView: feed image "+feed_list.get(i).image_list.get(0));
+                }
+                else {
+                    Log.i(TAG, "getView: feed image is empty");
+                }
+            }
+        }
+        else
+        {
+            Log.i(TAG, "getView: feed list is null");
+        }
+    }
+
+    public void OneShopTesting(shop_re shop) {
+        Log.i(TAG, "OneShopTesting2: ");
+        Log.i(TAG, "OneShopTesting: shop_re " + shop.shop_id);
+        if (shop.feed != null) {
+            Log.i(TAG, "OneShopTesting: feed " + shop.feed.shop_feed_id);
+        }
+        if (shop.imageArray.size() > 0) {
+            Log.i(TAG, "OneShopTesting: image" + shop.imageArray.get(0));
+        }
+    }
+
+    public void test() {
+        Log.i(TAG, "test:123 ");
+        shop_re shop = myPreApp.getShop_list().get(2);
+        Log.i(TAG, "test: shop_re id 3" + shop.shop_id);
     }
 
     private ExpandableAdapter getAdapter() {
@@ -280,12 +406,17 @@ public class Fragment_Feed extends ListFragment {
 
             }
         }
-        list_view.setAdapter(feed_list_adapter);
-        list_view.setOnScrollListener(feed_list_adapter);
+//        list_view.setAdapter(feed_list_adapter);
+//        list_view.setOnScrollListener(feed_list_adapter);
 
         super.onStart();
 
 
+    }
+
+    public void setAdapter() {
+        list_view.setAdapter(feed_list_adapter);
+        list_view.setOnScrollListener(feed_list_adapter);
     }
 
 

@@ -23,7 +23,10 @@ import android.widget.Toast;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 /**
  * Created by KelvinLo on 6/8/2016.
@@ -34,7 +37,9 @@ public class setting_Activity extends AppCompatActivity {
     ProgressDialog dialog = null;
     static String TAG = "Setting_Activity ";
     Locale myLocale;
-
+    MyPreApp myPreApp;
+    Spinner Spinner_pushOrNot;
+    Login_Response login_response;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -42,9 +47,11 @@ public class setting_Activity extends AppCompatActivity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-
+        myPreApp = new MyPreApp();
 
         setContentView(R.layout.setting);
+        login_response = myPreApp.getLoginResponse();
+//        Login_Response_Data login_response_data = login_response.data;
 
 
         final TextView btn_go_back = (TextView) findViewById(R.id.txt_go_back);
@@ -163,15 +170,45 @@ public class setting_Activity extends AppCompatActivity {
         });
 
 
-        Spinner Spinner_pushOrNot = (Spinner) findViewById(R.id.spinner_pushOrNot);
+        Spinner_pushOrNot = (Spinner) findViewById(R.id.spinner_pushOrNot);
 
-// Create an ArrayAdapter using the string array and a default spinner layout
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter_2 = ArrayAdapter.createFromResource(this,
                 R.array.Push_option, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears
         adapter_2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+        // Apply the adapter to the spinner
+        Log.i(TAG, "onCreate: Integer.parseInt(login_response.data.push_flag "+Integer.parseInt(login_response.data.push_flag));
+        Log.i(TAG, "onCreate: 1");
+        // Spinner_pushOrNot.sete
+        // Spinner_pushOrNot.setSelection(-1);
+        //  Log.i(TAG, "onCreate: "+Spinner_pushOrNot.getSelectedItem().toString());
+        Log.i(TAG, "onCreate: update2");
+
         Spinner_pushOrNot.setAdapter(adapter_2);
+//        Spinner_pushOrNot.setSelection(0);
+//        Log.i(TAG, "onCreate: "+Spinner_pushOrNot.getSelectedItem());
+        Spinner_pushOrNot.setSelection(Integer.parseInt(login_response.data.push_flag));
+        Log.i(TAG, "onCreate: "+Spinner_pushOrNot.getSelectedItem());
+
+        Spinner_pushOrNot.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                        @Override
+                                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                            Log.i(TAG, "onItemSelected: position: "+position);
+                                                            login_response.data.push_flag = Integer.toString(position);
+                                                            myPreApp.setLoginResponse(login_response);
+                                                        }
+
+                                                        @Override
+                                                        public void onNothingSelected(AdapterView<?> parent) {
+
+                                                        }
+                                                    });
+
+                Log.i(TAG, "onCreate: push: " + Spinner_pushOrNot.getSelectedItem().toString());
+        Log.i(TAG, "onCreate: push: "+Spinner_pushOrNot.getSelectedItem());
+//        login_response.data.push_flag = Spinner_pushOrNot.getSelectedItem().toString();
+//        myPreApp.setLoginResponse(login_response);
 
 
     }

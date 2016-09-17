@@ -122,9 +122,9 @@ public class SignUp extends Activity {
     protected void Default_shop_registration(Registration_Response_Data data) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String currentDateandTime = sdf.format(new Date());
-        String shop_name_en = "shop en";
-        String shop_name_tc = "shop tc";
-        String shop_name_sc = "shop sc";
+        String shop_name_en = "shop_re en";
+        String shop_name_tc = "shop_re tc";
+        String shop_name_sc = "shop_re sc";
         String shop_contact_person = "owner 1";
         String shop_br_number = "brnumber"+currentDateandTime;
         String shop_address_en = "address en";
@@ -137,7 +137,7 @@ public class SignUp extends Activity {
         String shop_operation_hour_sc = "9am to 5pm";
         String shop_district = "1";
         String shop_category_list = "1,2";
-        String shop_hash_list = "#shop";
+        String shop_hash_list = "#shop_re";
         api.shop_registration(data.member_session,shop_name_en,shop_name_tc,shop_name_sc,shop_contact_person,shop_br_number,shop_address_en,shop_address_tc,shop_address_sc,shop_location_x,shop_location_y,shop_operation_hour_en,shop_operation_hour_tc,shop_operation_hour_sc,shop_district,shop_category_list,shop_hash_list, new API.onAjaxFinishedListener() {
             @Override
             public void onFinished(String url, String json, AjaxStatus status) throws JSONException {

@@ -196,7 +196,7 @@ public class profile_shop_owner_edit extends AppCompatActivity {
         String lang_id = "1";
         Log.i(TAG, "update_member_profile: login_response_data.member_nick_name  "+login_response_data.member_nick_name);
         if (login_response_data.shop_id.isEmpty()) {
-            Toast.makeText(profile_shop_owner_edit.this, "warning!!!, the shop id is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(profile_shop_owner_edit.this, "warning!!!, the shop_re id is empty", Toast.LENGTH_SHORT).show();
         }
         myApi.update_member_profile(api_key, lang_id, login_response_data.member_session, login_response_data.member_email, login_response_data.member_password, "15", nick_name.getText().toString(), gender.getText().toString(), birthday.getText().toString(), login_response_data.push_flag, login_response_data.shop_id, login_response_data.push_key_gcm, login_response_data.push_token_string, login_response_data.mobile_type, new API.onAjaxFinishedListener() {
             @Override
@@ -239,7 +239,7 @@ public class profile_shop_owner_edit extends AppCompatActivity {
 //            else
 //                mUtils.getErrorDialog(error).show();
 //            // =======================3  END  =======================
-//        }
+//        }人
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             Log.d(TAG, "selected!!!");

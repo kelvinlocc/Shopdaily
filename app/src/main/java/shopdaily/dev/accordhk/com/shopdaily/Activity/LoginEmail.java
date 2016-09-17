@@ -96,7 +96,7 @@ public class LoginEmail extends Activity {
 
                             //save data from api
                             myPreApp.setLoginResponse(login_response);
-//                            Log.i(TAG, "onFinished:... "+myPreApp.getLoginResponse().data.shop.shop_id);
+//                            Log.i(TAG, "onFinished:... "+myPreApp.getLoginResponse().data.shop_re.shop_id);
 
                             if (login_response.status == 1) {
                                 Toast.makeText(LoginEmail.this, "Login Successfully! ", Toast.LENGTH_LONG).show();

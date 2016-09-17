@@ -33,6 +33,8 @@ import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.QA_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_re;
 
 
 /**
@@ -46,10 +48,17 @@ public class MyPreApp {
     private static String TestKey = "test key";
 
     private static String Login_data_key = "login data key";
-    private static String Shop_Response_data_key = "shop response data key";
+    private static String Shop_Response_data_key = "shop_re response data key";
     private static String QA_list_key = "QA list key";
     Type listOfObjects = new TypeToken<ArrayList<QA_Response>>() {
     }.getType();
+    private static String Shop_list_key = "shop_re list key";
+    Type listOfShopObjects = new TypeToken<ArrayList<shop_re>>() {
+    }.getType();
+    private static String Feed_list_key = "feed list key";
+    Type listOfFeedObjects = new TypeToken<ArrayList<shop_feed>>() {
+    }.getType();
+
 
     public void baseSharedPreference (String key, String value){
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
@@ -57,6 +66,36 @@ public class MyPreApp {
         editor.apply();
         Log.i(TAG, "setTestResult: string= "+value);
     }
+
+    public void setFeed_list (ArrayList<shop_feed> arrayList){
+        SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
+        Gson gson= new Gson();
+        String jsonObject= gson.toJson(arrayList);
+        editor.putString(Feed_list_key,jsonObject);
+        editor.apply();
+    }
+    public ArrayList<shop_feed> getFeed_list(){
+        Gson gson = new Gson();
+        String jsonObject = MyApplication.getSharedPreferences().getString(Feed_list_key,null);
+        return gson.fromJson(jsonObject,listOfFeedObjects);
+    }
+
+
+
+    public void setShop_list (ArrayList<shop_re> arrayList){
+        SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
+        Gson gson= new Gson();
+        String jsonObject= gson.toJson(arrayList);
+        editor.putString(Shop_list_key,jsonObject);
+        editor.apply();
+    }
+    public ArrayList<shop_re> getShop_list(){
+        Gson gson = new Gson();
+        String jsonObject = MyApplication.getSharedPreferences().getString(Shop_list_key,null);
+        return gson.fromJson(jsonObject,listOfShopObjects);
+    }
+
+
     public void setQA_list (ArrayList<QA_Response> arrayList){
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
         Gson gson= new Gson();
@@ -126,6 +165,7 @@ public class MyPreApp {
     }
     API myApi;
     MyPreApp myPreApp;
+
     public void update_member_profile(final Context context){
         myApi = new API(context);
         myPreApp = new MyPreApp();
@@ -140,7 +180,7 @@ public class MyPreApp {
 
 
         if (login_response_data.shop_id.isEmpty()) {
-            Toast.makeText(context, "warning!!!, the shop id is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "warning!!!, the shop_re id is empty", Toast.LENGTH_SHORT).show();
         }
         myApi.update_member_profile(api_key, lang_id, login_response_data.member_session, login_response_data.member_email, login_response_data.member_password, "15", login_response_data.member_nick_name, login_response_data.member_gender, login_response_data.member_birthday, login_response_data.push_flag, login_response_data.shop_id, login_response_data.push_key_gcm, login_response_data.push_token_string, login_response_data.mobile_type, new API.onAjaxFinishedListener() {
             @Override

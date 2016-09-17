@@ -44,7 +44,7 @@ public class makeSeriablizedDataClassFromDataForm {
         }
         System.out.println("the whole serialized data class: \n\n" + serialized_ClassString);
         System.out.printf("params: \n" +string_param);
-        System.out.printf("maping:\n"+string_mapping);
+        System.out.printf("\n maping:\n"+string_mapping);
 
 //        System.out.println("loop the string array list: ");
 //        for (int i = 0; i < myStringList.size(); i++) {

@@ -43,8 +43,8 @@ public class Login_Response_Data {
     @SerializedName("mobile_type")
     public String mobile_type;
 
-//    @SerializedName("shop")
-//    public Shop_Response shop;
+//    @SerializedName("shop_re")
+//    public Shop_Response shop_re;
 
     @SerializedName("package_coin_amount")
     public String package_coin_amount;

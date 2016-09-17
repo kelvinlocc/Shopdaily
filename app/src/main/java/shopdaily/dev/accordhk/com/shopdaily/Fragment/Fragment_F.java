@@ -42,7 +42,7 @@ public class Fragment_F extends ListFragment {
 
 //        adapter = new Fragment_Favourite_shop_adapter(getActivity(), shop_name, shop_icon_list, adapter);
 //        adapter = new Fragment_Favourite_shop_adapter(getActivity(), shop_name, shop_icon, adapter);
-//        shop_list=(ListView)view.findViewById(R.id.list);
+//        shop_re=(ListView)view.findViewById(R.id.list);
 
 
     }

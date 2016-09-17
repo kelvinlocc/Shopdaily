@@ -241,6 +241,40 @@ public class API {
         }).start();
     }
 
+    public void getShopList (final String api_key,final String lang_id,final String member_session,final String page_no,final String page_size,final String filter_price_range_from,final String filter_price_range_to,final String filter_shop_district,final String filter_category_list,final String filter_hottest_item,final String filter_hash_list,final String filter_keyword_list,final String filter_location_x,final String filter_location_y,final String filter_shop_owner,final String filter_distance_range, final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "shop_list";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("page_no", page_no);
+                params.put("page_size", page_size);
+                params.put("filter_price_range_from", filter_price_range_from);
+                params.put("filter_price_range_to", filter_price_range_to);
+                params.put("filter_shop_district", filter_shop_district);
+                params.put("filter_category_list", filter_category_list);
+                params.put("filter_hottest_item", filter_hottest_item);
+                params.put("filter_hash_list", filter_hash_list);
+                params.put("filter_keyword_list", filter_keyword_list);
+                params.put("filter_location_x", filter_location_x);
+                params.put("filter_location_y", filter_location_y);
+                params.put("filter_shop_owner", filter_shop_owner);
+                params.put("filter_distance_range", filter_distance_range);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }).start();
+    }
+
+
+
 
     // haven't finish
     public void getBookmark(final String member_session, final onAjaxFinishedListener listener) {
@@ -258,7 +292,7 @@ public class API {
                 params.put("api_key", 654321);
                 params.put("lang_id", 1);
                 params.put("member_session", member_session);
-                params.put("shop_or_feed", 1); //1 is shop, 2 is feed
+                params.put("shop_or_feed", 1); //1 is shop_re, 2 is feed
             }
         }
 

@@ -50,7 +50,7 @@ public class MyApplication extends Application {
     }
 
     public static SharedPreferences getSharedPreferences() {
-        return getInstance().getSharedPreferences("shop daily database", getInstance().MODE_PRIVATE);
+        return getInstance().getSharedPreferences("shop_re daily database", getInstance().MODE_PRIVATE);
     }
 
 

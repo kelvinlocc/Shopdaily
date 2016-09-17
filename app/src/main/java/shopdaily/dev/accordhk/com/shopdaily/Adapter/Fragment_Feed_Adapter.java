@@ -28,54 +28,62 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 
 import me.relex.circleindicator.CircleIndicator;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_re;
 import shopdaily.dev.accordhk.com.shopdaily.Activity.MapsActivity;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.FeedDataModel;
 import shopdaily.dev.accordhk.com.shopdaily.Fragment.Fragment_Feed;
 
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 
 public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickListener, AbsListView.OnScrollListener {
     static String TAG = "Fragment_Feed_Adapter ";
     Fragment_Feed my_feed;
     LayoutInflater inflater;
-    FeedDataModel feedDataModel;
+    //    FeedDataModel feedDataModel;
     View view;
     ViewHolder holder;
+    MyPreApp myPreApp;
+
     private PopupWindow emji_window;
     Location thisUserCurrentLocation = new Location("new");
     Location shop_location = new Location("shop_location");
     boolean loading;
-    List<FeedDataModel> FeedList = null;
+//    List<FeedDataModel> FeedList = null;
 
-    ArrayList<FeedDataModel> feedDataModelArrayList;
+//    ArrayList<FeedDataModel> feedDataModelArrayList;
 
     public Fragment_Feed_Adapter(Fragment_Feed feed, List<FeedDataModel> data, int limit, Location userCurrentLocation) {
         my_feed = feed;
-        this.FeedList = data;
-        this.feedDataModelArrayList = new ArrayList<FeedDataModel>();
-        this.feedDataModelArrayList.addAll(data);
+//        this.FeedList = data;
+//        this.feedDataModelArrayList = new ArrayList<FeedDataModel>();
+//        this.feedDataModelArrayList.addAll(data);
         inflater = (LayoutInflater) feed.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         loading = false;
         thisUserCurrentLocation = userCurrentLocation;
-
+        myPreApp = new MyPreApp();
+        feed_list = myPreApp.getFeed_list();
+        shop_list = myPreApp.getShop_list();
         Log.i(TAG, " thisUserCurrentLocation @ initial adapter" + userCurrentLocation.getLatitude() + "," + userCurrentLocation.getLongitude());
 
     }
 
     public int getCount() {
-
-        Log.i(TAG, "feedlist.size: " + FeedList.size());
-        return FeedList.size();
-
+        Log.i(TAG, " size: " + feed_list.size());
+        return feed_list.size();
     }
 
     public Object getItem(int position) {
@@ -120,6 +128,11 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
 
     }
 
+    ArrayList<shop_feed> feed_list;
+    shop_feed feed_data;
+    ArrayList<shop_re> shop_list;
+    shop_re shop_data;
+
     public View getView(final int position, View convertView, final ViewGroup parent) {
         view = convertView;
 //        if (convertView == null) {
@@ -127,12 +140,14 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
         view = inflater.inflate(R.layout.fragment_feed_entry, parent, false);
         holder = new ViewHolder();
 
+
+//        feedListTesting();
         //<
         holder.store_info = (TextView) view.findViewById(R.id.store_info);
         holder.hashTag = (TextView) view.findViewById(R.id.hashTag);
-        holder.txt_comment =(TextView) view.findViewById(R.id.txt_comment);
+        holder.txt_comment = (TextView) view.findViewById(R.id.txt_comment);
         holder.txt_share = (TextView) view.findViewById(R.id.txt_share);
-        holder.product_category= (TextView) view.findViewById(R.id.product_category);
+        holder.product_category = (TextView) view.findViewById(R.id.product_category);
         holder.originalPrice = (TextView) view.findViewById(R.id.original_price);
         holder.discountPrice = (TextView) view.findViewById(R.id.discount_price);
         holder.discount = (TextView) view.findViewById(R.id.discount);
@@ -163,35 +178,44 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
 //            holder = (ViewHolder) view.getTag();
 //        }
 
-        if (FeedList.size() <= 0) {
+        if (feed_list.size() <= 0) {
             holder.Shop_name.setText("error, no data!");
             return (view);
 
         } else {
-            Log.i(TAG, "changed_05");
-            feedDataModel = null;
-            feedDataModel = FeedList.get(position);
+            Log.i(TAG, "checked::");
+            Log.i(TAG, "getView: feed_list.size()"+feed_list.size());
+
+            feed_data = feed_list.get(position);
+//            if (shop_list.get(position).feed !=null)
+//            if (shop_list.get(position).feed != null) {
+//                Log.i(TAG, "getView: feed is not null @" + shop_list.get(position).feed.shop_feed_id);
+//            } else {
+//                Log.i(TAG, "getView:  feed is null ");
+//            }
+            shop_data = searchForShop(feed_data.shop_id);
+
 
 //            holder.myPhotoViewpager.setAdapter(new SamplePagerAdapter());
             ViewPager viewPager = holder.myPhotoViewpager;
-            ViewPagerAdapterWithView temp_myPhoto_view = new ViewPagerAdapterWithView(my_feed,feedDataModel);
+            ViewPagerAdapterWithView temp_myPhoto_view = new ViewPagerAdapterWithView(my_feed, shop_data);
             viewPager.setAdapter(temp_myPhoto_view);
             CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
 //            indicator.drawable
             indicator.setViewPager(viewPager);
 
 
-            holder.Shop_name.setText(feedDataModel.getShopName());
-            holder.tv_shop_location.setText(feedDataModel.getShop_location());
+            holder.Shop_name.setText(shop_data.shop_name);
+            holder.tv_shop_location.setText("unknown");
 //            holder.tv_shop_location.setText(feedDataModel.getShop_full_location());
-            holder.react_number_01.setText(Integer.toString(feedDataModel.getReact_number_01()));
-            holder.react_number_02.setText(Integer.toString(feedDataModel.getReact_number_02()));
-            holder.react_number_03.setText(Integer.toString(feedDataModel.getReact_number_03()));
-            Log.i(TAG, "ouput xy: " + feedDataModel.getShop_X_coordinate() + "," + feedDataModel.getShop_Y_coordinate());
+            holder.react_number_01.setText(feed_data.total_count_like);
+            holder.react_number_02.setText(feed_data.total_count_cool);
+            holder.react_number_03.setText(feed_data.total_count_love);
+//                Log.i(TAG, "ouput xy: " + feedDataModel.getShop_X_coordinate() + "," + feedDataModel.getShop_Y_coordinate());
 
-            // shop locaiton:
-            shop_location.setLatitude(feedDataModel.getShop_X_coordinate());
-            shop_location.setLongitude(feedDataModel.getShop_Y_coordinate());
+            // shop_re locaiton:
+            shop_location.setLatitude(Double.parseDouble(shop_data.shop_location_x));
+            shop_location.setLongitude(Double.parseDouble(shop_data.shop_location_y));
 
 
             if (thisUserCurrentLocation != null) {
@@ -200,30 +224,31 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
                 Log.i(TAG, " thisUserCurrentLocation is null");
             }
             int display_user_to_shop_distance = cal_user_to_shop_distance(thisUserCurrentLocation, shop_location);
-            feedDataModel.setUser_shop_distance(Integer.toString(display_user_to_shop_distance));
+//                feedDataModel.setUser_shop_distance(Integer.toString(display_user_to_shop_distance));
 
 
-            holder.tv_distance.setText(String.valueOf(feedDataModel.getUser_shop_distance()) + " km");
+            holder.tv_distance.setText("???" + " km");
 
             holder.tv_react.setTextColor(Color.parseColor("#999999"));
             holder.imagb_react.setColorFilter(0xff999999, PorterDuff.Mode.MULTIPLY);
-            if (feedDataModel.isReact()) {
-                holder.tv_react.setTextColor(Color.parseColor("#00a99e"));
-                holder.imagb_react.setColorFilter(0xff00a99e, PorterDuff.Mode.MULTIPLY);
 
-            }
+            //check if liked//// TODO: 9/17/2016
+//                if (feedDataModel.isReact()) {
+//                    holder.tv_react.setTextColor(Color.parseColor("#00a99e"));
+//                    holder.imagb_react.setColorFilter(0xff00a99e, PorterDuff.Mode.MULTIPLY);
+//
+//                }
+
             //<
-            holder.store_info.setText(feedDataModel.getStore_info());
-            holder.hashTag.setText(Arrays.toString(feedDataModel.getHashTag_list()) );
-            holder.txt_comment.setText(Integer.toString(feedDataModel.getComment()));
-            holder.txt_share.setText(Integer.toString(feedDataModel.getShare()));
-            holder.product_category.setText(feedDataModel.getProduct_category());
-            holder.originalPrice.setText(feedDataModel.getOriginal_price());
-            holder.discountPrice.setText(feedDataModel.getDiscount_price());
-            holder.discount.setText(feedDataModel.getDiscount());
+            holder.store_info.setText(feed_data.feed_detail);
+            holder.hashTag.setText(feed_data.feed_hashtag);
+            holder.txt_comment.setText(feed_data.total_count_comment);
+            holder.txt_share.setText(feed_data.total_count_share);
+            holder.product_category.setText(feed_data.feed_category_list); /// // TODO: 9/17/2016
+            holder.originalPrice.setText(feed_data.original_price);
+            holder.discountPrice.setText(feed_data.special_price);
+            holder.discount.setText(feed_data.discount_rate);
             //>
-
-
 
 
             holder.tv_react.setOnClickListener(new OnItemClickListener(position));
@@ -243,6 +268,36 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
         return view;
 
     }
+    public shop_re searchForShop (String shop_id){
+        Log.i(TAG, "searchForShop: shopid: for "+shop_id);
+        for (int i = 0; i < shop_list.size(); i++) {
+            Log.i(TAG, "searchForShop: shopid: "+shop_list.get(i).shop_id);
+            if (Objects.equals(shop_id, shop_list.get(i).shop_id)){
+                Log.i(TAG, "searchForShop: match");
+                return shop_list.get(i);
+            }
+        }
+
+        Log.e(TAG, "searchForShop: not found!!!!");
+        return null;
+    }
+
+    public void feedListTesting() {
+        Log.i(TAG, "feedListTesting: ");
+        if (myPreApp.getFeed_list() != null) {
+            feed_list = myPreApp.getFeed_list();
+            for (int i = 0; i < feed_list.size(); i++) {
+                Log.i(TAG, "getView: feed " + feed_list.get(i).shop_feed_id);
+                if (!feed_list.get(i).image_list.isEmpty()) {
+                    Log.i(TAG, "getView: feed image " + feed_list.get(i).image_list.get(0));
+                } else {
+                    Log.i(TAG, "getView: feed image is empty");
+                }
+            }
+        } else {
+            Log.i(TAG, "getView: feed list is null");
+        }
+    }
 
 
     // Filter Class
@@ -250,14 +305,14 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
         Log.i(TAG, "filter ");
 
         charText = charText.toLowerCase(Locale.getDefault());
-        FeedList.clear();
+        shop_list.clear();
         if (charText.length() == 0) {
-            FeedList.addAll(feedDataModelArrayList);
+            shop_list.addAll(myPreApp.getShop_list());
         } else {
-            for (FeedDataModel wp : feedDataModelArrayList) {
-                if (wp.getShopName().toLowerCase(Locale.getDefault()).contains(charText)) {
-                    Log.i(TAG, "shop add: " + wp.getShopName());
-                    FeedList.add(wp);
+            for (shop_re wp : shop_list) {
+                if (wp.shop_name.toLowerCase(Locale.getDefault()).contains(charText)) {
+                    Log.i(TAG, "shop_re add: " + wp.shop_name);
+                    shop_list.add(wp);
                 }
             }
         }
@@ -294,7 +349,7 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
             emji_window.showAtLocation(layout, Gravity.CENTER, 50, 50);
             emji_window.update();
 
-            Log.i(TAG,"emji_window");
+            Log.i(TAG, "emji_window");
             emji_window.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public void onDismiss() {
@@ -307,12 +362,9 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
 
-                    feedDataModel = FeedList.get(mPosition);
-//
-                        feedDataModel.restoreReactNumber();
-
-
-                        feedDataModel.react(0);
+//                    feedDataModel = FeedList.get(mPosition);
+//                    feedDataModel.restoreReactNumber();
+//                    feedDataModel.react(0);
 
                     notifyDataSetChanged();
                     emji_window.dismiss();
@@ -323,11 +375,11 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
             ImgB_react2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    feedDataModel = FeedList.get(mPosition);
-
-                    feedDataModel.restoreReactNumber();
-
-                        feedDataModel.react(1);
+//                    feedDataModel = FeedList.get(mPosition);
+//
+//                    feedDataModel.restoreReactNumber();
+//
+//                    feedDataModel.react(1);
 
                     notifyDataSetChanged();
                     emji_window.dismiss();
@@ -339,12 +391,12 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
             ImgB_react3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    feedDataModel = FeedList.get(mPosition);
-
-                        feedDataModel.restoreReactNumber();
-
-
-                        feedDataModel.react(2);
+//                    feedDataModel = FeedList.get(mPosition);
+//
+//                    feedDataModel.restoreReactNumber();
+//
+//
+//                    feedDataModel.react(2);
 
                     notifyDataSetChanged();
                     emji_window.dismiss();
@@ -373,8 +425,8 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
         public void onClick(View v) {
 
             if (v.getId() == R.id.tv_react) {
-                feedDataModel = FeedList.get(mPosition);
-                feedDataModel.restoreReactNumber();
+//                feedDataModel = FeedList.get(mPosition);
+//                feedDataModel.restoreReactNumber();
                 Log.i(TAG, "react clicked in feed_update: " + mPosition);
                 notifyDataSetChanged();
             }
@@ -389,17 +441,18 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
             }
 
             if (v.getId() == R.id.imagebutton_location) {
-                feedDataModel = FeedList.get(mPosition);
+//                feedDataModel = FeedList.get(mPosition);
+                shop_data = shop_list.get(mPosition);
 
                 Intent NextActivity = new Intent(my_feed.getActivity(), MapsActivity.class);
-//                Log.i(TAG, "shop x:" + feedDataModel.getShop_X_coordinate());
+//                Log.i(TAG, "shop_re x:" + feedDataModel.getShop_X_coordinate());
 
-                NextActivity.putExtra("shop_name", feedDataModel.getShopName());
-                NextActivity.putExtra("shop_location", feedDataModel.getShop_location());
-                NextActivity.putExtra("shop_full_location", feedDataModel.getShop_full_location());
-                NextActivity.putExtra("shop_distance", feedDataModel.getUser_shop_distance());
-                NextActivity.putExtra("shop_location_x", feedDataModel.getShop_X_coordinate());
-                NextActivity.putExtra("shop_location_y", feedDataModel.getShop_Y_coordinate());
+                NextActivity.putExtra("shop_name", shop_data.shop_name);
+                NextActivity.putExtra("shop_location", "unknown");
+                NextActivity.putExtra("shop_full_location", "unknown full location");
+                NextActivity.putExtra("shop_distance", "unknow distance");
+                NextActivity.putExtra("shop_location_x", shop_data.shop_location_x);
+                NextActivity.putExtra("shop_location_y", shop_data.shop_location_y);
 
                 my_feed.startActivity(NextActivity);
             }
@@ -422,7 +475,7 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
 
     public int cal_user_to_shop_distance(Location user, Location shop) {
         Log.i(TAG, " user" + user.getLatitude() + "," + user.getLongitude());
-        Log.i(TAG, " shop" + shop.getLatitude() + "," + shop.getLongitude());
+        Log.i(TAG, " shop_re" + shop.getLatitude() + "," + shop.getLongitude());
 
         int distance = (int) user.distanceTo(shop) / 1000;
         Log.i(TAG, "distance: " + distance);

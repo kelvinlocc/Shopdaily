@@ -63,7 +63,7 @@ public class Shop_details extends AppCompatActivity {
             @Override
             public void  onClick (View v){
                 try{
-                    dialog = ProgressDialog.show(Shop_details.this,"","forwarding to shop location!",true);
+                    dialog = ProgressDialog.show(Shop_details.this,"","forwarding to shop_re location!",true);
                     Intent toMapsActivity = new Intent(Shop_details.this, MapsActivity.class);
                     startActivity(toMapsActivity);
                     finish();
