@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.feed_comment_response;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.FeedDataModel;
 import shopdaily.dev.accordhk.com.shopdaily.R;
 
@@ -28,22 +29,17 @@ import shopdaily.dev.accordhk.com.shopdaily.R;
 public class commentListView_adapter extends BaseAdapter implements AbsListView.OnScrollListener{
 
     Context context;
-    FeedDataModel myDataModel;
 
-    ArrayList<String> userNameList;
-    ArrayList<Integer> userIconList;
-    ArrayList<String> commentList;
-    ArrayList<Integer> timeList;
+
+    ArrayList<feed_comment_response> comment_list;
+    feed_comment_response comment_data;
 
     public static String TAG = "commentListView_adapter";
 
     private static LayoutInflater inflater=null;
-    public commentListView_adapter(Context context2, ArrayList<String> usernameData,ArrayList<Integer> userIconData, ArrayList<String> commentData,ArrayList<Integer> timeData  ) {
+    public commentListView_adapter(Context context2, ArrayList<feed_comment_response> list) {
         // TODO Auto-generated constructor stub
-        userNameList = usernameData;
-        userIconList = userIconData;
-        commentList = commentData;
-        timeList = timeData;
+        comment_list = list;
 
 //        myDataModel = dataModel;
         context=context2;//
@@ -55,7 +51,7 @@ public class commentListView_adapter extends BaseAdapter implements AbsListView.
     public int getCount() {
         // TODO Auto-generated method stub
 //        return myDataModel.getUser_name_list().length;
-        return userNameList.size();
+        return comment_list.size();
     }
 
     @Override
@@ -92,24 +88,25 @@ public class commentListView_adapter extends BaseAdapter implements AbsListView.
         Holder holder=new Holder();
         View view;
         view = inflater.inflate(R.layout.feed_comment_list, null);
+        comment_data = comment_list.get(position);
 
         TextView userName = (TextView) view.findViewById(R.id.user_name);
 //        userName.setText(myDataModel.getUser_name_list()[position]);
-        userName.setText(userNameList.get(position));
-        Log.i("check_","userNameList.get(position): "+userNameList.get(position));
+        userName.setText("user name");
+
 
         TextView userComment = (TextView) view.findViewById(R.id.comment);
-        userComment.setText(commentList.get(position));
+        userComment.setText(comment_data.shop_feed_comment);
 //
 
         TextView comment_timeline = (TextView) view.findViewById(R.id.timePast);
-        comment_timeline.setText(Integer.toString(timeList.get(position))+ " min");
+        comment_timeline.setText(comment_data.create_datetime);
 //
         ImageView userIcon = (ImageView) view.findViewById(R.id.member_profile_image);
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),userIconList.get(position));
-        bitmap = getCroppedBitmap(bitmap);
+//        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),userIconList.get(position));
+//        bitmap = getCroppedBitmap(bitmap);
 //
-        userIcon.setImageBitmap(bitmap);
+        userIcon.setImageResource(R.drawable.react_1);
 
         return view;
     }

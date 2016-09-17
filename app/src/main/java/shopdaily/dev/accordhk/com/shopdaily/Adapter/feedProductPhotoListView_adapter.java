@@ -8,7 +8,10 @@ import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 /**
  * Created by KelvinLo on 6/22/2016.
@@ -16,12 +19,15 @@ import shopdaily.dev.accordhk.com.shopdaily.R;
 public class feedProductPhotoListView_adapter extends BaseAdapter implements AbsListView.OnScrollListener{
 
     Context context;
-    int [] Photo;
+
+    ArrayList<String> imageArray;
+    MyPreApp myPreApp;
     private static LayoutInflater inflater=null;
-    public feedProductPhotoListView_adapter(Context context2, int [] photo) {//
+    public feedProductPhotoListView_adapter(Context context2, ArrayList<String> image_data) {//
         // TODO Auto-generated constructor stub
-        Photo = photo;
+        imageArray = image_data;
         context=context2;//
+        myPreApp = new MyPreApp();
 
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -29,7 +35,7 @@ public class feedProductPhotoListView_adapter extends BaseAdapter implements Abs
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return Photo.length;
+        return imageArray.size();
     }
 
     @Override
@@ -67,7 +73,8 @@ public class feedProductPhotoListView_adapter extends BaseAdapter implements Abs
         View view;
         view = inflater.inflate(R.layout.feed_product_photo_entry, null);
         holder.imageView = (ImageView) view.findViewById(R.id.product_photo_entry);
-        holder.imageView.setImageResource(Photo[position]);
+//        holder.imageView.setImageResource(Photo[position]);
+        holder.imageView.setImageBitmap(myPreApp.getBitmapFromURL(imageArray.get(position)));
         return view;
     }
 

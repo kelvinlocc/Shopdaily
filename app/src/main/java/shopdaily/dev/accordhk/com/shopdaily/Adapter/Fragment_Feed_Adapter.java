@@ -38,7 +38,9 @@ import java.util.Objects;
 
 
 import me.relex.circleindicator.CircleIndicator;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.feed_comment_response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_re;
 import shopdaily.dev.accordhk.com.shopdaily.Activity.MapsActivity;
@@ -57,6 +59,7 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
     View view;
     ViewHolder holder;
     MyPreApp myPreApp;
+    ArrayList<feed_comment_response> comment_list;
 
     private PopupWindow emji_window;
     Location thisUserCurrentLocation = new Location("new");
@@ -65,9 +68,10 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
 //    List<FeedDataModel> FeedList = null;
 
 //    ArrayList<FeedDataModel> feedDataModelArrayList;
-
-    public Fragment_Feed_Adapter(Fragment_Feed feed, List<FeedDataModel> data, int limit, Location userCurrentLocation) {
+    Context myContext;
+    public Fragment_Feed_Adapter(Fragment_Feed feed, List<FeedDataModel> data, int limit, Location userCurrentLocation,Context context) {
         my_feed = feed;
+        myContext = context;
 //        this.FeedList = data;
 //        this.feedDataModelArrayList = new ArrayList<FeedDataModel>();
 //        this.feedDataModelArrayList.addAll(data);
@@ -194,11 +198,14 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
 //                Log.i(TAG, "getView:  feed is null ");
 //            }
             shop_data = searchForShop(feed_data.shop_id);
-
-
+            String api_key = "654321";
+            String lang_id = "1";
+            Login_Response login_re = myPreApp.getLoginResponse();
+            comment_list = new ArrayList<>();
+//            myPreApp.getFeedComment_list(myContext,api_key,lang_id,login_re.data.member_session,feed_data.shop_feed_id);
 //            holder.myPhotoViewpager.setAdapter(new SamplePagerAdapter());
             ViewPager viewPager = holder.myPhotoViewpager;
-            ViewPagerAdapterWithView temp_myPhoto_view = new ViewPagerAdapterWithView(my_feed, shop_data);
+            ViewPagerAdapterWithView temp_myPhoto_view = new ViewPagerAdapterWithView(my_feed, shop_data,feed_data,myContext);
             viewPager.setAdapter(temp_myPhoto_view);
             CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
 //            indicator.drawable
@@ -281,6 +288,7 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
         Log.e(TAG, "searchForShop: not found!!!!");
         return null;
     }
+
 
     public void feedListTesting() {
         Log.i(TAG, "feedListTesting: ");

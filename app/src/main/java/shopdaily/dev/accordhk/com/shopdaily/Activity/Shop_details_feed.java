@@ -33,11 +33,15 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.feed_comment_response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_re;
 import shopdaily.dev.accordhk.com.shopdaily.Adapter.commentListView_adapter;
 import shopdaily.dev.accordhk.com.shopdaily.Adapter.feedProductPhotoListView_adapter;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.FeedDataModel;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.Gallery_DataModel;
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 /**
  * Created by KelvinLo on 6/8/2016.
@@ -50,15 +54,19 @@ public class Shop_details_feed extends ActionBarActivity {
     Gallery_DataModel model;
     ArrayList<Gallery_DataModel> mData;
     ArrayList<String> userNameList;
-    ArrayList<String> commentList;
     ArrayList<Integer> timeList;
     ArrayList<Integer> userIconList;
-    ArrayList<String> itemList;
+
     commentListView_adapter comment_adapter;
     ProgressDialog dialog = null;
     EditText inputComment;
     private PopupWindow emji_window;
 
+
+    MyPreApp myPreApp;
+    shop_re shop_data;
+    shop_feed feed_data;
+    ArrayList<feed_comment_response> comment_list;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,69 +76,75 @@ public class Shop_details_feed extends ActionBarActivity {
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         setContentView(R.layout.fragment_feed_shop_details);
-        Log.i(TAG, "test");
+        myPreApp = new MyPreApp();
+        Log.i(TAG, "onCreate: comment: "+myPreApp.getComment_list().get(0).shop_feed_comment);
+        comment_list = myPreApp.getComment_list();
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        final FeedDataModel myFeedDataModel = (FeedDataModel) bundle.getSerializable("data");
-        Log.i("TAG", "myFeedDataModel.getShopName: " + myFeedDataModel.getShop_location());
+        if (! bundle.isEmpty()) {
+            Log.i(TAG, "onCreate: shop id, feed id:"+bundle.getString("shop_id")+","+bundle.getString("feed_id"));
+            shop_data = myPreApp.searchForShop(bundle.getString("shop_id"));
+            feed_data = myPreApp.searchForShopFeed(bundle.getString("feed_id"));
+        }
+//        Log.i("TAG", "myFeedDataModel.getShopName: " + myFeedDataModel.getShop_location());
 
         final TextView btn_go_back = (TextView) findViewById(R.id.txt_go_back);
 
         // setText on some simple data:
         TextView txt_distance = (TextView) findViewById(R.id.txt_distance);
-        txt_distance.setText(myFeedDataModel.getUser_shop_distance() + " km");
+        txt_distance.setText("???" + " km"); //// TODO: 9/17/2016
 
         TextView shop_name = (TextView) findViewById(R.id.shop_name);
-        shop_name.setText(myFeedDataModel.getShopName());
+        shop_name.setText(shop_data.shop_name);
 
         TextView shop_location = (TextView) findViewById(R.id.shop_location);
-        shop_location.setText(myFeedDataModel.getShop_location());
+        shop_location.setText(shop_data.shop_address); // // TODO: 9/17/2016
 
 
         TextView store_info = (TextView) findViewById(R.id.store_info);
-        store_info.setText(myFeedDataModel.getStore_info());
+        store_info.setText(feed_data.feed_detail);
         TextView hastTag = (TextView) findViewById(R.id.hashTag);
-        hastTag.setText(Arrays.toString(myFeedDataModel.getHashTag_list()));
+        hastTag.setText(feed_data.feed_hashtag);
 
         TextView original_price = (TextView) findViewById(R.id.original_price);
-        original_price.setText(myFeedDataModel.getOriginal_price());
+        original_price.setText(feed_data.original_price);
 
 
         TextView discount_price = (TextView) findViewById(R.id.discount_price);
-        discount_price.setText(myFeedDataModel.getDiscount_price());
+        discount_price.setText(feed_data.special_price);
 
         TextView category = (TextView) findViewById(R.id.product_category);
-        category.setText(myFeedDataModel.getProduct_category());
+        category.setText(feed_data.feed_category_list);
 
         TextView react_01 = (TextView) findViewById(R.id.react_number_01);
-        react_01.setText(Integer.toString(myFeedDataModel.getReact_number_01()));
+        react_01.setText(feed_data.total_count_like);
         TextView react_02 = (TextView) findViewById(R.id.react_number_02);
-        react_02.setText(Integer.toString(myFeedDataModel.getReact_number_02()));
+        react_02.setText(feed_data.total_count_cool);
         TextView react_03 = (TextView) findViewById(R.id.react_number_03);
-        react_03.setText(Integer.toString(myFeedDataModel.getReact_number_03()));
+        react_03.setText(feed_data.total_count_love);
         TextView txt_comment = (TextView) findViewById(R.id.txt_comment);
-        txt_comment.setText(Integer.toString(myFeedDataModel.getComment()));
+        txt_comment.setText(feed_data.total_count_comment);
         TextView txt_share = (TextView) findViewById(R.id.txt_share);
-        txt_share.setText(Integer.toString(myFeedDataModel.getShare()));
+        txt_share.setText(feed_data.total_count_share);
 
         TextView discount = (TextView) findViewById(R.id.discount);
-        discount.setText(myFeedDataModel.getDiscount());
+        discount.setText(feed_data.discount_rate);
 
 
         // photo list view:
         ListView photoListView = (ListView) findViewById(R.id.product_photo_listView);
-        final feedProductPhotoListView_adapter myAdapter = new feedProductPhotoListView_adapter(this, myFeedDataModel.getPhoto_list());
+        final feedProductPhotoListView_adapter myAdapter = new feedProductPhotoListView_adapter(this, shop_data.imageArray);
         photoListView.setAdapter(myAdapter);
         setListViewHeightBasedOnChildren(photoListView);
 
 
         // comment list view & add comment:
         // fetching data::
-        userNameList = new ArrayList<String>(Arrays.asList(myFeedDataModel.getUser_name_list()));
-        commentList = new ArrayList<String>(Arrays.asList(myFeedDataModel.getUser_comment_list()));
-        userIconList = new ArrayList<Integer>(Arrays.asList(myFeedDataModel.getUser_icon_list()));
-        timeList = new ArrayList<Integer>(Arrays.asList(myFeedDataModel.getUser_timeline_list()));
+//        userNameList = new ArrayList<String>(Arrays.asList(myFeedDataModel.getUser_name_list()));
+//        commentList = new ArrayList<String>(Arrays.asList(myFeedDataModel.getUser_comment_list()));
+//        userIconList = new ArrayList<Integer>(Arrays.asList(myFeedDataModel.getUser_icon_list()));
+//        timeList = new ArrayList<Integer>(Arrays.asList(myFeedDataModel.getUser_timeline_list()));
 //        String[] items={"Apple","Banana","Clementine"};
 //        itemList=new ArrayList<String>(userNameList);
 
@@ -138,7 +152,7 @@ public class Shop_details_feed extends ActionBarActivity {
         inputComment = (EditText) findViewById(R.id.input_comment);
 
         //adapter::
-        comment_adapter = new commentListView_adapter(this, userNameList, userIconList, commentList, timeList);
+        comment_adapter = new commentListView_adapter(this, comment_list);
         comment_LV.setAdapter(comment_adapter);
         setListViewHeightBasedOnChildren(comment_LV);
 
@@ -152,16 +166,16 @@ public class Shop_details_feed extends ActionBarActivity {
                 String currentUser = "Current User";
                 Collections.reverse(userNameList);
                 Collections.reverse(userIconList);
-                Collections.reverse(commentList);
+//                Collections.reverse(commentList);
                 Collections.reverse(timeList);
 
                 userNameList.add(currentUser);
                 userIconList.add(R.drawable.react_1);
-                commentList.add(newComment);
+//                commentList.add(newComment);
                 timeList.add(0);
                 Collections.reverse(userNameList);
                 Collections.reverse(userIconList);
-                Collections.reverse(commentList);
+//                Collections.reverse(commentList);
                 Collections.reverse(timeList);
 
                 // notify listview of data changed

@@ -288,7 +288,7 @@ public class Fragment_Feed extends ListFragment {
                         Log.i(TAG, "onFinished: feed is empty");
                     }
                     if (shop.feed !=null){
-                        Log.i(TAG, "onFinished: shop.imageArray.get(1) "+shop.imageArray.get(1));
+//                        Log.i(TAG, "onFinished: shop.imageArray.get(1) "+shop.imageArray.get(1));
 //                        Log.i(TAG, "checker::");
 //                        Log.i(TAG, "onFinished: "+shop.feed.shop_feed_id);
                     }
@@ -396,7 +396,7 @@ public class Fragment_Feed extends ListFragment {
         feedDataModelArrayList = new ArrayList<>();
         getURL();
 
-        feed_list_adapter = new Fragment_Feed_Adapter(this, feedDataModelArrayList, ENTRY_LIMIT, userCurrentLocation);
+        feed_list_adapter = new Fragment_Feed_Adapter(this, feedDataModelArrayList, ENTRY_LIMIT, userCurrentLocation,getContext());
         ///
         Bundle extras = getArguments();
         if (extras != null) {

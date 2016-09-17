@@ -299,7 +299,7 @@ public class API {
         ).start();
     }
 
-    public void get_nick_name(final String email, final onAjaxFinishedListener listener) {
+    public void getFeedComment(final String api_key,final String lang_id,final String member_session,final String shop_feed_id, final onAjaxFinishedListener listener) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -308,13 +308,21 @@ public class API {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                String url = baseURL + "get_nick_name.php";
+
+                String url = baseURL + "shop_feed_detail";
                 Map<String, Object> params = new HashMap<String, Object>();
-                params.put("email", email);
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("shop_feed_id", shop_feed_id);
                 ajaxPOSTCall(url, params, listener);
             }
-        }).start();
+        }
+
+        ).start();
     }
+
+
 
 
     private void ajaxPOSTCall(String url, Map<String, Object> params, final onAjaxFinishedListener listener) {

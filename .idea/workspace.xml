@@ -17,9 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="662f379f-fb63-4154-85b1-fce3024a27d1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/shop_feed.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/shop_list_image.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/shop_re.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/feed_comment_response.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
@@ -27,26 +25,17 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-23.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-23.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/Login_Response_Data.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/Login_Response_Data.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/LoginEmail.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/LoginEmail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/Shop_details.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/Shop_details.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/SignUp.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/SignUp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/profile_shop_owner_edit.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/profile_shop_owner_edit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/setting_Activity.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/setting_Activity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/Shop_details_feed.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/Shop_details_feed.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/Fragment_Feed_Adapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/Fragment_Feed_Adapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/ViewPagerAdapterWithView.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/ViewPagerAdapterWithView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_F.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_F.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Favourite_shop.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Favourite_shop.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/commentListView_adapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/commentListView_adapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/feedProductPhotoListView_adapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/feedProductPhotoListView_adapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Feed.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Feed.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/API.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/API.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/MyApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/MyApplication.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/MyPreApp.java" afterPath="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/MyPreApp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mylib/src/main/java/com/example/makeSeriablizedDataClassFromDataForm.java" afterPath="$PROJECT_DIR$/mylib/src/main/java/com/example/makeSeriablizedDataClassFromDataForm.java" />
     </list>
     <ignored path="Shopdaily.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,31 +60,33 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/MyPreApp.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="338" column="27" selection-start-line="338" selection-start-column="27" selection-end-line="338" selection-end-column="27" />
+              <caret line="229" column="29" selection-start-line="229" selection-start-column="29" selection-end-line="229" selection-end-column="29" />
               <folding>
                 <element signature="method#update_member_profile#0;class#MyPreApp#0" expanded="false" />
-                <element signature="method#uploadImage#0;class#MyPreApp#0" expanded="false" />
+                <element signature="e#8231#8976#0" expanded="true" />
+                <element signature="e#8975#8976#0" expanded="true" />
+                <element signature="e#9637#10755#0" expanded="true" />
+                <element signature="e#10754#10755#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fragment_Feed.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Fragment_Feed.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Feed.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5343915">
-              <caret line="295" column="46" selection-start-line="295" selection-start-column="46" selection-end-line="295" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="398" column="129" selection-start-line="398" selection-start-column="129" selection-end-line="398" selection-end-column="129" />
               <folding>
                 <element signature="e#7210#7275#0" expanded="true" />
                 <element signature="e#7302#7367#0" expanded="true" />
                 <element signature="e#7388#7447#0" expanded="true" />
                 <element signature="e#7574#7633#0" expanded="true" />
-                <element signature="method#feedListTesting#0;class#Fragment_Feed#0" expanded="false" />
                 <element signature="method#OneShopTesting#0;class#Fragment_Feed#0" expanded="false" />
                 <element signature="method#test#0;class#Fragment_Feed#0" expanded="false" />
                 <element signature="method#getAdapter#0;class#Fragment_Feed#0" expanded="false" />
                 <element signature="method#showSettingsAlert#0;class#Fragment_Feed#0" expanded="false" />
-                <element signature="e#20616#20679#0" expanded="false" />
+                <element signature="e#20631#20694#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -105,11 +96,11 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/Fragment_Feed_Adapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="200" column="102" selection-start-line="200" selection-start-column="102" selection-end-line="200" selection-end-column="102" />
+              <caret line="205" column="57" selection-start-line="205" selection-start-column="57" selection-end-line="205" selection-end-column="57" />
               <folding>
                 <element signature="method#onClick#0;class#Fragment_Feed_Adapter#0" expanded="false" />
                 <element signature="class#ViewHolder#0;class#Fragment_Feed_Adapter#0" expanded="false" />
-                <element signature="e#5008#5036#0" expanded="false" />
+                <element signature="e#5281#5309#0" expanded="false" />
                 <element signature="method#feedListTesting#0;class#Fragment_Feed_Adapter#0" expanded="false" />
                 <element signature="method#filter#0;class#Fragment_Feed_Adapter#0" expanded="false" />
                 <element signature="method#initiatePopupWindow#0;class#Fragment_Feed_Adapter#0" expanded="false" />
@@ -122,20 +113,42 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/ViewPagerAdapterWithView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+              <caret line="91" column="73" selection-start-line="91" selection-start-column="73" selection-end-line="91" selection-end-column="73" />
               <folding>
-                <element signature="e#3117#3787#0" expanded="true" />
-                <element signature="e#3786#3787#0" expanded="true" />
+                <element signature="e#3316#3934#0" expanded="true" />
+                <element signature="e#3933#3934#0" expanded="true" />
+                <element signature="e#4637#5805#0" expanded="true" />
+                <element signature="e#5804#5805#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fragment_Profile_shop_owner.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Profile_shop_owner.java">
+      <file leaf-file-name="Shop_details_feed.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/Shop_details_feed.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.32671958">
+              <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="feedProductPhotoListView_adapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/feedProductPhotoListView_adapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="57" selection-start-line="59" selection-start-column="57" selection-end-line="59" selection-end-column="57" />
+              <caret line="76" column="60" selection-start-line="76" selection-start-column="60" selection-end-line="76" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="commentListView_adapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/commentListView_adapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -2641,10 +2654,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/reponse.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/LoginData.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/Login_response.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/Login_Data.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/Login_Response.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/Shop.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile_shop.xml" />
@@ -2683,15 +2692,19 @@
         <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/shop_list_response.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/shop_list_feed.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/shop_list.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/API.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/LoginEmail.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/Registration_Response_Data.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/profile_shop_owner_edit.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/MyPreApp.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/shop_feed.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/Fragment_Feed_Adapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/ViewPagerAdapterWithView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/feedProductPhotoListView_adapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/feed_comment_response.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Feed.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/API.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/ViewPagerAdapterWithView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/MyPreApp.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/Fragment_Feed_Adapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/commentListView_adapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/Shop_details_feed.java" />
       </list>
     </option>
   </component>
@@ -2726,7 +2739,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2945,28 +2961,6 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Adapter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Shopdaily" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopdaily" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Activity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2983,9 +2977,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3348,9 +3339,10 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41581634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52040815" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.75" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30867347" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -3370,7 +3362,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="611" y="366" width="444" height="167" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3389,62 +3380,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_favourite_feed_list.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/Fragment_Favourite_feed_adapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.821428">
-          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-          <folding>
-            <element signature="e#863#881#0" expanded="false" />
-            <element signature="e#2159#2177#0" expanded="false" />
-            <element signature="e#2292#2310#0" expanded="false" />
-            <element signature="e#2419#2437#0" expanded="false" />
-            <element signature="e#4449#4488#0" expanded="false" />
-            <element signature="e#4595#4620#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Favourite_feed.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14550264">
-          <caret line="64" column="44" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6031746">
-          <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/category_grid_single.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/Fragment_Category_Adapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3671,6 +3606,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0392562">
           <caret line="140" column="45" selection-start-line="140" selection-start-column="45" selection-end-line="140" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3693,44 +3629,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/API.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="332" column="0" selection-start-line="332" selection-start-column="0" selection-end-line="332" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;class#API#0" expanded="false" />
-            <element signature="method#API#0;class#API#0" expanded="false" />
-            <element signature="e#1198#1199#0" expanded="false" />
-            <element signature="e#1228#1229#0" expanded="false" />
-            <element signature="e#1262#1263#0" expanded="false" />
-            <element signature="e#1292#1293#0" expanded="false" />
-            <element signature="method#login#0;class#API#0" expanded="false" />
-            <element signature="method#member_registration#0;class#API#0" expanded="false" />
-            <element signature="method#shop_registration#0;class#API#0" expanded="false" />
-            <element signature="method#forgetPassword#0;class#API#0" expanded="false" />
-            <element signature="method#get_nick_name#0;class#API#0" expanded="false" />
-            <element signature="class#onAjaxFinishedListener#0;class#API#0" expanded="false" />
-            <element signature="method#ajaxGETCall#0;class#API#0" expanded="false" />
-            <element signature="method#service_ajaxGETCall#0;class#API#0" expanded="false" />
-            <element signature="class#onJSONListener#0;class#API#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/profile_shop_owner_edit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="25" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#9382#9487#0" expanded="false" />
-            <element signature="e#14332#14333#0" expanded="false" />
-            <element signature="e#14359#14360#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3786,17 +3684,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/MyPreApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="338" column="27" selection-start-line="338" selection-start-column="27" selection-end-line="338" selection-end-column="27" />
-          <folding>
-            <element signature="method#update_member_profile#0;class#MyPreApp#0" expanded="false" />
-            <element signature="method#uploadImage#0;class#MyPreApp#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/DataModel/FeedDataModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5343915">
@@ -3810,20 +3697,120 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Profile_shop_owner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.48412699">
           <caret line="59" column="57" selection-start-line="59" selection-start-column="57" selection-end-line="59" selection-end-column="57" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_favourite_feed_list.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.642858">
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_feed_shop_details.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.642858">
+          <caret line="152" column="32" selection-start-line="152" selection-start-column="32" selection-end-line="152" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/API_DataModel/feed_comment_response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/feedProductPhotoListView_adapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="60" selection-start-line="76" selection-start-column="60" selection-end-line="76" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/profile_shop_owner_edit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="182" column="60" selection-start-line="182" selection-start-column="60" selection-end-line="182" selection-end-column="60" />
+          <folding>
+            <element signature="e#9382#9487#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/API.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="317" column="52" selection-start-line="317" selection-start-column="52" selection-end-line="317" selection-end-column="52" />
+          <folding>
+            <element signature="docComment;class#API#0" expanded="false" />
+            <element signature="method#API#0;class#API#0" expanded="false" />
+            <element signature="method#login#0;class#API#0" expanded="false" />
+            <element signature="method#member_registration#0;class#API#0" expanded="false" />
+            <element signature="method#shop_registration#0;class#API#0" expanded="false" />
+            <element signature="method#forgetPassword#0;class#API#0" expanded="false" />
+            <element signature="method#getBookmark#0;class#API#0" expanded="false" />
+            <element signature="class#onAjaxFinishedListener#0;class#API#0" expanded="false" />
+            <element signature="method#ajaxGETCall#0;class#API#0" expanded="false" />
+            <element signature="method#service_ajaxGETCall#0;class#API#0" expanded="false" />
+            <element signature="class#onJSONListener#0;class#API#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Feed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="398" column="129" selection-start-line="398" selection-start-column="129" selection-end-line="398" selection-end-column="129" />
+          <folding>
+            <element signature="e#7210#7275#0" expanded="true" />
+            <element signature="e#7302#7367#0" expanded="true" />
+            <element signature="e#7388#7447#0" expanded="true" />
+            <element signature="e#7574#7633#0" expanded="true" />
+            <element signature="method#OneShopTesting#0;class#Fragment_Feed#0" expanded="false" />
+            <element signature="method#test#0;class#Fragment_Feed#0" expanded="false" />
+            <element signature="method#getAdapter#0;class#Fragment_Feed#0" expanded="false" />
+            <element signature="method#showSettingsAlert#0;class#Fragment_Feed#0" expanded="false" />
+            <element signature="e#20631#20694#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Uility/MyPreApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="229" column="29" selection-start-line="229" selection-start-column="29" selection-end-line="229" selection-end-column="29" />
+          <folding>
+            <element signature="method#update_member_profile#0;class#MyPreApp#0" expanded="false" />
+            <element signature="e#8231#8976#0" expanded="true" />
+            <element signature="e#8975#8976#0" expanded="true" />
+            <element signature="e#9637#10755#0" expanded="true" />
+            <element signature="e#10754#10755#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/Fragment_Feed_Adapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="200" column="102" selection-start-line="200" selection-start-column="102" selection-end-line="200" selection-end-column="102" />
+          <caret line="205" column="57" selection-start-line="205" selection-start-column="57" selection-end-line="205" selection-end-column="57" />
           <folding>
             <element signature="method#onClick#0;class#Fragment_Feed_Adapter#0" expanded="false" />
             <element signature="class#ViewHolder#0;class#Fragment_Feed_Adapter#0" expanded="false" />
-            <element signature="e#5008#5036#0" expanded="false" />
+            <element signature="e#5281#5309#0" expanded="false" />
             <element signature="method#feedListTesting#0;class#Fragment_Feed_Adapter#0" expanded="false" />
             <element signature="method#filter#0;class#Fragment_Feed_Adapter#0" expanded="false" />
             <element signature="method#initiatePopupWindow#0;class#Fragment_Feed_Adapter#0" expanded="false" />
@@ -3834,30 +3821,29 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/ViewPagerAdapterWithView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+          <caret line="91" column="73" selection-start-line="91" selection-start-column="73" selection-end-line="91" selection-end-column="73" />
           <folding>
-            <element signature="e#3117#3787#0" expanded="true" />
-            <element signature="e#3786#3787#0" expanded="true" />
+            <element signature="e#3316#3934#0" expanded="true" />
+            <element signature="e#3933#3934#0" expanded="true" />
+            <element signature="e#4637#5805#0" expanded="true" />
+            <element signature="e#5804#5805#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Fragment/Fragment_Feed.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Adapter/commentListView_adapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5343915">
-          <caret line="295" column="46" selection-start-line="295" selection-start-column="46" selection-end-line="295" selection-end-column="46" />
-          <folding>
-            <element signature="e#7210#7275#0" expanded="true" />
-            <element signature="e#7302#7367#0" expanded="true" />
-            <element signature="e#7388#7447#0" expanded="true" />
-            <element signature="e#7574#7633#0" expanded="true" />
-            <element signature="method#feedListTesting#0;class#Fragment_Feed#0" expanded="false" />
-            <element signature="method#OneShopTesting#0;class#Fragment_Feed#0" expanded="false" />
-            <element signature="method#test#0;class#Fragment_Feed#0" expanded="false" />
-            <element signature="method#getAdapter#0;class#Fragment_Feed#0" expanded="false" />
-            <element signature="method#showSettingsAlert#0;class#Fragment_Feed#0" expanded="false" />
-            <element signature="e#20616#20679#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/shopdaily/dev/accordhk/com/shopdaily/Activity/Shop_details_feed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32671958">
+          <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -13,6 +13,7 @@ import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,11 +29,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.QA_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.feed_comment_response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_re;
 
@@ -43,7 +46,7 @@ import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_re;
 public class MyPreApp {
     static String TAG = "MyPreApp";
     public static String deviceKey = "device key";
-    public static  String locationKey = "location key";
+    public static String locationKey = "location key";
     public static String GPSOption = "GPS option";
     private static String TestKey = "test key";
 
@@ -58,115 +61,135 @@ public class MyPreApp {
     private static String Feed_list_key = "feed list key";
     Type listOfFeedObjects = new TypeToken<ArrayList<shop_feed>>() {
     }.getType();
+    private static String comment_list_key = "comment list key";
+    Type listOfCommentObjects = new TypeToken<ArrayList<feed_comment_response>>() {
+    }.getType();
 
 
-    public void baseSharedPreference (String key, String value){
+    public void baseSharedPreference(String key, String value) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
-        editor.putString(key,value);
+        editor.putString(key, value);
         editor.apply();
-        Log.i(TAG, "setTestResult: string= "+value);
+        Log.i(TAG, "setTestResult: string= " + value);
     }
 
-    public void setFeed_list (ArrayList<shop_feed> arrayList){
+    public void setCommentList (ArrayList<feed_comment_response> arrayList) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
-        Gson gson= new Gson();
-        String jsonObject= gson.toJson(arrayList);
-        editor.putString(Feed_list_key,jsonObject);
-        editor.apply();
-    }
-    public ArrayList<shop_feed> getFeed_list(){
         Gson gson = new Gson();
-        String jsonObject = MyApplication.getSharedPreferences().getString(Feed_list_key,null);
-        return gson.fromJson(jsonObject,listOfFeedObjects);
-    }
-
-
-
-    public void setShop_list (ArrayList<shop_re> arrayList){
-        SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
-        Gson gson= new Gson();
-        String jsonObject= gson.toJson(arrayList);
-        editor.putString(Shop_list_key,jsonObject);
+        String jsonObject = gson.toJson(arrayList);
+        editor.putString(comment_list_key, jsonObject);
         editor.apply();
     }
-    public ArrayList<shop_re> getShop_list(){
+
+    public ArrayList<feed_comment_response> getComment_list() {
         Gson gson = new Gson();
-        String jsonObject = MyApplication.getSharedPreferences().getString(Shop_list_key,null);
-        return gson.fromJson(jsonObject,listOfShopObjects);
+        String jsonObject = MyApplication.getSharedPreferences().getString(comment_list_key, null);
+        return gson.fromJson(jsonObject, listOfCommentObjects);
     }
 
 
-    public void setQA_list (ArrayList<QA_Response> arrayList){
+    public void setFeed_list(ArrayList<shop_feed> arrayList) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
-        Gson gson= new Gson();
-        String jsonObject= gson.toJson(arrayList);
-        editor.putString(QA_list_key,jsonObject);
+        Gson gson = new Gson();
+        String jsonObject = gson.toJson(arrayList);
+        editor.putString(Feed_list_key, jsonObject);
+        editor.apply();
+    }
+
+    public ArrayList<shop_feed> getFeed_list() {
+        Gson gson = new Gson();
+        String jsonObject = MyApplication.getSharedPreferences().getString(Feed_list_key, null);
+        return gson.fromJson(jsonObject, listOfFeedObjects);
+    }
+
+    public void setShop_list(ArrayList<shop_re> arrayList) {
+        SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
+        Gson gson = new Gson();
+        String jsonObject = gson.toJson(arrayList);
+        editor.putString(Shop_list_key, jsonObject);
+        editor.apply();
+    }
+
+    public ArrayList<shop_re> getShop_list() {
+        Gson gson = new Gson();
+        String jsonObject = MyApplication.getSharedPreferences().getString(Shop_list_key, null);
+        return gson.fromJson(jsonObject, listOfShopObjects);
+    }
+
+
+    public void setQA_list(ArrayList<QA_Response> arrayList) {
+        SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
+        Gson gson = new Gson();
+        String jsonObject = gson.toJson(arrayList);
+        editor.putString(QA_list_key, jsonObject);
         editor.apply();
 
     }
 
-    public ArrayList<QA_Response> getQA_list (){
+    public ArrayList<QA_Response> getQA_list() {
         Gson gson = new Gson();
-        String jsonObject = MyApplication.getSharedPreferences().getString(QA_list_key,null);
-        return gson.fromJson(jsonObject,listOfObjects);
+        String jsonObject = MyApplication.getSharedPreferences().getString(QA_list_key, null);
+        return gson.fromJson(jsonObject, listOfObjects);
     }
 
 
-    public void setShopResponse (Shop_Response shopResponse){
+    public void setShopResponse(Shop_Response shopResponse) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
-        Gson gson =new Gson();
+        Gson gson = new Gson();
         String jsonObject = gson.toJson(shopResponse);
-        editor.putString(Shop_Response_data_key,jsonObject);
+        editor.putString(Shop_Response_data_key, jsonObject);
         editor.apply();
     }
 
-    public Shop_Response getShopResponse (){
+    public Shop_Response getShopResponse() {
         Gson gson = new Gson();
-        String jsonObject = MyApplication.getSharedPreferences().getString(Shop_Response_data_key,null);
-        return gson.fromJson(jsonObject,Shop_Response.class);
+        String jsonObject = MyApplication.getSharedPreferences().getString(Shop_Response_data_key, null);
+        return gson.fromJson(jsonObject, Shop_Response.class);
     }
 
 
-    public void setLoginResponse(Login_Response login_response){
+    public void setLoginResponse(Login_Response login_response) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
         Gson gson = new Gson();
         String jsonObject = gson.toJson(login_response);
-        editor.putString(Login_data_key,jsonObject);
+        editor.putString(Login_data_key, jsonObject);
         editor.apply();
     }
 
-    public Login_Response getLoginResponse(){
+    public Login_Response getLoginResponse() {
         Gson gson = new Gson();
-        String jsonObject = MyApplication.getSharedPreferences().getString(Login_data_key,null);
-        return  gson.fromJson(jsonObject,Login_Response.class);
+        String jsonObject = MyApplication.getSharedPreferences().getString(Login_data_key, null);
+        return gson.fromJson(jsonObject, Login_Response.class);
     }
 
-    public void setUserLocation( Location location) {
+    public void setUserLocation(Location location) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
         Gson gson = new Gson();
         String jsonObject = gson.toJson(location);
-        editor.putString(locationKey,jsonObject);
+        editor.putString(locationKey, jsonObject);
         editor.apply();
     }
-    public Location getUserLocation(){
+
+    public Location getUserLocation() {
         Gson gson = new Gson();
-        String jsonObject =  MyApplication.getSharedPreferences().getString(locationKey,null);
-        return gson.fromJson(jsonObject,Location.class);
+        String jsonObject = MyApplication.getSharedPreferences().getString(locationKey, null);
+        return gson.fromJson(jsonObject, Location.class);
     }
 
-    public void setGPSOption (boolean value){
+    public void setGPSOption(boolean value) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
-        editor.putBoolean(GPSOption,value);
+        editor.putBoolean(GPSOption, value);
         editor.apply();
     }
 
-    public boolean getGPSOption (){
-        return MyApplication.getSharedPreferences().getBoolean(GPSOption,false);
+    public boolean getGPSOption() {
+        return MyApplication.getSharedPreferences().getBoolean(GPSOption, false);
     }
+
     API myApi;
     MyPreApp myPreApp;
 
-    public void update_member_profile(final Context context){
+    public void update_member_profile(final Context context) {
         myApi = new API(context);
         myPreApp = new MyPreApp();
 
@@ -176,7 +199,7 @@ public class MyPreApp {
         Login_Response loginResponse = myPreApp.getLoginResponse();
         Login_Response_Data login_response_data = loginResponse.data;
 
-        Log.i(TAG, "update_member_profile: login_response_data.member_nick_name  "+login_response_data.member_nick_name);
+        Log.i(TAG, "update_member_profile: login_response_data.member_nick_name  " + login_response_data.member_nick_name);
 
 
         if (login_response_data.shop_id.isEmpty()) {
@@ -187,15 +210,13 @@ public class MyPreApp {
             public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
                 Log.i(TAG, "onFinished: json " + json);
                 JSONObject jsonObject = new JSONObject(json);
-                if (Integer.parseInt(jsonObject.getString("return_status"))==1){
+                if (Integer.parseInt(jsonObject.getString("return_status")) == 1) {
 //                    Toast.makeText(profile_shop_owner_edit.this, ""+json, Toast.LENGTH_SHORT).show();
                     Toast.makeText(context, "member profile is updated!", Toast.LENGTH_SHORT).show();
 
-                }
-                else {
+                } else {
                     Toast.makeText(context, "fail to update the member profile", Toast.LENGTH_SHORT).show();
                 }
-
 
 
             }
@@ -203,7 +224,71 @@ public class MyPreApp {
 //        myApi.update_member_profile();
     }
 
+    ArrayList<feed_comment_response> feed_comment_list;
+    feed_comment_response comment;
 
+    public void getFeedComment_list(Context context,final String api_key,final String lang_id,final String member_session,final String shop_feed_id) {
+        Log.i(TAG, "getFeedComment_list: ");
+        feed_comment_list = new ArrayList<>();
+        comment = new feed_comment_response();
+//        Log.i(TAG, "getFeedComment_list: CHECK INPUT:: "+api_key+","+lang_id+","+member_session+","+shop_feed_id);
+        myApi = new API(context);
+        myApi.getFeedComment(api_key, lang_id, member_session, shop_feed_id, new API.onAjaxFinishedListener() {
+            @Override
+            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                Log.i(TAG, "onFinished: getFeedComment_listJson"+json);
+                JSONObject jsonObject = new JSONObject(json);
+                jsonObject = jsonObject.getJSONObject("data");
+                JSONArray array = jsonObject.getJSONArray("comments");
+                Log.i(TAG, "onFinished: array"+array);
+                for (int i = 0; i <array.length() ; i++) {
+                    Gson gson = new Gson();
+                    comment = gson.fromJson(array.get(i).toString(),feed_comment_response.class);
+                    Log.i(TAG, "onFinished: array.getString(i) @i "+i+","+array.getString(i));
+                    Log.i(TAG, "onFinished: comment"+comment.shop_feed_comment);
+                    feed_comment_list.add(comment);
+                }
+//                myPreApp.setCommentList(feed_comment_list);
+                Log.i(TAG, "onFinished:feed_comment_list "+feed_comment_list.get(1).shop_feed_comment);
+            }
+        });
+    }
+
+    ArrayList<shop_re> shop_list;
+
+    public shop_re searchForShop(String shop_id) {
+        myPreApp = new MyPreApp();
+        shop_list = myPreApp.getShop_list();
+        Log.i(TAG, "searchForShop: shopid: for " + shop_id);
+        for (int i = 0; i < shop_list.size(); i++) {
+            Log.i(TAG, "searchForShop: shopid: " + shop_list.get(i).shop_id);
+            if (Objects.equals(shop_id, shop_list.get(i).shop_id)) {
+                Log.i(TAG, "searchForShop: match");
+                return shop_list.get(i);
+            }
+        }
+
+        Log.e(TAG, "searchForShop: not found!!!!");
+        return null;
+    }
+
+    ArrayList<shop_feed> feed_list;
+
+    public shop_feed searchForShopFeed(String feed_id) {
+        myPreApp = new MyPreApp();
+        feed_list = myPreApp.getFeed_list();
+        Log.i(TAG, "searchForShopFeed: feedId: for " + feed_id);
+        for (int i = 0; i < feed_list.size(); i++) {
+            Log.i(TAG, "searchForShopFeed: feedId: " + feed_list.get(i).shop_feed_id);
+            if (Objects.equals(feed_id, feed_list.get(i).shop_feed_id)) {
+                Log.i(TAG, "searchForShopFeed: match");
+                return feed_list.get(i);
+            }
+        }
+
+        Log.e(TAG, "searchForShopFeed: not found!!!!");
+        return null;
+    }
 
 
     String uploadFileName = "uploadFileName";
@@ -211,8 +296,8 @@ public class MyPreApp {
     String currentTime = "currentTime";
     int serverResponseCode = 0;
     String upLoadServerUri = "http://shopdailydev.accordhkcloudapi.com/api/member_profile_image_upload";
-    
-    public int uploadImage(String api_key,String lang_id,String member_session,  String sourceFileUri) {
+
+    public int uploadImage(String api_key, String lang_id, String member_session, String sourceFileUri) {
         Log.i(TAG, "uploadImage: ");
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
@@ -335,17 +420,16 @@ public class MyPreApp {
     }
 
 
-
-    public Bitmap getBitmapFromURL(String URL_Path){
+    public Bitmap getBitmapFromURL(String URL_Path) {
         Log.i(TAG, "getBitmapFromURL: ");
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        Bitmap bitmap=null;
-        try{
+        Bitmap bitmap = null;
+        try {
             URL url = new URL(URL_Path);
             bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
             return bitmap;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return bitmap;
