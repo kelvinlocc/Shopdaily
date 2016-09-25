@@ -37,7 +37,7 @@ import shopdaily.dev.accordhk.com.shopdaily.Uility.ViewPagerItem;
  * Created by flashok on 9.8.14.
  */
 public class ViewPagerAdapterWithView extends PagerAdapter {
-    public static String TAG = "ViewPagerAdapterWithView ";
+    public static String TAG = "ViewPagerAdapterWView";
     private ArrayList<ViewPagerItem> pagerItems;
     private LayoutInflater inflater;
     private Context context;

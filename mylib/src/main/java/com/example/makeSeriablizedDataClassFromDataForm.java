@@ -14,12 +14,13 @@ public class makeSeriablizedDataClassFromDataForm {
         String s;
         String serialized_ClassString = "";
         String string_param = "";
-        String string_mapping ="";
+        String string_mapping = "";
         Scanner in = new Scanner(System.in);
 
         ArrayList<String> myStringList = new ArrayList<String>();
 
-        String split_string = "\\*";
+//        String split_string = "\\*";
+        String split_string = " ";
 
         while (in.hasNext()) {
             s = in.nextLine();
@@ -31,20 +32,23 @@ public class makeSeriablizedDataClassFromDataForm {
 //            System.out.println("You entered string " + s);
 
             String string = s.split(split_string)[0];
+            if (string.contains("*")) {
+                string = string.replace("*","");
+//                System.out.println("the single string: " + string);
+                serialized_ClassString = serialized_ClassString + "@SerializedName(\"" + string + "\")" + "\n";
+                serialized_ClassString = serialized_ClassString + "public String " + string + ";\n";
 
-            serialized_ClassString = serialized_ClassString + "@SerializedName(\"" + string + "\")" + "\n";
-            serialized_ClassString = serialized_ClassString + "public String " + string + ";\n";
-
-            string_param = string_param + "final String "+string+",";
-            string_mapping = string_mapping + "params.put(\""+string+"\", "+string+");\n";
-            // tester:
-            myStringList.add(string);
+                string_param = string_param + "final String " + string + ",";
+                string_mapping = string_mapping + "params.put(\"" + string + "\", " + string + ");\n";
+                // tester:
+                myStringList.add(string);
+            }
 
 
         }
         System.out.println("the whole serialized data class: \n\n" + serialized_ClassString);
-        System.out.printf("params: \n" +string_param);
-        System.out.printf("\n maping:\n"+string_mapping);
+        System.out.printf("params: \n" + string_param);
+        System.out.printf("\n maping:\n" + string_mapping);
 
 //        System.out.println("loop the string array list: ");
 //        for (int i = 0; i < myStringList.size(); i++) {

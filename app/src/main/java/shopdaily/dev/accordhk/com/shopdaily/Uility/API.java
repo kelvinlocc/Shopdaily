@@ -241,7 +241,7 @@ public class API {
         }).start();
     }
 
-    public void getShopList (final String api_key,final String lang_id,final String member_session,final String page_no,final String page_size,final String filter_price_range_from,final String filter_price_range_to,final String filter_shop_district,final String filter_category_list,final String filter_hottest_item,final String filter_hash_list,final String filter_keyword_list,final String filter_location_x,final String filter_location_y,final String filter_shop_owner,final String filter_distance_range, final onAjaxFinishedListener listener) {
+    public void getShopList(final String api_key, final String lang_id, final String member_session, final String page_no, final String page_size, final String filter_price_range_from, final String filter_price_range_to, final String filter_shop_district, final String filter_category_list, final String filter_hottest_item, final String filter_hash_list, final String filter_keyword_list, final String filter_location_x, final String filter_location_y, final String filter_shop_owner, final String filter_distance_range, final onAjaxFinishedListener listener) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -274,8 +274,6 @@ public class API {
     }
 
 
-
-
     // haven't finish
     public void getBookmark(final String member_session, final onAjaxFinishedListener listener) {
         new Thread(new Runnable() {
@@ -299,7 +297,8 @@ public class API {
         ).start();
     }
 
-    public void getFeedComment(final String api_key,final String lang_id,final String member_session,final String shop_feed_id, final onAjaxFinishedListener listener) {
+    //get feed detail for comment
+    public void getFeedComment(final String api_key, final String lang_id, final String member_session, final String shop_feed_id, final onAjaxFinishedListener listener) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -322,8 +321,385 @@ public class API {
         ).start();
     }
 
+    public void shopAction(final String api_key, final String lang_id, final String member_session, final String shop_id, final String shop_feed_id, final String shop_action, final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "shop_action";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("shop_id", shop_id);
+                params.put("shop_feed_id", shop_feed_id);
+                params.put("shop_action", shop_action);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
 
 
+    // add a comment on feed
+    public void shopComment(final String api_key, final String lang_id, final String member_session, final String shop_id, final String shop_feed_id, final String shop_comment, final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "shop_comment";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("shop_id", shop_id);
+                params.put("shop_feed_id", shop_feed_id);
+                params.put("shop_comment", shop_comment);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+        ).start();
+    }
+
+    public void getFeedList(final String api_key, final String lang_id, final String member_session, final String page_no, final String page_size, final String shop_id, final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "shop_feed_list";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("page_no", page_no);
+                params.put("page_size", page_size);
+                params.put("shop_id", shop_id);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+
+    public void getShopBookmark(final String api_key, final String lang_id, final String member_session, final String shop_id, final String shop_feed_id, final String bookmark_action,final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "shop_bookmark";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("shop_id", shop_id);
+                params.put("shop_feed_id", shop_feed_id);
+                params.put("bookmark_action", bookmark_action);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+
+    public void getBookmarkList (final String api_key,final String lang_id,final String member_session,final String shop_or_feed,
+                                 final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "shop_bookmark_list";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("shop_or_feed", shop_or_feed);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+
+
+    public void shopImageUpload (final String api_key,final String lang_id,final String member_session,final String shop_id,final String shop_feed_id,final String sequence_id,final String upload_file,
+                                 final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "shop_image_upload";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("shop_id", shop_id);
+                params.put("shop_feed_id", shop_feed_id);
+                params.put("sequence_id", sequence_id);
+                params.put("upload_file", upload_file);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+
+    public void shopFeedCreate (final String api_key,final String lang_id,final String member_session,final String feed_detail_en,final String feed_detail_tc,final String feed_detail_sc,final String start_datetime,final String end_datetime,final String original_price,final String special_price,final String discount_rate,final String feed_category_id,final String feed_hashtag, final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "shop_feed_create";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("feed_detail_en", feed_detail_en);
+                params.put("feed_detail_tc", feed_detail_tc);
+                params.put("feed_detail_sc", feed_detail_sc);
+                params.put("start_datetime", start_datetime);
+                params.put("end_datetime", end_datetime);
+                params.put("original_price", original_price);
+                params.put("special_price", special_price);
+                params.put("discount_rate", discount_rate);
+                params.put("feed_category_id", feed_category_id);
+                params.put("feed_hashtag", feed_hashtag);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+
+    public void shopCampaign (final String api_key,final String lang_id,final String member_session,final String shop_id,final String campaign_title,final String campaign_start_datetime,final String shop_feed_id,
+                              final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "shop_campaign";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("shop_id", shop_id);
+                params.put("campaign_title", campaign_title);
+                params.put("campaign_start_datetime", campaign_start_datetime);
+                params.put("shop_feed_id", shop_feed_id);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+
+    public void myTimeline(final String api_key,final String lang_id,final String member_session,final String page_no,final String page_size,
+                           final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "my_timeline";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("page_no", page_no);
+                params.put("page_size", page_size);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+
+    public void memberFeedLikeList (final String api_key,final String lang_id,final String member_session,final String page_no,final String page_size,
+                                    final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "member_feed_like_list";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("page_no", page_no);
+                params.put("page_size", page_size);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+
+    public void purchaseTokens(final String api_key,final String lang_id,final String member_session,final String purchase_package,final String purchased_amount,final String purchase_note,final String appstore_transaction_id,
+                               final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "token_purchased";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("purchase_package", purchase_package);
+                params.put("purchased_amount", purchased_amount);
+                params.put("purchase_note", purchase_note);
+                params.put("appstore_transaction_id", appstore_transaction_id);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+
+    public void packageUsage (final String api_key,final String lang_id,final String member_session,final String package_function_id,final String remark,
+
+                     final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "package_use";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("package_function_id", package_function_id);
+                params.put("remark", remark);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+    public void getDistrictList (final String api_key,final String lang_id,final String page_no,final String page_size,
+                                 final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "district_list";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("page_no", page_no);
+                params.put("page_size", page_size);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+    public void getHashList (final String api_key,final String lang_id,final String page_no,final String page_size,final String hash_text,
+
+                             final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "hash_list";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("page_no", page_no);
+                params.put("page_size", page_size);
+                params.put("hash_text", hash_text);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+    public void temp(final String api_key, final String lang_id, final String member_session, final String page_no, final String page_size, final String shop_id,
+                     final onAjaxFinishedListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String url = baseURL + "shop_bookmark";
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("api_key", api_key);
+                params.put("lang_id", lang_id);
+                params.put("member_session", member_session);
+                params.put("page_no", page_no);
+                params.put("page_size", page_size);
+                params.put("shop_id", shop_id);
+                ajaxPOSTCall(url, params, listener);
+            }
+        }
+
+        ).start();
+    }
+
+
+
+    // ajax call:::------------------------------------------
 
     private void ajaxPOSTCall(String url, Map<String, Object> params, final onAjaxFinishedListener listener) {
         Log.i("check_", " ajaxPOSTCall: " + url);
