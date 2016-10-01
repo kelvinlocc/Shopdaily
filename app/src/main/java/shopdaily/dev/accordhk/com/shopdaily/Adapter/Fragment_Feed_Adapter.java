@@ -245,7 +245,6 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
 //                    holder.imagb_react.setColorFilter(0xff00a99e, PorterDuff.Mode.MULTIPLY);
 //
 //                }
-
             //<
             holder.store_info.setText(feed_data.feed_detail);
             holder.hashTag.setText(feed_data.feed_hashtag);
@@ -256,7 +255,6 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
             holder.discountPrice.setText(feed_data.special_price);
             holder.discount.setText(feed_data.discount_rate);
             //>
-
 
             holder.tv_react.setOnClickListener(new OnItemClickListener(position));
             holder.tv_react.setOnLongClickListener(new View.OnLongClickListener() {
@@ -289,25 +287,6 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
         return null;
     }
 
-
-    public void feedListTesting() {
-        Log.i(TAG, "feedListTesting: ");
-        if (myPreApp.getFeed_list() != null) {
-            feed_list = myPreApp.getFeed_list();
-            for (int i = 0; i < feed_list.size(); i++) {
-                Log.i(TAG, "getView: feed " + feed_list.get(i).shop_feed_id);
-                if (!feed_list.get(i).image_list.isEmpty()) {
-                    Log.i(TAG, "getView: feed image " + feed_list.get(i).image_list.get(0));
-                } else {
-                    Log.i(TAG, "getView: feed image is empty");
-                }
-            }
-        } else {
-            Log.i(TAG, "getView: feed list is null");
-        }
-    }
-
-
     // Filter Class
     public void filter(String charText) {
         Log.i(TAG, "filter ");
@@ -335,8 +314,6 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
             emji_window = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
 //            emji_window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-
             emji_window.setFocusable(true);
 
             emji_window.setOutsideTouchable(true);
@@ -369,11 +346,8 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
             ImgB_react1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-//                    feedDataModel = FeedList.get(mPosition);
-//                    feedDataModel.restoreReactNumber();
-//                    feedDataModel.react(0);
-
+                    feed_data = feed_list.get(mPosition);
+                    Log.i(TAG, "onClick: you clicked: feed_data.feed_hashtag :"+feed_data.feed_hashtag);
                     notifyDataSetChanged();
                     emji_window.dismiss();
                 }
@@ -419,8 +393,6 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
 
 
     private class OnItemClickListener extends FragmentActivity implements View.OnClickListener {
-
-
         private int mPosition;
 
         OnItemClickListener(int position) {

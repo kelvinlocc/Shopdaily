@@ -121,6 +121,13 @@
             android:name=".Activity.QA_list_Activity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
+        <activity
+            android:name=".Uility.CustomPhotoGalleryActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

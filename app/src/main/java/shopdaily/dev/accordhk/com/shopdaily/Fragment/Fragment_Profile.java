@@ -149,7 +149,7 @@ public class Fragment_Profile extends Fragment {
                                          @Override
                                          public void onClick(View v) {
                                              try {
-                                                 post_feed.setBackgroundResource(R.color.yellow);
+//                                                 post_feed.setBackgroundResource(R.color.yellow);
                                                  Log.i("check_", "post feed button pressed");
                                                  Intent toMainActivity = new Intent(getActivity(), Post_feed_Activity.class);
                                                  startActivity(toMainActivity);
@@ -167,7 +167,7 @@ public class Fragment_Profile extends Fragment {
                                               @Override
                                               public void onClick(View v) {
                                                   try {
-                                                      special_action.setBackgroundResource(R.color.yellow);
+//                                                      special_action.setBackgroundResource(R.color.yellow);
                                                       Intent toMainActivity = new Intent(getActivity(), Special_Activity.class);
                                                       startActivity(toMainActivity);
 

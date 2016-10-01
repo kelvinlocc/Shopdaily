@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -78,14 +79,14 @@
                 android:layout_height="match_parent"
                 android:gravity="end" >
 
-                <TextView
+                <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="$20"
                     android:textSize="13dp"
                     android:textColor="@color/color_pressed"
-                    android:id="@+id/textView29"
+                    android:id="@+id/txt_regular_price"
                     android:gravity="right"
                     android:layout_gravity="center" />
             </LinearLayout>
@@ -125,14 +126,13 @@
                 android:layout_height="match_parent"
                 android:gravity="end" >
 
-                <TextView
+                <EditText
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="$18"
                     android:textSize="13dp"
                     android:textColor="@color/color_pressed"
-                    android:id="@+id/textView30"
+                    android:id="@+id/txt_sale_price"
                     android:gravity="right"
                     android:layout_gravity="center" />
             </LinearLayout>
@@ -187,15 +187,6 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="@color/thin_grey_line_to_cut"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp" />
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -217,19 +208,28 @@
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:gravity="left|end" >
+                android:gravity="left|end"
+                >
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="The Camera Shop in Bryn Mawr is an independent, family-owned and operated business that has served the Philadelphia area since 1920. They have been at their current location on Lancaster Avenue in Bryn Mawr since the late 1970s."
                     android:textSize="13dp"
                     android:textColor="@color/color_pressed"
-                    android:id="@+id/textView41"
-                    android:layout_gravity="left" />
+                    android:id="@+id/txt_description"
+                    android:layout_gravity="right" />
             </LinearLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/thin_grey_line_to_cut"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -254,14 +254,13 @@
                 android:layout_height="match_parent"
                 android:gravity="end" >
 
-                <TextView
+                <EditText
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="#hot #sale #limited #camera #nikon"
                     android:textSize="13dp"
                     android:textColor="@color/color_pressed"
-                    android:id="@+id/textView43"
+                    android:id="@+id/txt_hashTag"
                     android:gravity="right"
                     android:layout_gravity="center" />
             </LinearLayout>
@@ -276,6 +275,20 @@
             android:orientation="horizontal"
             android:weightSum="1"
             android:layout_marginTop="50dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/appicon_full"
+                android:id="@+id/photo01"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/appicon_full"
+                android:id="@+id/photo02"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/btn_post"

@@ -28,7 +28,9 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
@@ -73,7 +75,7 @@ public class MyPreApp {
         Log.i(TAG, "setTestResult: string= " + value);
     }
 
-    public void setCommentList (ArrayList<feed_comment_response> arrayList) {
+    public void setCommentList(ArrayList<feed_comment_response> arrayList) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
         Gson gson = new Gson();
         String jsonObject = gson.toJson(arrayList);
@@ -186,9 +188,16 @@ public class MyPreApp {
         return MyApplication.getSharedPreferences().getBoolean(GPSOption, false);
     }
 
+    public String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(new Date());
+    }
+
+
     API myApi;
     MyPreApp myPreApp;
 
+    // via api
     public void update_member_profile(final Context context) {
         myApi = new API(context);
         myPreApp = new MyPreApp();
@@ -227,7 +236,7 @@ public class MyPreApp {
     ArrayList<feed_comment_response> feed_comment_list;
     feed_comment_response comment;
 
-    public void getFeedComment_list(Context context,final String api_key,final String lang_id,final String member_session,final String shop_feed_id) {
+    public void getFeedComment_list(Context context, final String api_key, final String lang_id, final String member_session, final String shop_feed_id) {
         Log.i(TAG, "getFeedComment_list: ");
         feed_comment_list = new ArrayList<>();
         comment = new feed_comment_response();
@@ -236,20 +245,20 @@ public class MyPreApp {
         myApi.getFeedComment(api_key, lang_id, member_session, shop_feed_id, new API.onAjaxFinishedListener() {
             @Override
             public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
-                Log.i(TAG, "onFinished: getFeedComment_listJson"+json);
+                Log.i(TAG, "onFinished: getFeedComment_listJson" + json);
                 JSONObject jsonObject = new JSONObject(json);
                 jsonObject = jsonObject.getJSONObject("data");
                 JSONArray array = jsonObject.getJSONArray("comments");
-                Log.i(TAG, "onFinished: array"+array);
-                for (int i = 0; i <array.length() ; i++) {
+                Log.i(TAG, "onFinished: array" + array);
+                for (int i = 0; i < array.length(); i++) {
                     Gson gson = new Gson();
-                    comment = gson.fromJson(array.get(i).toString(),feed_comment_response.class);
-                    Log.i(TAG, "onFinished: array.getString(i) @i "+i+","+array.getString(i));
-                    Log.i(TAG, "onFinished: comment"+comment.shop_feed_comment);
+                    comment = gson.fromJson(array.get(i).toString(), feed_comment_response.class);
+                    Log.i(TAG, "onFinished: array.getString(i) @i " + i + "," + array.getString(i));
+                    Log.i(TAG, "onFinished: comment" + comment.shop_feed_comment);
                     feed_comment_list.add(comment);
                 }
 //                myPreApp.setCommentList(feed_comment_list);
-                Log.i(TAG, "onFinished:feed_comment_list "+feed_comment_list.get(1).shop_feed_comment);
+                Log.i(TAG, "onFinished:feed_comment_list " + feed_comment_list.get(1).shop_feed_comment);
             }
         });
     }
@@ -297,6 +306,7 @@ public class MyPreApp {
     int serverResponseCode = 0;
     String upLoadServerUri = "http://shopdailydev.accordhkcloudapi.com/api/member_profile_image_upload";
 
+    // for profile
     public int uploadImage(String api_key, String lang_id, String member_session, String sourceFileUri) {
         Log.i(TAG, "uploadImage: ");
         HttpURLConnection conn = null;
@@ -419,6 +429,142 @@ public class MyPreApp {
         return 0;
     }
 
+    String Filename = "fileName";
+    String upLoadServerUri_shop_feed_image = "http://shopdailydev.accordhkcloudapi.com/api/shop_image_upload";
+
+    public int uploadFeedImage(String api_key, String lang_id, String member_session, String shop_id, String shop_feed_id, String sequence_id, String sourceFileUri) {
+        Log.i(TAG, "uploadImage: ");
+        HttpURLConnection conn = null;
+        DataOutputStream dos = null;
+        String lineEnd = "\r\n";
+        String twoHyphens = "--";
+        String boundary = "*****";
+        int bytesRead, bytesAvailable, bufferSize;
+        byte[] buffer;
+        int maxBufferSize = 1 * 1024 * 1024;
+        File sourceFile = new File(sourceFileUri);
+        if (!sourceFile.isFile()) {
+            Log.e("uploadImage", "Source File not exist :");
+
+        } else {
+            try {
+                if (android.os.Build.VERSION.SDK_INT > 9) {
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+                }
+                // open a URL connection to the Servlet
+                FileInputStream fileInputStream = new FileInputStream(sourceFile);
+                URL url = new URL(upLoadServerUri_shop_feed_image);
+                // Open a HTTP  connection to  the URL
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setDoInput(true); // Allow Inputs
+                conn.setDoOutput(true); // Allow Outputs
+                conn.setUseCaches(false); // Don't use a Cached Copy
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Connection", "Keep-Alive");
+                conn.setRequestProperty("ENCTYPE", "multipart/form-data");
+                conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+                conn.setRequestProperty("api_key", api_key);
+                conn.setRequestProperty("lang_id", lang_id);
+                conn.setRequestProperty("member_session", member_session);
+                conn.setRequestProperty("shop_id", shop_id);
+                conn.setRequestProperty("shop_feed_id", shop_feed_id);
+                conn.setRequestProperty("sequence_id", sequence_id);
+                dos = new DataOutputStream(conn.getOutputStream());
+                Log.i(TAG, "uploadImage: update");
+                //for other params:
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=api_key" + lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(api_key); // mobile_no is String variable
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+
+                dos.writeBytes("Content-Disposition: form-data; name=lang_id" + lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(lang_id); // mobile_no is String variable
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+
+                dos.writeBytes("Content-Disposition: form-data; name=member_session" + lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(member_session); // mobile_no is String variable
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+
+                dos.writeBytes("Content-Disposition: form-data; name=shop_id" + lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(shop_id); // mobile_no is String variable
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+
+                dos.writeBytes("Content-Disposition: form-data; name=shop_feed_id" + lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(shop_feed_id); // mobile_no is String variable
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+
+                dos.writeBytes("Content-Disposition: form-data; name=sequence_id" + lineEnd); // name=mobile_no so you have to get PHP side using mobile_no
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(sequence_id); // mobile_no is String variable
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+
+                dos.writeBytes("Content-Disposition: form-data; name=upload_file; filename=" + Filename  + lineEnd);
+                dos.writeBytes(lineEnd);
+                // create a buffer of  maximum size
+                bytesAvailable = fileInputStream.available();
+                bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                buffer = new byte[bufferSize];
+                // read file and write it into form...
+                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                while (bytesRead > 0) {
+
+                    dos.write(buffer, 0, bufferSize);
+                    bytesAvailable = fileInputStream.available();
+                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                }
+                // send multipart form data necesssary after file data...
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+                // Responses from the server (code and message)
+                serverResponseCode = conn.getResponseCode();
+                Log.i(TAG, "uploadImage: ");
+                String serverResponseMessage = conn.getResponseMessage();
+                Log.i("uploadImage", "HTTP Response is : "
+                        + serverResponseMessage + ": " + serverResponseCode);
+                //getting json result:
+                Log.i(TAG, "uploadImage: ");
+                StringBuilder result = new StringBuilder();
+                InputStream in = new BufferedInputStream(conn.getInputStream());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                Log.i(TAG, "uploadImage: result " + result);
+                if (serverResponseCode == 200) {
+                    Log.i(TAG, "run: File Upload Complete!");
+                    return 1;
+                }
+                //close the streams //
+                fileInputStream.close();
+                dos.flush();
+                dos.close();
+            } catch (MalformedURLException ex) {
+                ex.printStackTrace();
+                Log.i(TAG, "run: MalformedURLException Exception : check script url.");
+                Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
+                return 0;
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.i(TAG, "Got Exception : see logcat ");
+                return 0;
+            }
+        } // End else block
+        return 0;
+    }
 
     public Bitmap getBitmapFromURL(String URL_Path) {
         Log.i(TAG, "getBitmapFromURL: ");

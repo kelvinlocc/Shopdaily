@@ -82,7 +82,7 @@ public class Special_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
 
-                    btn_go_back.setBackgroundResource(R.color.yellow);
+//                    btn_go_back.setBackgroundResource(R.color.yellow);
                     finish();
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 

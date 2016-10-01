@@ -58,7 +58,7 @@ public class profile_shop_edit extends AppCompatActivity {
             @Override
             public void  onClick (View v){
                 try{
-                    change_password.setBackgroundResource(R.color.yellow);
+//                    change_password.setBackgroundResource(R.color.yellow);
 
                     Intent toMapsActivity = new Intent(profile_shop_edit.this, ChangePasswordActivity.class);
                     startActivity(toMapsActivity);

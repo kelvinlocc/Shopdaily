@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="cf16220db9128d91a215aedc739584181d5ca6a4">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-iid-9.0.2_bc4f5194cfa2c2c2f44ac007c712276797d060cb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c96952c162c9f6076f44c5939982cb35491442ea">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-plus-9.0.2_ed22c4c8e560baae254824ff9e6812c6dc5094be\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="53f10fcd322a3931495d6ca2078a81f4957cdbce">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-9.0.2_29b3e4b2c203fe4c2448065abd4781c976011e80\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager-api\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f399a2fde7888450cadcaec4974bfd169d8cce43">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tagmanager-api-9.0.2_ab26cd5744e0454de2adfc11d365e62cbbdc42c7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.3.0_a8b777ee1b0c95166f08a766b373d3347f65a01c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v2.0.9\4244e2998018aa492389e8e30a77b7987959608e\MPAndroidChart-v2.0.9.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4244e2998018aa492389e8e30a77b7987959608e">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\MPAndroidChart-v2.0.9_db2d78d7ad04ce87672c72827052b82466460c22\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_073e4951dfb3131f80a54fbc7a73bc46f7e72c1d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b6af089f583d547bcffc0689b2e80bc7aaa54b15">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-9.0.2_5c5d31d5f07aeded5c1fec00ccf15d9cb97d8885\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth-base\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="829c6e46cb221c2102801221c648b77113743e81">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-auth-base-9.0.2_99174c59c2f41db013487898ac34603218757d7a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.0_24f68b77f816dd601afdc501a46900047aa9b918\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth-common\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="568d5bda0b4d51f90d978ace369bb9ad024d2057">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-common-9.0.2_dc2544d5c82cdb6a78f98cf760f6e7a03136e982\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="7e52b440a26498c56b4f263e215223b5451c955e">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-nearby-9.0.2_cb4ae3255d5f40fcb54c929884c0b467eaa7076e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="bc156efaaee99f1ef6bf471347373a4cbb28e2a1">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-9.0.2_6c25b6de2ab89b198f22dbc1f129c4e58d92ea11\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d9ea4cdaafa29ec4651d6e4715788d3fcaa7b913">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tagmanager-9.0.2_1291ab55abbf9ffa86c1051f9a3569bd06f29d6e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4ec890171a97b5ab98292f131aa784e0f3792c73">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-9.0.2_e768cb09296a2f97e216acec30faf1fc785546c1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4022261eeea0d92eb2997a68d2c1f084a16abad9">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.0.2_9b347eb29b3760a4a4b43bb2ab51ecce46a9f7d5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\libs\android-query-full.0.26.8.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5ab405d9f4eaf5ddd615967cd35650657b758d40">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-query-full.0.26.8_e1dba3f9a4d60728998b6680419557d77984b6e6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.android.support\design\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.3.0_63ffd47b81689485b81794baeb4461c5f450800a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-crash\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="922c24fbfc4247947fcfaf2b95f295a16a8c3d17">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-crash-9.0.2_a4c323621c172551175aaa3b9c3c1836c8def58c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="060a7157438a0b1b0706b99c430fb3ecbc5a79a4">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-auth-9.0.2_6d990f97882f9eeeb45d5f0e9360ac0ae85756e0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fa472b7cbd3897bf6bed6068ac0b00e494987688">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-9.0.2_9c8a69b89504a66a197f929daaaf764ddc460210\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="92a1d5f71b0fc8938f1d3f2e6ef984b52b894b4d">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-9.0.2_bc02888e16145903a9f9752986713d5c35feca4a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="51a11c41a08f099a204e1b8dcc04f27217de50ec">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-9.0.2_7dc583c7c2d371c0a43c521a6514f870e136b32b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f2774b1e02e5fbc524590311a744263c3b152d63">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-messaging-9.0.2_eadd1091dcd7a9f57576914a50044a00e0d0b3ba\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_fd63da2a305eb4c2a1b45a23d25b7eacf87c5fee\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a45bc1ed812137b21dddd1cedaa3712b308f0b3f">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-9.0.2_091c7eed045e5fb2172d7d8a6ffce676e45bd6f0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe5b47e764869f1076cb9cfe12801ed2ef4e9117">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-9.0.2_109586ede033bd9d77f2c1543784d12533fecf91\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="20e1a0f0de6276a5f36062b655f8b20f8cc00cc4">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-9.0.2_631c964f7b88db5252db669a887bc21eab3a5914\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aec1bc54964a85d851c2c1b1cb7f90f7dbd755ab">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-9.0.2_d676427ddab634aa54b611579ae0a75a526ebfbe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.3.0_5f7417885270c56771fe0a1c83d346907a2786c0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9919563cffd8e3732e944d3c437d4b9575a08448">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-9.0.2_73e4d92134a6ea91e543075ba7f181fe7d15711c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8c0fc9b1ea0bac0cb31d60c8b1bf2feb0518e3a9">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-9.0.2_77b1eb39078aa740f2dc999a85fe3568bcde182e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6ff48ef26bc539c78af4aa061cb9bad6abcbf5e8">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-common-9.0.2_92e0b67342edbc50ef02b4798cfc916ceba3f3c6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.miguelcatalan\materialsearchview\1.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="918e3e9514d90e54421b674cf0c95044f4e155ad">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.miguelcatalan-materialsearchview-1.4.0_d46bf92b7f462846f504a04c8a4b4edb64b2fbb8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-config\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="604ecf403feb0084dc6d0c12f1677a490cf45e4c">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-config-9.0.2_4f13f1961ed5aa16f86a2d23963f4f4d70a55f40\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9819419ce8d79f3f81a0fc70f9345ac8c843af9c">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-9.0.2_c46539e5381732c353f1a69b42be13d4bf368e5c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="0c835e9f3875cf245877c9b17d1c69bc98f16057">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-9.0.2_38a06115c206bd30eca0b2bfccd69ef3c37d705c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="cd4c7c54e15d9ccbc448384fa2c4684d69ca73f0">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-9.0.2_3dc4940040793c2ce60924df397da3cdb59b12f0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.3.0_121075516ef5d9bbd23fcd353366493bb39e42e1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b8e0372ca6dc89ac4fe22b76eeea4f68ece435b8">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-lite-9.0.2_e38f9e9fe7fd2071643a966abb3373c2aa51fbab\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="94d9cedd04b124aed044ac71c451a292856d854c">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.0.2_fb8a5f10390b23e3c4123468210677dda6489eb7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e6970f0554f9508c041f1f6960af15cc888c9f35">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-9.0.2_f299c693665f7f652618d1f3687e26a1ddddf538\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_330d4801654d983a9a2d1b99c729c41748837bbf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="11d2fc8bcdfa7e939133a65cc1fc59a17603eeb5">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_731ded49e1dfcb159f817e0df854f9f3f7e5b908\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="764d32faf85bc6f7bd2cdcb3a70a482c1884fdd2">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-9.0.2_087ca609f7e7f4e43f6a8689e7bb9a230d23f5d3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.7_59741ed9735b5afaa45a6dcdc0263354cd7f4e78\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e11da70cff6a544a45cdc21f419802d9bb9043ac">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-9.0.2_635f02b831ea8675fdbe69b9d58b2039362b21f1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b3d0809a742c5f768c6aa9efc6decd5c1d6cd227">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-9.0.2_1cd98c48c58b7ceb063ca409cecffe7edb405885\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="143813b18381b28de1e04aae1d92fcb374a0add9">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-drive-9.0.2_c2ef29831a234425fc9db6cc4bb0a2a78e007c0a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d900f2a1ff098cac8befe6c023d723e9afb154be">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-9.0.2_35b2fe9cd1862ce46e0920e281f8c9842224e5b5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_444e4a166c6f6eb4ced766b2bcbf85d7e7bcfcbd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2ab5be19bbd34bae74662ea6b2d4451314d92d97">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-9.0.2_a445b97823a520a72f6151cd6f1061de76bc0475\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a511c684ea4c2cf31a3377d51e7677cb76696e07">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-9.0.2_d8353faa439b749c9dd130c07964c394df0d59a4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth-module\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="79e298d7fed2fcada58da7032d07d34ee198a545">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-module-9.0.2_2b92ed8e30649def06cb8d5d481022ee22cbbcf5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6c58c14d15602fea2c50138c73bb107e8b832b62">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-impl-9.0.2_5e07bc57f046cea4fbb76c7cb5eb33cf33e6f4f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-mediarouter-v7-23.0.0_fa34d55982822bae11961086781c932a8075c78c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_f7931fec9bd778038ef80041ef6e4c8ce671cd8c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\me.relex\circleindicator\1.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="4a6c347f01da9077fc9d7934974260d904354f77">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\me.relex-circleindicator-1.2.1_1a571e6b4007fd3ad8b1bb14725807b40f4d329d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8fec23d8381cdcfdc1a8033025687005572ec237">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3fec58d42466b5caa906ae1bca60964e4b83c4ae\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f4fb6981392ca7680d02fd57d26d6124c141d9d9">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-9.0.2_5cb804d06354ad1399150bba1192bcacd504c8a8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a498fab72f8663c26fbf3d4496eb6b673b17bcae">
+        <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-games-9.0.2_32170c2fe918ead81f70e75ea3e9e0a91a81b45c\classes.dex" />
+    </item>
+
+</items>

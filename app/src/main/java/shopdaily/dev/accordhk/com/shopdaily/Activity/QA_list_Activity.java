@@ -53,7 +53,7 @@ public class QA_list_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    btn_go_back.setBackgroundResource(R.color.yellow);
+//                    btn_go_back.setBackgroundResource(R.color.yellow);
                     Intent toNextActivity = new Intent(QA_list_Activity.this, setting_Activity.class);
                     startActivity(toNextActivity);
                     finish();

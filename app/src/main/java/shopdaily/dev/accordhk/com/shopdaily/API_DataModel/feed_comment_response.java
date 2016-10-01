@@ -18,4 +18,8 @@ public class feed_comment_response {
     public String member_id;
     @SerializedName("create_datetime")
     public String create_datetime;
+    @SerializedName("member_nick_name")
+    public String member_nick_name;
+    @SerializedName("member_profile_image")
+    public String member_profile_image;
 }

@@ -27,12 +27,18 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.androidquery.callback.AjaxStatus;
+
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.feed_comment_response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_re;
@@ -41,6 +47,7 @@ import shopdaily.dev.accordhk.com.shopdaily.Adapter.feedProductPhotoListView_ada
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.FeedDataModel;
 import shopdaily.dev.accordhk.com.shopdaily.DataModel.Gallery_DataModel;
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.API;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 /**
@@ -64,10 +71,11 @@ public class Shop_details_feed extends ActionBarActivity {
 
 
     MyPreApp myPreApp;
+    API myApi;
     shop_re shop_data;
     shop_feed feed_data;
     ArrayList<feed_comment_response> comment_list;
-
+    feed_comment_response new_comment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -77,8 +85,10 @@ public class Shop_details_feed extends ActionBarActivity {
         }
         setContentView(R.layout.fragment_feed_shop_details);
         myPreApp = new MyPreApp();
+        myApi = new API(this);
         Log.i(TAG, "onCreate: comment: "+myPreApp.getComment_list().get(0).shop_feed_comment);
         comment_list = myPreApp.getComment_list();
+
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -87,10 +97,7 @@ public class Shop_details_feed extends ActionBarActivity {
             shop_data = myPreApp.searchForShop(bundle.getString("shop_id"));
             feed_data = myPreApp.searchForShopFeed(bundle.getString("feed_id"));
         }
-//        Log.i("TAG", "myFeedDataModel.getShopName: " + myFeedDataModel.getShop_location());
-
         final TextView btn_go_back = (TextView) findViewById(R.id.txt_go_back);
-
         // setText on some simple data:
         TextView txt_distance = (TextView) findViewById(R.id.txt_distance);
         txt_distance.setText("???" + " km"); //// TODO: 9/17/2016
@@ -161,22 +168,24 @@ public class Shop_details_feed extends ActionBarActivity {
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                shop_comment_api();
                 String newComment = inputComment.getText().toString();
-                // add new item to arraylist
+                new_comment = new feed_comment_response();
+                new_comment.shop_feed_comment = newComment;
+                new_comment.create_datetime = myPreApp.getCurrentTime();
+                new_comment.member_nick_name = data.member_nick_name;
+                comment_list.add(new_comment);
+                        // add new item to arraylist
                 String currentUser = "Current User";
-                Collections.reverse(userNameList);
-                Collections.reverse(userIconList);
-//                Collections.reverse(commentList);
-                Collections.reverse(timeList);
-
-                userNameList.add(currentUser);
-                userIconList.add(R.drawable.react_1);
-//                commentList.add(newComment);
-                timeList.add(0);
-                Collections.reverse(userNameList);
-                Collections.reverse(userIconList);
-//                Collections.reverse(commentList);
-                Collections.reverse(timeList);
+                Log.i(TAG, "onClick: add text: "+newComment);
+                Log.i(TAG, "onClick: dateTime "+new_comment.create_datetime);
+                inputComment.setText("");
+//                Collections.reverse(userNameList);
+//                Collections.reverse(userIconList);
+//                Collections.reverse(timeList);
+//                Collections.reverse(userNameList);
+//                Collections.reverse(userIconList);
+//                Collections.reverse(timeList);
 
                 // notify listview of data changed
                 comment_adapter.notifyDataSetChanged();
@@ -221,7 +230,7 @@ public class Shop_details_feed extends ActionBarActivity {
             public void onClick(View v) {
                 try {
 
-                    btn_go_back.setBackgroundResource(R.color.yellow);
+//                    btn_go_back.setBackgroundResource(R.color.yellow);
                     finish();
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
@@ -233,6 +242,20 @@ public class Shop_details_feed extends ActionBarActivity {
 
         });
 
+
+    }
+    Login_Response_Data data;
+    public void shop_comment_api (){
+        String api_key = "654321";
+        String lang_id = "1";
+        data = myPreApp.getLoginResponse().data;
+
+        myApi.shopComment(api_key,lang_id,data.member_session,feed_data.shop_id,feed_data.shop_feed_id,inputComment.getText().toString().trim(), new API.onAjaxFinishedListener() {
+            @Override
+            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                Log.i(TAG, "onFinished: json response: "+json);
+            }
+        });
 
     }
 

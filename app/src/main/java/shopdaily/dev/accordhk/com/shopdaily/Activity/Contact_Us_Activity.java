@@ -43,7 +43,7 @@ public class Contact_Us_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    btn_go_back.setBackgroundResource(R.color.yellow);
+//                    btn_go_back.setBackgroundResource(R.color.yellow);
                     Intent toNextActivity = new Intent(Contact_Us_Activity.this, setting_Activity.class);
                     startActivity(toNextActivity);
                     finish();
@@ -62,7 +62,7 @@ public class Contact_Us_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    send_action.setBackgroundResource(R.color.yellow);
+//                    send_action.setBackgroundResource(R.color.yellow);
                     Intent toNextActivity = new Intent(Contact_Us_Activity.this, setting_Activity.class);
                     startActivity(toNextActivity);
                     finish();
