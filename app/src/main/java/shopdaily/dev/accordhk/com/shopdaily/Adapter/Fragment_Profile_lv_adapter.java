@@ -45,7 +45,7 @@ public class Fragment_Profile_lv_adapter extends BaseAdapter implements AbsListV
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return result.length;
+        return timelineList.size();
     }
 
     @Override
@@ -97,11 +97,13 @@ public class Fragment_Profile_lv_adapter extends BaseAdapter implements AbsListV
 
         if (Objects.equals(data.member_id, timeline.member_id)) {
             holder.userName.setText("you ");
+            holder.action.setText(actionTake(timeline.action_type) + " your photo.");
         } else {
             holder.userName.setText(timeline.member_id);
+            holder.action.setText(actionTake(timeline.action_type) + " this photo.");
         }
-        holder.action.setText("like");
-        holder.timePast.setText("time");
+
+        holder.timePast.setText(myPreApp.calcTimePast(timeline.create_datetime)+" ago");
 
         holder.img.setImageResource(imageId[position]);
         rowView.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +114,22 @@ public class Fragment_Profile_lv_adapter extends BaseAdapter implements AbsListV
             }
         });
         return rowView;
+    }
+
+    public String actionTake(String data) {
+        if (Objects.equals(data, "1")) {
+            return "like";
+        }
+        if (Objects.equals(data, "2")) return "cool";
+
+        if (Objects.equals(data, "3")) return "love";
+
+        if (Objects.equals(data, "4")) return "unlike";
+
+        if (Objects.equals(data, "5")) return "viewed";
+
+        else return "shared";
+
     }
 
 }

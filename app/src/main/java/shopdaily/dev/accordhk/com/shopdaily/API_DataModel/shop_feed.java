@@ -48,6 +48,7 @@ public class shop_feed {
     public String disable_datetime;
     @SerializedName("feed_detail")
     public String feed_detail;
+
     public ArrayList<String> image_list;
 
 

@@ -74,6 +74,7 @@ public class MyPreApp {
     private static String myTimeline_list_key = "myTimeline list key";
     Type listOfMyTimelineObjects = new TypeToken<ArrayList<myTimeline_response>>() {
     }.getType();
+    private static String MyFeed_list_key = "my feed list key"; // *** user's own feed
 
 
     public void baseSharedPreference(String key, String value) {
@@ -82,6 +83,23 @@ public class MyPreApp {
         editor.apply();
         Log.i(TAG, "setTestResult: string= " + value);
     }
+
+    // my ***
+    public void setMyFeed_list(ArrayList<shop_feed> arrayList) {
+        SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
+        Gson gson = new Gson();
+        String jsonObject = gson.toJson(arrayList);
+        editor.putString(MyFeed_list_key, jsonObject);
+        editor.apply();
+    }
+    // my ***
+    public ArrayList<shop_feed> getMyFeed_list() {
+        Gson gson = new Gson();
+        String jsonObject = MyApplication.getSharedPreferences().getString(MyFeed_list_key, null);
+        return gson.fromJson(jsonObject, listOfFeedObjects);
+    }
+
+////////////////////////////////////////////////////////////
 
     public void setMyTimelineList (ArrayList<myTimeline_response> arrayList) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
@@ -96,10 +114,6 @@ public class MyPreApp {
         String jsonObject = MyApplication.getSharedPreferences().getString(myTimeline_list_key, null);
         return gson.fromJson(jsonObject, listOfMyTimelineObjects);
     }
-
-
-
-    /////////////////////////////
 
     public void setBookmarkList (ArrayList<bookmark_feed_response> arrayList) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
@@ -189,7 +203,6 @@ public class MyPreApp {
         return gson.fromJson(jsonObject, Shop_Response.class);
     }
 
-
     public void setLoginResponse(Login_Response login_response) {
         SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
         Gson gson = new Gson();
@@ -228,10 +241,93 @@ public class MyPreApp {
         return MyApplication.getSharedPreferences().getBoolean(GPSOption, false);
     }
 
+
+
+
     public String getCurrentTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(new Date());
     }
+
+    public String calcTimePast(String dateTime) {
+        Log.i(TAG, "calcTimePast: ");
+        Log.i(TAG, "calcTimePast: dateTime" + dateTime);
+        String wholeString = dateTime;
+        String year;
+        String month;
+        String day;
+        String hour;
+        String minute;
+        String second;
+
+        year = wholeString.split("\\-")[0];
+        month = wholeString.split("\\-")[1];
+        day = wholeString.split("\\-")[2].split(" ")[0];
+
+        hour = wholeString.split(" ")[1].split(":")[0];
+        minute = wholeString.split(":")[1].split(":")[0];
+        second = wholeString.split(":")[2];
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        String year_c = sdf.format(new Date());
+        sdf = new SimpleDateFormat("MM");
+        String month_c = sdf.format(new Date());
+        sdf = new SimpleDateFormat("dd");
+        String day_c = sdf.format(new Date());
+        sdf = new SimpleDateFormat("HH");
+        String hour_c = sdf.format(new Date());
+        sdf = new SimpleDateFormat("mm");
+        String minute_c = sdf.format(new Date());
+        sdf = new SimpleDateFormat("ss");
+        String second_c = sdf.format(new Date());
+
+        Log.i(TAG, "calcTimePast: " + year + "," +
+                month + "," +
+                day + "," +
+                hour + "," +
+                minute + "," +
+                second + ",");
+        Log.i(TAG, "calcTimePast: current time: " + year_c + "," +
+                month_c + "," +
+                day_c + "," +
+                hour_c + "," +
+                minute_c + "," +
+                second_c + ",");
+
+//        if (year.equals(year_c)&&month.equals(month_c)){
+//            if (day.equals(day_c)){
+//
+//            }else {
+//                return Integer.toString(Integer.parseInt(day_c) - Integer.parseInt(day)) +"days";
+//            }
+//        }
+
+        if (year.equals(year_c)) {
+
+            if (month.equals(month_c)) {
+                if (day.equals(day_c)) {
+                    if (hour.equals(hour_c)) {
+                        if (minute.equals(minute_c)) {
+                            return " just now";
+                        } else {
+                            return Integer.toString(Integer.parseInt(minute_c) - Integer.parseInt(minute)) + " minutes";
+                        }
+                    } else {
+                        return Integer.toString(Integer.parseInt(hour_c) - Integer.parseInt(hour)) + " hours";
+                    }
+                } else {
+                    return Integer.toString(Integer.parseInt(day_c) - Integer.parseInt(day)) + " days";
+                }
+            } else {
+                return Integer.toString(Integer.parseInt(month_c) - Integer.parseInt(month)) + " months";
+            }
+        } else {
+            return Integer.toString(Integer.parseInt(year_c) - Integer.parseInt(year)) + " years";
+        }
+
+    }
+
+
 
 
     API myApi;

@@ -26,6 +26,7 @@ import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.QA_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.myTimeline_response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
 import shopdaily.dev.accordhk.com.shopdaily.R;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.API;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.AsteriskPassword;
@@ -88,7 +89,7 @@ public class LoginEmail extends Activity {
                     myApi.login(email, password, new API.onAjaxFinishedListener() {
                         @Override
                         public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
-                            fetchingDataFromServer();
+
 
                             Log.i("check_", "onFinished myApi.login json: " + json);
                             Gson gson = new Gson();
@@ -103,7 +104,7 @@ public class LoginEmail extends Activity {
                                 Intent NextActivity = new Intent(LoginEmail.this, MainActivity.class);
                                 startActivity(NextActivity);
                                 finish();
-                                getMyTimeline();
+
                             } else {
 //                                Log.i(TAG, "onFinished: "+"");
                                 Toast.makeText(LoginEmail.this, "your email or password is not correct", Toast.LENGTH_LONG).show();
@@ -116,6 +117,7 @@ public class LoginEmail extends Activity {
                                 Log.i(TAG, "onFinished: shop_br_number " + shop_response.shop_br_number);
                                 myPreApp.setShopResponse(shop_response);
                             }
+                            fetchingDataFromServer();
                         }
 
                     });
@@ -127,21 +129,31 @@ public class LoginEmail extends Activity {
         });
     }
 
+    ///////////// fetching
     QA_Response response;
     ArrayList<QA_Response> myQAList;
-
+    ArrayList<myTimeline_response> timelineList;
+    ArrayList<shop_feed> my_feed_list;
+    ArrayList<String> image_list;
     public void fetchingDataFromServer() {
         Log.i(TAG, "fetchingDataFromServer: ");
         String api_key = "654321";
         String lang_id = "1";
         String page_no = "1";
-        String page_size = "10";
-        // 01 -- ql_list
+        String page_size = "100"; //// TODO: 10/2/2016
+        final Login_Response_Data data = myPreApp.getLoginResponse().data;
+        //01 -- ql_list
+        //02 -- timeline
+        //03 -- feed list;
         myQAList = new ArrayList<>();
+        timelineList = new ArrayList<>();
+        my_feed_list = new ArrayList<>();
+
         myApi.getQA_list(api_key, lang_id, page_no, page_size, new API.onAjaxFinishedListener() {
             @Override
             public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
-                Log.i(TAG, "onFinished: json: " + json);
+                Log.i(TAG, "onFinished:@getQA_list json: " + json);
+                Log.i(TAG, "onFinished: data.member_session"+data.member_session);
                 JSONObject jsonObject = new JSONObject(json);
                 JSONArray jsonArray = jsonObject.getJSONArray("data");
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -155,32 +167,16 @@ public class LoginEmail extends Activity {
                     Log.i(TAG, "onFinished: " + temp.getString("question_detail"));
                 }
                 myPreApp.setQA_list(myQAList);
-//                Log.i(TAG, "onFinished: end loop");
-//                ArrayList<QA_Response> temp = myPreApp.getQA_list();
-//                Log.i(TAG, "onFinished: temp.get(0).qa_id; "+temp.get(0).qa_id);
-//                Log.i(TAG, "onFinished: temp.get(0).question_detail"+temp.get(0).question_detail);
             }
         });
 
-
-    }
-
-    ArrayList<myTimeline_response> timelineList;
-
-    public void getMyTimeline() {
-        Log.i(TAG, "getMyTimeline: ");
-        String api_key = "654321";
-        String lang_id = "1";
-        String page_no = "1";
-        String page_size = "100"; // // TODO: 10/2/2016
-        Login_Response_Data data = myPreApp.getLoginResponse().data;
-        timelineList = new ArrayList<>();
         myApi.myTimeline(api_key, lang_id, data.member_session, page_no, page_size, new API.onAjaxFinishedListener() {
             @Override
             public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                Log.i(TAG, "onFinished: @myTimeline json: "+json);
+                Log.i(TAG, "onFinished: data.member_session"+data.member_session);
                 Gson gson = new Gson();
                 JSONObject jsonObject = new JSONObject(json);
-
                 JSONArray jsonArray = jsonObject.getJSONArray("data");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     myTimeline_response timeline = gson.fromJson(jsonArray.get(i).toString(),myTimeline_response.class);
@@ -195,7 +191,49 @@ public class LoginEmail extends Activity {
             }
         });
 
+        myApi.getFeedList(api_key,lang_id,data.member_session,page_no,page_size,data.shop_id, new API.onAjaxFinishedListener() {
+            @Override
+            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                Log.i(TAG, "onFinished: getFeedList @myfeed list json"+json);
+                Log.i(TAG, "onFinished: data.member_session"+data.member_session);
+                Gson gson = new Gson();
+                JSONObject jsonObject = new JSONObject(json);
+                JSONArray jsonArray = jsonObject.getJSONArray("data");
+                // loop all image
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    shop_feed feed = gson.fromJson(jsonArray.get(i).toString(),shop_feed.class);
+                    Log.i(TAG, "onFinished: feed.shop_feed_id"+feed.shop_feed_id);
+
+                    JSONObject temp = jsonArray.getJSONObject(i);
+                    JSONArray imageArray = temp.getJSONArray("images");
+
+                    image_list = new ArrayList<String>();
+                    for (int j = 0; j < imageArray.length(); j++) {
+                        // loop all image
+                        Log.i(TAG, "onFinished: imageArray.get(i)"+imageArray.get(j));
+                        image_list.add(imageArray.get(j).toString());
+                    }
+                    feed.image_list = image_list;
+                    my_feed_list.add(feed);
+                }
+                myPreApp.setMyFeed_list(my_feed_list);
+                for (int i = 0; i < myPreApp.getMyFeed_list().size(); i++) {
+                    Log.i(TAG, "onFinished: myPreApp.getMyFeed_list().get(i).shop_feed_id"+myPreApp.getMyFeed_list().get(i).shop_feed_id);
+                    for (int j = 0; j < myPreApp.getMyFeed_list().get(i).image_list.size(); j++) {
+                        Log.i(TAG, "onFinished: @@feed_id: "+myPreApp.getMyFeed_list().get(i).shop_feed_id+","+myPreApp.getMyFeed_list().get(i).image_list.get(j));
+                    }
+                }
+
+            }
+        });
+
+
+
     }
+
+
+
+
 
 
     @Override
