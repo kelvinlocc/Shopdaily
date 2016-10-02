@@ -28,19 +28,19 @@
                 android:layout_marginTop="30dp">
 
                 <TextView
-                    android:id="@+id/shop_name"
+                    android:id="@+id/user_name"
                     android:layout_gravity="left|center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/shop_name"
-                    android:text="TextView" />
+                    android:text="user " />
 
                 <TextView
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="@string/like_your_photo"
-                    android:id="@+id/textView31"
+                    android:id="@+id/action"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp" />
             </LinearLayout>
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/one_hour_ago"
-                android:id="@+id/store_info"
+                android:id="@+id/time_past"
                 android:layout_gravity="center" />
         </LinearLayout>
 
@@ -63,7 +63,7 @@
             >
 
             <ImageView
-                android:id="@+id/member_profile_image"
+                android:id="@+id/feed_image"
                 android:layout_gravity="center"
                 android:layout_width="70dp"
                 android:layout_height="70dp"

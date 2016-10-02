@@ -2,7 +2,6 @@ package shopdaily.dev.accordhk.com.shopdaily.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -20,10 +19,8 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.feed_comment_response;
-import shopdaily.dev.accordhk.com.shopdaily.DataModel.FeedDataModel;
 import shopdaily.dev.accordhk.com.shopdaily.R;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
@@ -111,7 +108,7 @@ public class commentListView_adapter extends BaseAdapter implements AbsListView.
 //        calcTimePast(comment_data.create_datetime);
         comment_timeline.setText(calcTimePast(comment_data.create_datetime));
 //
-        ImageView userIcon = (ImageView) view.findViewById(R.id.member_profile_image);
+        ImageView userIcon = (ImageView) view.findViewById(R.id.feed_image);
 //        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),userIconList.get(position));
 //        bitmap = getCroppedBitmap(bitmap);
 //

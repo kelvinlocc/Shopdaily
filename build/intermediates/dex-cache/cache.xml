@@ -394,7 +394,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.1"
-        sha1="11d2fc8bcdfa7e939133a65cc1fc59a17603eeb5">
+        sha1="ac4e77eb7e24c6b231b79faacc449edf3953c972">
         <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_731ded49e1dfcb159f817e0df854f9f3f7e5b908\classes.dex" />
     </item>
     <item
@@ -529,7 +529,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.1"
-        sha1="8fec23d8381cdcfdc1a8033025687005572ec237">
+        sha1="fba5cefac2db5dc8cfcb5191d56695b9ee7901c0">
         <dex dex="C:\Users\Owner\Documents\GitHub\Shopdaily\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3fec58d42466b5caa906ae1bca60964e4b83c4ae\classes.dex" />
     </item>
     <item

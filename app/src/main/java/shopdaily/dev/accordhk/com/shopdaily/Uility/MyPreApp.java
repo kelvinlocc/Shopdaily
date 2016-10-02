@@ -37,7 +37,9 @@ import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.QA_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.bookmark_feed_response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.feed_comment_response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.myTimeline_response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_re;
 
@@ -66,6 +68,12 @@ public class MyPreApp {
     private static String comment_list_key = "comment list key";
     Type listOfCommentObjects = new TypeToken<ArrayList<feed_comment_response>>() {
     }.getType();
+    private static String bookmark_list_key = "bookmark list key";
+    Type listOfBookmarkObjects = new TypeToken<ArrayList<bookmark_feed_response>>() {
+    }.getType();
+    private static String myTimeline_list_key = "myTimeline list key";
+    Type listOfMyTimelineObjects = new TypeToken<ArrayList<myTimeline_response>>() {
+    }.getType();
 
 
     public void baseSharedPreference(String key, String value) {
@@ -73,6 +81,38 @@ public class MyPreApp {
         editor.putString(key, value);
         editor.apply();
         Log.i(TAG, "setTestResult: string= " + value);
+    }
+
+    public void setMyTimelineList (ArrayList<myTimeline_response> arrayList) {
+        SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
+        Gson gson = new Gson();
+        String jsonObject = gson.toJson(arrayList);
+        editor.putString(myTimeline_list_key, jsonObject);
+        editor.apply();
+    }
+
+    public ArrayList<myTimeline_response> getMyTimelineList() {
+        Gson gson = new Gson();
+        String jsonObject = MyApplication.getSharedPreferences().getString(myTimeline_list_key, null);
+        return gson.fromJson(jsonObject, listOfMyTimelineObjects);
+    }
+
+
+
+    /////////////////////////////
+
+    public void setBookmarkList (ArrayList<bookmark_feed_response> arrayList) {
+        SharedPreferences.Editor editor = MyApplication.getSharedPreferences().edit();
+        Gson gson = new Gson();
+        String jsonObject = gson.toJson(arrayList);
+        editor.putString(bookmark_list_key, jsonObject);
+        editor.apply();
+    }
+
+    public ArrayList<bookmark_feed_response> getBookmarkList() {
+        Gson gson = new Gson();
+        String jsonObject = MyApplication.getSharedPreferences().getString(bookmark_list_key, null);
+        return gson.fromJson(jsonObject, listOfBookmarkObjects);
     }
 
     public void setCommentList(ArrayList<feed_comment_response> arrayList) {
@@ -263,6 +303,17 @@ public class MyPreApp {
         });
     }
 
+    public boolean isBookmarked (String shop_feed_id){
+        myPreApp =new MyPreApp();
+        ArrayList<bookmark_feed_response> data= myPreApp.getBookmarkList();
+        for (int i = 0; i < data.size(); i++) {
+            if (Objects.equals(data.get(i).shop_feed_id, shop_feed_id)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     ArrayList<shop_re> shop_list;
 
     public shop_re searchForShop(String shop_id) {
@@ -298,6 +349,49 @@ public class MyPreApp {
         Log.e(TAG, "searchForShopFeed: not found!!!!");
         return null;
     }
+
+    public String getTodayOrYesterday(String dateTime) {
+        Log.i(TAG, "calcTimePast: ");
+        Log.i(TAG, "calcTimePast: dateTime" + dateTime);
+        String wholeString = dateTime;
+        String year;
+        String month;
+        String day;
+        String hour;
+        String minute;
+        String second;
+
+        year = wholeString.split("\\-")[0];
+        month = wholeString.split("\\-")[1];
+        day = wholeString.split("\\-")[2].split(" ")[0];
+
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        String year_c = sdf.format(new Date());
+        sdf = new SimpleDateFormat("MM");
+        String month_c = sdf.format(new Date());
+        sdf = new SimpleDateFormat("dd");
+        String day_c = sdf.format(new Date());
+
+        Log.i(TAG, "getTodayOrYesterday: ymd "+year+" "+month+" "+day+","+" "+year_c+" "+month_c+" "+day_c);
+
+
+        if (!Objects.equals(year, year_c)) {
+            return "Yesterday";
+
+        } else if (!Objects.equals(month, month_c) ){
+            return "Yesterday";
+        }
+        else if (!Objects.equals(day, day_c)){
+            return "Yesterday";
+        }
+        else return "today";
+
+    }
+
+
+    /////////////////api
 
 
     String uploadFileName = "uploadFileName";
@@ -510,7 +604,7 @@ public class MyPreApp {
                 dos.writeBytes(lineEnd);
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
 
-                dos.writeBytes("Content-Disposition: form-data; name=upload_file; filename=" + Filename  + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=upload_file; filename=" + Filename + lineEnd);
                 dos.writeBytes(lineEnd);
                 // create a buffer of  maximum size
                 bytesAvailable = fileInputStream.available();
@@ -568,6 +662,8 @@ public class MyPreApp {
 
     public Bitmap getBitmapFromURL(String URL_Path) {
         Log.i(TAG, "getBitmapFromURL: ");
+//        URL_Path =URL_Path.replace("\\","" );
+        Log.i(TAG, "getBitmapFromURL: URL_Path " + URL_Path);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Bitmap bitmap = null;
@@ -582,6 +678,7 @@ public class MyPreApp {
 
 
     }
+
 
 
 }

@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,7 +52,7 @@ public class Fragment_Profile_shop_owner extends Fragment {
             member_gender.setImageDrawable(getResources().getDrawable(R.drawable.female));
         }
 
-        member_profile_image = (ImageView) view.findViewById(R.id.member_profile_image);
+        member_profile_image = (ImageView) view.findViewById(R.id.feed_image);
         
         if (!Objects.equals(login_response_data.member_profile_image, "")){
             Log.i(TAG, "onCreateView: member_profile_image "+login_response_data.member_profile_image);

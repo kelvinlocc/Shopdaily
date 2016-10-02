@@ -394,7 +394,7 @@ public class API {
         ).start();
     }
 
-    public void getShopBookmark(final String api_key, final String lang_id, final String member_session, final String shop_id, final String shop_feed_id, final String bookmark_action,final onAjaxFinishedListener listener) {
+    public void ShopBookmark(final String api_key, final String lang_id, final String member_session, final String shop_id, final String shop_feed_id, final String bookmark_action, final onAjaxFinishedListener listener) {
         new Thread(new Runnable() {
             @Override
             public void run() {

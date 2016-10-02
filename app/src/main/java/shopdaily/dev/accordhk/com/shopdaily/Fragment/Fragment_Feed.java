@@ -39,6 +39,7 @@ import java.util.List;
 
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.bookmark_feed_response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_re;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
 import shopdaily.dev.accordhk.com.shopdaily.Adapter.Fragment_Feed_Adapter;
@@ -251,14 +252,12 @@ public class Fragment_Feed extends ListFragment {
                     Gson gson = new Gson();
                     shop = gson.fromJson(temp.toString(), shop_re.class);
                     Log.i(TAG, "onFinished: " + shop.shop_id);
-
                     //*** separate allocation:
                     //feed:
                     JSONObject feedObject = temp.getJSONObject("feed");
                     shop_feed feed = new shop_feed();
                     shop_feed_temp = new shop_feed();
                     shop.feed =null;
-
                     if (feedObject.length() > 1) {
                         feed = gson.fromJson(feedObject.toString(), shop_feed.class);
                         shop.feed = feed;
@@ -292,23 +291,60 @@ public class Fragment_Feed extends ListFragment {
 //                        Log.i(TAG, "checker::");
 //                        Log.i(TAG, "onFinished: "+shop.feed.shop_feed_id);
                     }
-
 //                    OneShopTesting(shop_re);
                     shop_list.add(shop);
-
-
                 }
                 myPreApp.setShop_list(shop_list);
                 myPreApp.setFeed_list(feed_list);
+                getBookmark_fromServer();
 //                feedListTesting();
 //                Log.i(TAG, "onFinished: feed list id at 0 " + feed_list.get(0).shop_feed_id);
 //                Log.i(TAG, "onFinished: go to test");
 //                test();
-                setAdapter();
 
             }
         });
     }
+    ArrayList<bookmark_feed_response> bookmark_feed_res_list;
+    public void getBookmark_fromServer (){
+        bookmark_feed_res_list = new ArrayList<>();
+        String api_key = "654321";
+        String lang_id = "1";
+        Login_Response_Data data = myPreApp.getLoginResponse().data;
+        String shop_or_feed = "2";
+        myApi.getBookmarkList(api_key,lang_id,data.member_session,shop_or_feed, new API.onAjaxFinishedListener() {
+            @Override
+            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                Log.i(TAG, "onFinished: Json:"+json);
+                JSONObject jsonobject = new JSONObject(json);
+                JSONArray jsonArray = jsonobject.getJSONArray("data");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    Log.i(TAG, "onFinished: jsonArray: "+jsonArray);
+                    Gson gson = new Gson();
+                    bookmark_feed_response bk = gson.fromJson(jsonArray.get(i).toString(),bookmark_feed_response.class);
+                    JSONObject jObj = jsonArray.getJSONObject(i);
+                    JSONArray jsonArray_02 = jObj.getJSONArray("images");
+                    String temp = jsonArray_02.getString(0);
+                    Log.i(TAG, "onFinished: temp"+temp);
+                    bk.myImages = temp;
+                    Log.i(TAG, "onFinished: images: "+bk.myImages);
+
+//                    bk.images= array.getJSONArray("images").toString();
+                    bookmark_feed_res_list.add(bk);
+                }
+
+                for (int i = 0; i < bookmark_feed_res_list.size(); i++) {
+                    Log.i(TAG, "onFinished: shop_feed_bookmark_id @i"+i+","+bookmark_feed_res_list.get(i).shop_feed_bookmark_id);
+                }
+                myPreApp.setBookmarkList(bookmark_feed_res_list);
+                Log.i(TAG, "onFinished: myPreApp.getBookmarkList().get(0).shopcol_shop_name"+myPreApp.getBookmarkList().get(0).shopcol_shop_name);
+                setAdapter();
+
+
+            }
+        });
+    }
+
 
     public void feedListTesting()
     {
@@ -387,6 +423,8 @@ public class Fragment_Feed extends ListFragment {
 
     }
 
+    Fragment_Favourite_feed favourite_feed;
+
 
     public void onStart() {
         Log.i(TAG, "onStart");
@@ -397,6 +435,7 @@ public class Fragment_Feed extends ListFragment {
         getURL();
 
         feed_list_adapter = new Fragment_Feed_Adapter(this, feedDataModelArrayList, ENTRY_LIMIT, userCurrentLocation,getContext());
+
         ///
         Bundle extras = getArguments();
         if (extras != null) {

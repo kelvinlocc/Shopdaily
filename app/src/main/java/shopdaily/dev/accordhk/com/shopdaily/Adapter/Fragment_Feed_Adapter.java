@@ -30,6 +30,10 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.callback.AjaxStatus;
+
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +43,7 @@ import java.util.Objects;
 
 import me.relex.circleindicator.CircleIndicator;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Shop_Response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.feed_comment_response;
 import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.shop_feed;
@@ -48,6 +53,7 @@ import shopdaily.dev.accordhk.com.shopdaily.DataModel.FeedDataModel;
 import shopdaily.dev.accordhk.com.shopdaily.Fragment.Fragment_Feed;
 
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.API;
 import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 
@@ -59,6 +65,7 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
     View view;
     ViewHolder holder;
     MyPreApp myPreApp;
+    API myApi;
     ArrayList<feed_comment_response> comment_list;
 
     private PopupWindow emji_window;
@@ -79,6 +86,7 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
         loading = false;
         thisUserCurrentLocation = userCurrentLocation;
         myPreApp = new MyPreApp();
+        myApi = new API(context);
         feed_list = myPreApp.getFeed_list();
         shop_list = myPreApp.getShop_list();
         Log.i(TAG, " thisUserCurrentLocation @ initial adapter" + userCurrentLocation.getLatitude() + "," + userCurrentLocation.getLongitude());
@@ -110,6 +118,8 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
         public static ImageView Picture;
         public static ImageButton imagb_react;
         public static ImageButton imageButton_location;
+        public static ImageButton bookmark;
+
         public static TextView tv_react;
         public static TextView react_number_01;
         public static TextView react_number_02;
@@ -161,6 +171,8 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
         holder.shop_detail_view = (LinearLayout) view.findViewById(R.id.shop_detail_view);
 
         holder.imageButton_location = (ImageButton) view.findViewById(R.id.imagebutton_location);
+        holder.bookmark = (ImageButton) view.findViewById(R.id.icon_favourite);
+
         holder.tv_shop_location = (TextView) view.findViewById(R.id.tv_shop_location);
         holder.Btn_comment = (TextView) view.findViewById(R.id.btn_comment);
         holder.Shop_name = (TextView) view.findViewById(R.id.shop_name);
@@ -268,11 +280,38 @@ public class Fragment_Feed_Adapter extends BaseAdapter implements View.OnClickLi
             holder.imageButton_location.setOnClickListener(new OnItemClickListener(position));
             holder.btn_share.setOnClickListener(new OnItemClickListener(position));
             holder.shop_detail_view.setOnClickListener(new OnItemClickListener(position));
+            if (myPreApp.isBookmarked(feed_data.shop_feed_id)){
+                holder.bookmark.setBackgroundColor(Color.YELLOW);
+            }
+            holder.bookmark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i(TAG, "onClick: bookmark@ position: "+position);
+                    shop_feed temp = feed_list.get(position);
+                    Log.i(TAG, "onClick: temp.feed_hashtag"+temp.feed_hashtag);
+                    addBookmark(temp.shop_feed_id,temp.shop_id,position);
+                }
+            });
 
         }
         return view;
 
     }
+
+    public void addBookmark(String shop_feed_id,String shop_id,int position){
+        String api_key = "654321";
+        String lang_id = "1";
+        String bookmark_action = "1";
+        Login_Response_Data data = myPreApp.getLoginResponse().data;
+        myApi.ShopBookmark(api_key,lang_id,data.member_session,shop_id,shop_feed_id,bookmark_action, new API.onAjaxFinishedListener() {
+            @Override
+            public void onFinished(String url, String json, AjaxStatus status) throws JSONException {
+                Log.i(TAG, "onFinished: Json "+json);
+            }
+        });
+
+    }
+
     public shop_re searchForShop (String shop_id){
         Log.i(TAG, "searchForShop: shopid: for "+shop_id);
         for (int i = 0; i < shop_list.size(); i++) {

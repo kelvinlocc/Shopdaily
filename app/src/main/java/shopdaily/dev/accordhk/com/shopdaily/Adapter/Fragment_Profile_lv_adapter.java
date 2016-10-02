@@ -11,24 +11,37 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.Login_Response_Data;
+import shopdaily.dev.accordhk.com.shopdaily.API_DataModel.myTimeline_response;
 import shopdaily.dev.accordhk.com.shopdaily.R;
+import shopdaily.dev.accordhk.com.shopdaily.Uility.MyPreApp;
 
 /**
  * Created by KelvinLo on 6/22/2016.
  */
-public class Fragment_Profile_lv_adapter extends BaseAdapter implements AbsListView.OnScrollListener{
-    String [] result;
+public class Fragment_Profile_lv_adapter extends BaseAdapter implements AbsListView.OnScrollListener {
+    String[] result;
     Context context;
-    int [] imageId;
-    private static LayoutInflater inflater=null;
+    int[] imageId;
+
+    MyPreApp myPreApp;
+    ArrayList<myTimeline_response> timelineList;
+    private static LayoutInflater inflater = null;
+
     public Fragment_Profile_lv_adapter(Context context2, String[] prgmNameList, int[] prgmImages) {//
         // TODO Auto-generated constructor stub
-        result=prgmNameList;
-        context=context2;//
-        imageId=prgmImages;
-        inflater = ( LayoutInflater )context.
+        result = prgmNameList;
+        context = context2;//
+        myPreApp = new MyPreApp();
+        timelineList = myPreApp.getMyTimelineList();
+        imageId = prgmImages;
+        inflater = (LayoutInflater) context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
@@ -57,28 +70,45 @@ public class Fragment_Profile_lv_adapter extends BaseAdapter implements AbsListV
 
     }
 
-    public class Holder
-    {
-        TextView tv;
+    public class Holder {
+        TextView userName;
         ImageView img;
+        TextView action;
+        TextView timePast;
     }
+
+    myTimeline_response timeline;
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        Log.i("check_", result[position] + " added!");
-        Log.i("check_"," at position: "+ position);
-        Holder holder=new Holder();
+        timeline = timelineList.get(position);
+        Login_Response_Data data = myPreApp.getLoginResponse().data;
+
+        Log.i("check_", " at position: " + position);
+        Holder holder = new Holder();
         View rowView;
         rowView = inflater.inflate(R.layout.fragment_profile_lv_entry, null);
-        holder.tv=(TextView) rowView.findViewById(R.id.shop_name);
-        holder.img=(ImageView) rowView.findViewById(R.id.member_profile_image);
-        holder.tv.setText(result[position]);
+        holder.userName = (TextView) rowView.findViewById(R.id.user_name);
+        holder.img = (ImageView) rowView.findViewById(R.id.feed_image);
+        holder.action = (TextView) rowView.findViewById(R.id.action);
+        holder.timePast = (TextView) rowView.findViewById(R.id.time_past);
+
+
+        if (Objects.equals(data.member_id, timeline.member_id)) {
+            holder.userName.setText("you ");
+        } else {
+            holder.userName.setText(timeline.member_id);
+        }
+        holder.action.setText("like");
+        holder.timePast.setText("time");
+
         holder.img.setImageResource(imageId[position]);
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(context, "You Clicked "+result[position], Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "You Clicked " + result[position], Toast.LENGTH_LONG).show();
             }
         });
         return rowView;

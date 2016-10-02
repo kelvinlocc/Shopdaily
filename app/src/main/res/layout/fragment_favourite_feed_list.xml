@@ -17,7 +17,7 @@
         android:layout_marginRight="10dp">
 
         <ImageView
-            android:id="@+id/member_profile_image"
+            android:id="@+id/feed_image"
             android:layout_gravity="center"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -58,7 +58,7 @@
             <ImageButton
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton5"
+                android:id="@+id/removeBookmark"
                 android:src="@drawable/icon_favour"
                 android:background="@null"
                 android:scaleType="fitCenter" />
